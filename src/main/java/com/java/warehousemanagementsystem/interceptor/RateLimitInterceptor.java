@@ -1,6 +1,5 @@
 package com.java.warehousemanagementsystem.interceptor;
 
-
 import com.java.warehousemanagementsystem.annotation.RateLimit;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,28 +19,31 @@ import java.util.concurrent.TimeUnit;
  * 拦截器
  */
 @Component
-public class RateLimitInterceptor implements HandlerInterceptor
-{
+public class RateLimitInterceptor implements HandlerInterceptor {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-    {
-        Method handlerMethod = ((HandlerMethod) handler).getMethod();
-        RateLimit rateLimitByToken = handlerMethod.getAnnotation(RateLimit.class);
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        if (!(handler instanceof HandlerMethod)) {
+            // 如果不是HandlerMethod实例，直接放行
+            return true;
+        }
+
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        Method method = handlerMethod.getMethod();
+        RateLimit rateLimitByToken = method.getAnnotation(RateLimit.class);
         if (rateLimitByToken == null) return true;
 
         String bearerToken = extractBearerToken(request);
         if (bearerToken == null || bearerToken.isEmpty()) throw new RuntimeException("Bearer token is required");
 
-        String key = "rate_limit:" + handlerMethod.getDeclaringClass().getName() + ":" + handlerMethod.getName() + ":" + bearerToken;
+        String key = "rate_limit:" + method.getDeclaringClass().getName() + ":" + method.getName() + ":" + bearerToken;
         Long currentCount = redisTemplate.opsForValue().increment(key);
         if (currentCount == 1) redisTemplate.expire(key, rateLimitByToken.timeout(), TimeUnit.SECONDS);
 
-        if (currentCount > rateLimitByToken.limit())
-        {
+        if (currentCount > rateLimitByToken.limit()) {
             response.setContentType("application/xml;charset=UTF-8");
             String str = "请求次数过多！请稍后再试！";
             try {
@@ -55,11 +57,9 @@ public class RateLimitInterceptor implements HandlerInterceptor
         return true;
     }
 
-    private String extractBearerToken(HttpServletRequest request)
-    {
+    private String extractBearerToken(HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
-        {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             return authorizationHeader.substring(7);
         }
         return null;
