@@ -87,4 +87,130 @@ public class UserServiceImpl implements UserService
         securityConstant.update();
         return map;
     }
+
+    @Override
+    public Map<String, String> login(String username, String password)
+    {
+        Map<String, String> map = new HashMap<>();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        List<User> users = userMapper.selectList(queryWrapper);
+        if(users.isEmpty())
+        {
+            map.put("error_message", "用户不存在");
+            return map;
+        }
+        User user = users.get(0);
+        if(!passwordEncoder.matches(password, user.getPassword()))
+        {
+            map.put("error_message", "密码错误");
+            return map;
+        }
+        map.put("error_message", "success");
+        return map;
+    }
+
+    @Override
+    public Map<String, String> logout(String username)
+    {
+        Map<String, String> map = new HashMap<>();
+        map.put("error_message", "success");
+        return map;
+    }
+
+    @Override
+    public Map<String, String> update(String username, String password, String confirmedPassword)
+    {
+        Map<String, String> map = new HashMap<>();
+        if(username == null)
+        {
+            map.put("error_message", "用户名不能为空");
+            return map;
+        }
+        username = username.trim();
+        if (username.isEmpty())
+        {
+            map.put("error_message", "用户名不能为空");
+            return map;
+        }
+
+        if(username.length() > 100)
+        {
+            map.put("error_message", "用户名过长");
+            return map;
+        }
+
+        if (password == null || confirmedPassword == null) {
+            map.put("error_message", "密码不能为空");
+            return map;
+        }
+
+        if (password.isEmpty() || confirmedPassword.isEmpty()) {
+            map.put("error_message", "密码不能为空");
+        }
+
+        if(password.length() > 100)
+        {
+            map.put("error_message", "密码过长");
+            return map;
+        }
+
+        if(!password.equals(confirmedPassword))
+        {
+            map.put("error_message", "密码不一致");
+            return map;
+        }
+
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        List<User> users = userMapper.selectList(queryWrapper);
+        if(users.isEmpty())
+        {
+            map.put("error_message", "用户不存在");
+            return map;
+        }
+
+        User user = users.get(0);
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setPassword(encodedPassword);
+        userMapper.updateById(user);
+
+        map.put("error_message", "success");
+        return map;
+    }
+
+    @Override
+    public Map<String, String> delete(String username)
+    {
+        Map<String, String> map = new HashMap<>();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        List<User> users = userMapper.selectList(queryWrapper);
+        if(users.isEmpty())
+        {
+            map.put("error_message", "用户不存在");
+            return map;
+        }
+        userMapper.delete(queryWrapper);
+        map.put("error_message", "success");
+        return map;
+    }
+
+    @Override
+    public Map<String, String> query(String username)
+    {
+        Map<String, String> map = new HashMap<>();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        List<User> users = userMapper.selectList(queryWrapper);
+        if(users.isEmpty())
+        {
+            map.put("error_message", "用户不存在");
+            return map;
+        }
+        User user = users.get(0);
+        map.put("username", user.getUsername());
+        map.put("password", user.getPassword());
+        return map;
+    }
 }
