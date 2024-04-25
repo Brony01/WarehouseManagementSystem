@@ -3,25 +3,30 @@ package com.java.warehousemanagementsystem.controller;
 
 import com.java.warehousemanagementsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-public class UserController
-{
+public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("")
-    public Map<String, String> register(@RequestParam  String username,
-                                        @RequestParam  String password,
-                                        @RequestParam  String confirmedPassword)
-    {
-        return userService.register(username, password, confirmedPassword);
+    @Operation(summary = "用户注册")
+    @RequestMapping(value = "/register" , method = RequestMethod.POST)
+    public ResponseResult register(@Parameter(name = "username", description = "用户名") String username,
+                                        @Parameter(name = "password", description = "密码") String password,
+                                        @Parameter(name = "confirmedPassword", description = "确认密码") String confirmedPassword) {
+        userService.register(username, password, confirmedPassword);
+        return ResponseResult.okResult();
     }
 }
