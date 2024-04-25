@@ -1,19 +1,19 @@
 package com.java.warehousemanagementsystem.service;
 
+import com.java.warehousemanagementsystem.pojo.User;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 
-import java.util.Map;
+import java.util.List;
 
 public interface UserService
 {
-    Map<String, String> register(String username, String password, String confirmedPassword);
+    ResponseResult register(String username, String password, String confirmedPassword);
 
-    Map<String, String> login(String username, String password);
+    ResponseResult updateUser(int id, String username, String password, String confirmedPassword);
 
-    Map<String, String> logout(String username);
+    ResponseResult<User> findUserById(Integer id);
 
-    Map<String, String> update(String username, String password, String confirmedPassword);
+    ResponseResult<List<User>> findAllUser();
 
-    Map<String, String> delete(String username);
-
-    Map<String, String> query(String username);
+    ResponseResult deleteUser(Integer id);
 }
