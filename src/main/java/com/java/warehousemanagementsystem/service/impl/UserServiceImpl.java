@@ -22,25 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean register(String username, String password, String confirmedPassword)
             throws IllegalArgumentException {
-        if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("用户名不能为空");
-        }
-
-        if (username.length() > 100) {
-            throw new IllegalArgumentException("用户名过长");
-        }
-
-        if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("密码不能为空");
-        }
-
-        if (password.length() > 100) {
-            throw new IllegalArgumentException("密码过长");
-        }
-
-        if (!password.equals(confirmedPassword)) {
-            throw new IllegalArgumentException("密码不一致");
-        }
+        check(username, password, confirmedPassword);
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
@@ -56,9 +38,8 @@ public class UserServiceImpl implements UserService {
         return true; // Successful registration
     }
 
-    @Override
-    public boolean updateUser(int id, String username, String password, String confirmedPassword)
-            throws IllegalArgumentException {
+    private void check(String username, String password, String confirmedPassword)
+    {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("用户名不能为空");
         }
@@ -78,6 +59,12 @@ public class UserServiceImpl implements UserService {
         if (!password.equals(confirmedPassword)) {
             throw new IllegalArgumentException("密码不一致");
         }
+    }
+
+    @Override
+    public boolean updateUser(int id, String username, String password, String confirmedPassword)
+            throws IllegalArgumentException {
+        check(username, password, confirmedPassword);
 
         User user = userMapper.selectById(id);
         if (user == null) {

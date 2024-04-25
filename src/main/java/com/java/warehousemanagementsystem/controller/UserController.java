@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @Operation(summary = "用户注册")
-    @PostMapping
+    @PostMapping()
     @ResponseBody
     public ResponseResult<?> register(
             @RequestParam @Parameter(description = "用户名") String username,
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @Operation(summary = "更新用户数据")
-    @PutMapping
+    @PutMapping()
     @ResponseBody
     public ResponseResult<?> update(
             @RequestParam @Parameter(description = "用户id") Integer id,
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @Operation(summary = "获取用户列表")
-    @GetMapping
+    @GetMapping()
     @ResponseBody
     public ResponseResult<List<User>> getList() {
         List<User> users = userService.findAllUser();

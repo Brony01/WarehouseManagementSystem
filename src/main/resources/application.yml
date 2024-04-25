@@ -16,7 +16,7 @@ spring:
 
 jwt:
   secret: 1234567890123456
-  expirationTime: 604800
+  expirationTime: 900
   issuer: springboot3-security
   header: Authorization
   tokenHead: Bearer
