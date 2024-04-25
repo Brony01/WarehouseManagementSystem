@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @Operation(summary = "用户注册")
-    @PostMapping("/register")
+    @PostMapping
     @ResponseBody
     public ResponseResult<?> register(
             @RequestParam @Parameter(description = "用户名") String username,
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @Operation(summary = "更新用户数据")
-    @PutMapping("/update")
+    @PutMapping
     @ResponseBody
     public ResponseResult<?> update(
             @RequestParam @Parameter(description = "用户id") Integer id,
@@ -47,10 +47,10 @@ public class UserController {
     }
 
     @Operation(summary = "根据id查找用户")
-    @GetMapping("/findUserById")
+    @GetMapping("/{id}")
     @ResponseBody
     public ResponseResult<User> findUserById(
-            @RequestParam @Parameter(description = "用户id") Integer id) {
+            @PathVariable @Parameter(description = "用户id") Integer id) {
         User user = userService.findUserById(id);
         if (user == null) {
             return ResponseResult.failure(404, "未找到用户");
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @Operation(summary = "获取用户列表")
-    @GetMapping("/getList")
+    @GetMapping
     @ResponseBody
     public ResponseResult<List<User>> getList() {
         List<User> users = userService.findAllUser();
@@ -67,10 +67,10 @@ public class UserController {
     }
 
     @Operation(summary = "删除用户")
-    @DeleteMapping("/delete")
+    @DeleteMapping("/{id}")
     @ResponseBody
     public ResponseResult<?> delete(
-            @RequestParam @Parameter(description = "用户id") Integer id) {
+            @PathVariable @Parameter(description = "用户id") Integer id) {
         if (!userService.deleteUser(id)) {
             return ResponseResult.failure(404, "未找到用户");
         }
