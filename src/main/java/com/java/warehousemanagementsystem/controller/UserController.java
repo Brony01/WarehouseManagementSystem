@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/user") // Uncommented and specified to clearly define the routing path
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Resource
     private UserService userService;
 
@@ -25,8 +30,10 @@ public class UserController {
             @RequestParam @Parameter(description = "密码") String password,
             @RequestParam @Parameter(description = "确认密码") String confirmedPassword) {
         if (userService.register(username, password, confirmedPassword)) {
+            logger.info("(UserController)用户注册成功");
             return ResponseResult.success("用户注册成功");
         } else {
+            logger.error("(UserController)用户注册失败");
             return ResponseResult.failure(400, "用户注册失败");
         }
     }
@@ -40,8 +47,10 @@ public class UserController {
             @RequestParam @Parameter(description = "密码") String password,
             @RequestParam @Parameter(description = "确认密码") String confirmedPassword) {
         if (userService.updateUser(id, username, password, confirmedPassword)) {
+            logger.info("(UserController)用户数据更新成功");
             return ResponseResult.success("用户数据更新成功");
         } else {
+            logger.error("(UserController)用户数据更新失败");
             return ResponseResult.failure(400, "用户数据更新失败");
         }
     }
@@ -53,8 +62,10 @@ public class UserController {
             @PathVariable @Parameter(description = "用户id") Integer id) {
         User user = userService.findUserById(id);
         if (user == null) {
+            logger.error("(UserController)未找到用户");
             return ResponseResult.failure(404, "未找到用户");
         }
+        logger.info("(UserController)用户查找成功");
         return ResponseResult.success(user);
     }
 
@@ -63,6 +74,7 @@ public class UserController {
     @ResponseBody
     public ResponseResult<List<User>> getList() {
         List<User> users = userService.findAllUser();
+        logger.info("(UserController)获取用户列表, size = {}, users = {}", users.size(), users);
         return ResponseResult.success(users);
     }
 
@@ -72,8 +84,10 @@ public class UserController {
     public ResponseResult<?> delete(
             @PathVariable @Parameter(description = "用户id") Integer id) {
         if (!userService.deleteUser(id)) {
+            logger.error("(UserController)未找到用户");
             return ResponseResult.failure(404, "未找到用户");
         }
+        logger.info("(UserController)用户删除成功");
         return ResponseResult.success("用户删除成功");
     }
 }
