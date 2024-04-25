@@ -2,20 +2,17 @@ package com.java.warehousemanagementsystem.controller;
 
 
 import com.java.warehousemanagementsystem.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import com.java.warehousemanagementsystem.vo.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -23,9 +20,10 @@ public class UserController {
 
     @Operation(summary = "用户注册")
     @RequestMapping(value = "/register" , method = RequestMethod.POST)
+    @ResponseBody
     public ResponseResult register(@Parameter(name = "username", description = "用户名") String username,
-                                        @Parameter(name = "password", description = "密码") String password,
-                                        @Parameter(name = "confirmedPassword", description = "确认密码") String confirmedPassword) {
+                                   @Parameter(name = "password", description = "密码") String password,
+                                   @Parameter(name = "confirmedPassword", description = "确认密码") String confirmedPassword) {
         userService.register(username, password, confirmedPassword);
         return ResponseResult.okResult();
     }
