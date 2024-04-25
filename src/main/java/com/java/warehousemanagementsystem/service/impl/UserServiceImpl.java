@@ -32,41 +32,41 @@ public class UserServiceImpl implements UserService {
         queryWrapper.eq("username", username);
         long count = userMapper.selectCount(queryWrapper);
         if (count > 0) {
-            logger.error("用户已存在");
+            logger.error("(UserService)用户已存在");
             throw new IllegalArgumentException("用户已存在");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
         User user = new User(null, username, encodedPassword);
         userMapper.insert(user);
-        logger.info("用户注册成功, id = {}. username = {}", user.getId(), user.getUsername());
+        logger.info("(UserService)用户注册成功, id = {}. username = {}", user.getId(), user.getUsername());
 
         return true; // Successful registration
     }
 
     private void check(String username, String password, String confirmedPassword) {
         if (username == null || username.trim().isEmpty()) {
-            logger.error("用户名不能为空");
+            logger.error("(UserService)用户名不能为空");
             throw new IllegalArgumentException("用户名不能为空");
         }
 
         if (username.length() > 100) {
-            logger.error("用户名过长");
+            logger.error("(UserService)用户名过长");
             throw new IllegalArgumentException("用户名过长");
         }
 
         if (password == null || password.isEmpty()) {
-            logger.error("密码不能为空");
+            logger.error("(UserService)密码不能为空");
             throw new IllegalArgumentException("密码不能为空");
         }
 
         if (password.length() > 100) {
-            logger.error("密码过长");
+            logger.error("(UserService)密码过长");
             throw new IllegalArgumentException("密码过长");
         }
 
         if (!password.equals(confirmedPassword)) {
-            logger.error("密码不一致");
+            logger.error("(UserService)密码不一致");
             throw new IllegalArgumentException("密码不一致");
         }
     }
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.selectById(id);
         if (user == null) {
-            logger.error("用户不存在");
+            logger.error("(UserService)用户不存在");
             throw new IllegalArgumentException("用户不存在");
         }
 
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(username);
         user.setPassword(encodedPassword);
         userMapper.updateById(user);
-        logger.info("用户数据更新成功, id = {}. username = {}", user.getId(), user.getUsername());
+        logger.info("(UserService)用户数据更新成功, id = {}. username = {}", user.getId(), user.getUsername());
 
         return true; // Successful update
     }
@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(Integer id) {
         if (id == null) {
-            logger.error("用户id不能为空");
+            logger.error("(UserService)用户id不能为空");
             throw new IllegalArgumentException("用户id不能为空");
         }
         return userMapper.selectById(id);
@@ -102,14 +102,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllUser() {
-        logger.info("获取用户列表, size = {}, users = {}", userMapper.selectList(null).size(), userMapper.selectList(null));
+        logger.info("(UserService)获取用户列表, size = {}, users = {}", userMapper.selectList(null).size(), userMapper.selectList(null));
         return userMapper.selectList(null);
     }
 
     @Override
     public boolean deleteUser(Integer id) {
         if (id == null) {
-            logger.error("用户id不能为空");
+            logger.error("(UserService)用户id不能为空");
             throw new IllegalArgumentException("用户id不能为空");
         }
         return userMapper.deleteById(id) > 0;
