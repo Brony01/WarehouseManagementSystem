@@ -1,11 +1,9 @@
 package com.java.warehousemanagementsystem.controller;
 
+import com.java.warehousemanagementsystem.annotation.RateLimit;
 import com.java.warehousemanagementsystem.service.SessionService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -23,14 +21,22 @@ public class SessionController
         return sessionService.loginSession(username, password);
     }
 
+    @RateLimit
     @PostMapping("/test")
     public String test()
     {
         return "admin";
     }
 
+    @RateLimit
     @PostMapping("/test2")
     public String test2()
+    {
+        return "user";
+    }
+
+    @GetMapping("/test3")
+    public String test3()
     {
         return "user";
     }
