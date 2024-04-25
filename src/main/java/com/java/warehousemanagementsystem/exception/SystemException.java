@@ -12,8 +12,8 @@ public class SystemException extends RuntimeException{
         return msg;
     }
     public SystemException(AppHttpCodeEnum appHttpCodeEnum) {
-        super(appHttpCodeEnum.getMsg());
+        super(appHttpCodeEnum.getMessage());
         this.code = appHttpCodeEnum.getCode();
-        this.msg = appHttpCodeEnum.getMsg();
+        this.msg = appHttpCodeEnum.getMessage();
     }
 }

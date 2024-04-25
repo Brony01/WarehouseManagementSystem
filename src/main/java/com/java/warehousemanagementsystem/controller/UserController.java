@@ -1,63 +1,79 @@
 package com.java.warehousemanagementsystem.controller;
 
-
 import com.java.warehousemanagementsystem.pojo.User;
 import com.java.warehousemanagementsystem.service.UserService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-//@RequestMapping("/user")
+@RequestMapping("/user") // Uncommented and specified to clearly define the routing path
 public class UserController {
-    @Autowired
-    UserService userService;
+    @Resource
+    private UserService userService;
 
     @Operation(summary = "用户注册")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping("/register")
     @ResponseBody
-    public ResponseResult register(@RequestParam @Parameter(name = "username", description = "用户名") String username,
-                                   @RequestParam @Parameter(name = "password", description = "密码") String password,
-                                   @RequestParam @Parameter(name = "confirmedPassword", description = "确认密码") String confirmedPassword) {
-        userService.register(username, password, confirmedPassword);
-        return ResponseResult.okResult();
+    public ResponseResult<?> register(
+            @RequestParam @Parameter(description = "用户名") String username,
+            @RequestParam @Parameter(description = "密码") String password,
+            @RequestParam @Parameter(description = "确认密码") String confirmedPassword) {
+        if (userService.register(username, password, confirmedPassword)) {
+            return ResponseResult.success("用户注册成功");
+        } else {
+            return ResponseResult.failure(400, "用户注册失败");
+        }
     }
 
     @Operation(summary = "更新用户数据")
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @PutMapping("/update")
     @ResponseBody
-    public ResponseResult update(@RequestParam @Parameter(name = "id", description = "用户id") Integer id,
-                                 @RequestParam @Parameter(name = "username", description = "用户名") String username,
-                                 @RequestParam @Parameter(name = "password", description = "密码") String password,
-                                 @RequestParam @Parameter(name = "confirmedPassword", description = "确认密码") String confirmedPassword) {
-        userService.updateUser(id, username, password, confirmedPassword);
-        return ResponseResult.okResult();
+    public ResponseResult<?> update(
+            @RequestParam @Parameter(description = "用户id") Integer id,
+            @RequestParam @Parameter(description = "用户名") String username,
+            @RequestParam @Parameter(description = "密码") String password,
+            @RequestParam @Parameter(description = "确认密码") String confirmedPassword) {
+        if (userService.updateUser(id, username, password, confirmedPassword)) {
+            return ResponseResult.success("用户数据更新成功");
+        } else {
+            return ResponseResult.failure(400, "用户数据更新失败");
+        }
     }
 
     @Operation(summary = "根据id查找用户")
-    @RequestMapping(value = "/findUserById", method = RequestMethod.GET)
+    @GetMapping("/findUserById")
     @ResponseBody
-    public ResponseResult findUserById(@RequestParam @Parameter(name = "id", description = "用户id") Integer id) {
-        return userService.findUserById(id);
+    public ResponseResult<User> findUserById(
+            @RequestParam @Parameter(description = "用户id") Integer id) {
+        User user = userService.findUserById(id);
+        if (user == null) {
+            return ResponseResult.failure(404, "未找到用户");
+        }
+        return ResponseResult.success(user);
     }
 
     @Operation(summary = "获取用户列表")
-    @RequestMapping(value = "/getList", method = RequestMethod.GET)
+    @GetMapping("/getList")
     @ResponseBody
     public ResponseResult<List<User>> getList() {
-        return userService.findAllUser();
+        List<User> users = userService.findAllUser();
+        return ResponseResult.success(users);
     }
 
     @Operation(summary = "删除用户")
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @DeleteMapping("/delete")
     @ResponseBody
-    public ResponseResult delete(@RequestParam @Parameter(name = "id", description = "用户id") Integer id) {
-        userService.deleteUser(id);
-        return ResponseResult.okResult();
+    public ResponseResult<?> delete(
+            @RequestParam @Parameter(description = "用户id") Integer id) {
+        if (!userService.deleteUser(id)) {
+            return ResponseResult.failure(404, "未找到用户");
+        }
+        return ResponseResult.success("用户删除成功");
     }
 }

@@ -1,96 +1,115 @@
 package com.java.warehousemanagementsystem.service.impl;
 
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.java.warehousemanagementsystem.config.SecurityConstant;
-import com.java.warehousemanagementsystem.exception.SystemException;
-import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.pojo.User;
+import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.service.UserService;
-import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static com.java.warehousemanagementsystem.enums.AppHttpCodeEnum.SUCCESS;
-import static com.java.warehousemanagementsystem.enums.AppHttpCodeEnum.SYSTEM_ERROR;
 
 @Service
-public class UserServiceImpl implements UserService
-{
+public class UserServiceImpl implements UserService {
+
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private SecurityConstant securityConstant;
 
     @Override
-    public Map<String, String> register(String username, String password, String confirmedPassword)
-    {
-        Map<String, String> map = new HashMap<>();
-
-        if(username == null)
-        {
-            map.put("error_message", "用户名不能为空");
-            return map;
-        }
-        username = username.trim();
-        username = username.trim();
-        if (username.isEmpty())
-        {
-            map.put("error_message", "用户名不能为空");
-            return map;
+    public boolean register(String username, String password, String confirmedPassword)
+            throws IllegalArgumentException {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("用户名不能为空");
         }
 
-
-        if(username.length() > 100)
-        {
-            map.put("error_message", "用户名过长");
-            return map;
+        if (username.length() > 100) {
+            throw new IllegalArgumentException("用户名过长");
         }
 
-        if (password == null || confirmedPassword == null) {
-            map.put("error_message", "密码不能为空");
-            return map;
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("密码不能为空");
         }
 
-        if (password.isEmpty() || confirmedPassword.isEmpty()) {
-            map.put("error_message", "密码不能为空");
+        if (password.length() > 100) {
+            throw new IllegalArgumentException("密码过长");
         }
 
-        if(password.length() > 100)
-        {
-            map.put("error_message", "密码过长");
-            return map;
-        }
-
-        if(!password.equals(confirmedPassword))
-        {
-            map.put("error_message", "密码不一致");
-            return map;
+        if (!password.equals(confirmedPassword)) {
+            throw new IllegalArgumentException("密码不一致");
         }
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
-        List<User> users = userMapper.selectList(queryWrapper);
-        if(!users.isEmpty())
-        {
-            map.put("error_message", "用户已存在");
-            return map;
+        long count = userMapper.selectCount(queryWrapper);
+        if (count > 0) {
+            throw new IllegalArgumentException("用户已存在");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
         User user = new User(null, username, encodedPassword);
         userMapper.insert(user);
 
-        map.put("error_message", "success");
-        securityConstant.update();
-        return map;
+        return true; // Successful registration
     }
 
+    @Override
+    public boolean updateUser(int id, String username, String password, String confirmedPassword)
+            throws IllegalArgumentException {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("用户名不能为空");
+        }
+
+        if (username.length() > 100) {
+            throw new IllegalArgumentException("用户名过长");
+        }
+
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("密码不能为空");
+        }
+
+        if (password.length() > 100) {
+            throw new IllegalArgumentException("密码过长");
+        }
+
+        if (!password.equals(confirmedPassword)) {
+            throw new IllegalArgumentException("密码不一致");
+        }
+
+        User user = userMapper.selectById(id);
+        if (user == null) {
+            throw new IllegalArgumentException("用户不存在");
+        }
+
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setUsername(username);
+        user.setPassword(encodedPassword);
+        userMapper.updateById(user);
+
+        return true; // Successful update
+    }
+
+    @Override
+    public User findUserById(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("用户id不能为空");
+        }
+        return userMapper.selectById(id);
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return userMapper.selectList(null);
+    }
+
+    @Override
+    public boolean deleteUser(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("用户id不能为空");
+        }
+        return userMapper.deleteById(id) > 0;
+    }
 }

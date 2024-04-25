@@ -2,102 +2,49 @@ package com.java.warehousemanagementsystem.vo;
 
 import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 
 @Getter
-@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor(access = AccessLevel.PRIVATE) // 使用私有构造函数配合工厂方法
 public class ResponseResult<T> implements Serializable {
-    private Integer code;
-    private String msg;
-    private T data;
+    private final Integer code;
+    private final String msg;
+    private final T data;
 
-    public ResponseResult() {
-        this.code = AppHttpCodeEnum.SUCCESS.getCode();
-        this.msg = AppHttpCodeEnum.SUCCESS.getMessage();
+    // 成功响应，无数据返回
+    public static <T> ResponseResult<T> success() {
+        return new ResponseResult<>(AppHttpCodeEnum.SUCCESS.getCode(), AppHttpCodeEnum.SUCCESS.getMessage(), null);
     }
 
-    public ResponseResult(Integer code, T data) {
-        this.code = code;
-        this.data = data;
+    // 成功响应，有数据返回
+    public static <T> ResponseResult<T> success(T data) {
+        return new ResponseResult<>(AppHttpCodeEnum.SUCCESS.getCode(), AppHttpCodeEnum.SUCCESS.getMessage(), data);
     }
 
-    public ResponseResult(Integer code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    // 成功响应，自定义消息
+    public static <T> ResponseResult<T> success(String message, T data) {
+        return new ResponseResult<>(AppHttpCodeEnum.SUCCESS.getCode(), message, data);
     }
 
-    public ResponseResult(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
+    // 失败响应，指定错误代码和消息
+    public static <T> ResponseResult<T> failure(int code, String msg) {
+        return new ResponseResult<>(code, msg, null);
     }
 
-    public static ResponseResult errorResult(int code, String msg) {
-        ResponseResult result = new ResponseResult();
-        return result.error(code, msg);
+    // 失败响应，使用枚举类型提供错误代码和消息
+    public static <T> ResponseResult<T> failure(AppHttpCodeEnum errorCode) {
+        return new ResponseResult<>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
-    public static ResponseResult okResult() {
-        ResponseResult result = new ResponseResult();
-        return result;
+    // 失败响应，自定义错误消息
+    public static <T> ResponseResult<T> failure(AppHttpCodeEnum errorCode, String errorMessage) {
+        return new ResponseResult<>(errorCode.getCode(), errorMessage, null);
     }
 
-    public static ResponseResult okResult(int code, String msg) {
-        ResponseResult result = new ResponseResult();
-        return result.ok(code, null, msg);
-    }
-
-    public static <T>ResponseResult<T> okResult(T data) {
-        ResponseResult result = setAppHttpCodeEnum(AppHttpCodeEnum.SUCCESS, AppHttpCodeEnum.SUCCESS.getMessage());
-        if (data != null) {
-            result.setData(data);
-        }
-        return result;
-    }
-
-    public static ResponseResult errorResult(AppHttpCodeEnum enums) {
-        return setAppHttpCodeEnum(enums, enums.getMessage());
-    }
-
-    public static ResponseResult errorResult(AppHttpCodeEnum enums, String msg) {
-        return setAppHttpCodeEnum(enums, msg);
-    }
-
-    public static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums) {
-        return okResult(enums.getCode(), enums.getMessage());
-    }
-
-    private static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums, String msg) {
-        return okResult(enums.getCode(), msg);
-    }
-
-    public ResponseResult<?> error(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
-        return this;
-    }
-
-    public ResponseResult<?> ok(Integer code, T data) {
-        this.code = code;
-        this.data = data;
-        return this;
-    }
-
-    public ResponseResult<?> ok(Integer code, T data, String msg) {
-        this.code = code;
-        this.data = data;
-        this.msg = msg;
-        return this;
-    }
-
-    public ResponseResult<?> ok(T data) {
-        this.data = data;
-        return this;
-    }
 
 }
-

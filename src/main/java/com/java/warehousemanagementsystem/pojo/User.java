@@ -1,4 +1,4 @@
-package com.java.warehousemanagementsystem.pojo ;
+package com.java.warehousemanagementsystem.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

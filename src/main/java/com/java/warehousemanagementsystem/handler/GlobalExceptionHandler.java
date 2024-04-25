@@ -14,11 +14,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SystemException.class)
     public ResponseResult systemExceptionHandler(SystemException e) {
         log.error("出现了异常! {}", e);
-        return ResponseResult.errorResult(e.getCode(), e.getMsg());
+        return ResponseResult.failure(e.getCode(), e.getMsg());
     }
     @ExceptionHandler(Exception.class)
     public ResponseResult exceptionHandler(Exception e) {
         log.error("出现了异常! {}", e);
-        return ResponseResult.errorResult(AppHttpCodeEnum.SYSTEM_ERROR.getCode(), e.getMessage());
+        return ResponseResult.failure(AppHttpCodeEnum.BAD_GATEWAY.getCode(), e.getMessage());
     }
 }
