@@ -33,4 +33,11 @@ springdoc:
 # Logger Config
 logging:
   level:
-    com.hexadecimal: debug
+    root: WARN
+    org.springframework.web: INFO
+    com.myapp: DEBUG
+  file:
+    name: app.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
