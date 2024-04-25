@@ -1,47 +1,28 @@
-README
+Testing with boot testing framework
 
-在Java项目中，测试类的命名和文件结构是非常重要的，因为它们帮助维护清晰的项目结构并确保可持续管理。以下是一些常见的测试类型以及其建议的命名和文件结构：
-
-### 1. 单元测试（Unit Tests）
-
-**命名：**
-
-- 通常，单元测试的类名应与被测试类的名称匹配，并添加`Test`作为后缀。例如，如果有一个类名为`UserService`，则其单元测试类名应为`UserServiceTest`。
-
-**文件和包结构：**
-
-- 单元测试通常位于`src/test/java`目录下。
-- 测试类应该放在与被测试类相同的包中。例如，如果`UserService`位于`com.java.warehousemanagementsystem.service`包中，则`UserServiceTest`也应该放在这个包下。
-
-### 2. 集成测试（Integration Tests）
-
-**命名：**
-
-- 集成测试类通常以被测试的功能加上`IntegrationTest`作为后缀。例如，测试整个用户服务的集成测试可能命名为`UserServiceIntegrationTest`。
-
-**文件和包结构：**
-
-- 集成测试也位于`src/test/java`目录下。
-- 同样，它们应该放在与被测试功能相关的包中，或者可以创建一个专门的包来存放所有集成测试，例如`com.java.warehousemanagementsystem.integration`。
-
-### 3. 功能测试（Functional Tests）
-
-**命名：**
-
-- 功能测试通常关注于系统的某个特定功能，类名通常以测试的功能和`FunctionalTest`为后缀。例如，一个测试用户登录功能的测试类可以命名为`UserLoginFunctionalTest`。
-
-**文件和包结构：**
-
-- 位置同样在`src/test/java`。
-- 可以放在一个专门的功能测试包中，例如`com.java.warehousemanagementsystem.functional`，或者与相关功能的服务层相同的包中。
-
-### 4. 控制器测试（Controller Tests）
-
-**命名：**
-
-- 控制器测试类通常与控制器类的名称匹配，并添加`ControllerTest`作为后缀。例如，`UserController`的测试类应该命名为`UserControllerTest`。
-
-**文件和包结构：**
-
-- 控制器测试位于`src/test/java`目录下。
-- 应放在与其控制器相对应的包内，例如`com.java.warehousemanagementsystem.controller`。
+- **单元测试（Unit Testing）**:
+  - 使用 `@MockBean` 来模拟服务层或存储层的依赖。
+  - 通常不加载任何 Spring 应用上下文或只加载非常有限的上下文。
+  - 快速且专注于一个非常具体的类或方法。
+- **Web层测试（Web Layer Testing）**:
+  - 使用 `@WebMvcTest` 仅加载 MVC 层，适合测试控制器而不启动完整的 HTTP 服务器。
+  - 集成了 `MockMvc`，可以模拟 HTTP 请求与响应，检查控制器的行为。
+- **服务层测试（Service Layer Testing）**:
+  - 使用 `@SpringBootTest` 结合 `@MockBean` 来测试服务层的业务逻辑。
+  - 可以加载完整的应用程序上下文或部分上下文。
+  - 用于测试服务层的方法逻辑，确保它们在给定的输入下正确执行。
+- **集成测试（Integration Testing）**:
+  - 使用 `@SpringBootTest` 加载完整的应用程序上下文，通常结合使用 `@AutoConfigureMockMvc` 或 `@TestRestTemplate`。
+  - 用于测试应用程序的多个组件是如何一起工作的，例如控制器、服务和数据访问层。
+  - 可以进行全面的端到端测试，有时包括模拟外部服务。
+- **数据访问层测试（Repository Testing）**:
+  - 使用 `@DataJpaTest` 专门用于测试 JPA 仓库。此注解配置嵌入式数据库，开启 JPA 仓库，并关闭全应用上下文加载。
+  - 通过这种方式可以专注于数据访问逻辑，确认 SQL 查询的正确性及数据的正确处理。
+- **切面测试（Aspect Testing）**:
+  - 使用 `@SpringBootTest` 或其他上下文加载方式，确保切面逻辑（如事务处理、日志等）正确应用于指定组件。
+- **端到端测试（End-to-End Testing）**:
+  - 使用 `@SpringBootTest` 结合 `@AutoConfigureMockMvc` 或 `WebTestClient`。
+  - 模拟用户完整操作流程，从前端到后端，测试整个系统的行为以及各个部分的集成。
+- **切片测试（Slice Tests）**:
+  - 专门针对应用的某一层或组件进行隔离测试。
+  - 如 `@JsonTest`、`@WebFluxTest`、`@WebMvcTest` 等，这些测试针对特定技术或层次结构进行优化。
