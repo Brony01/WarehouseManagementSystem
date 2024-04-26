@@ -22,3 +22,242 @@
 2024-04-26 10:58:18 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 194 ms
 2024-04-26 10:58:57 [http-nio-8080-exec-10] INFO  c.j.w.service.UserService - (UserService)用户注册成功, id = 5. username = tesst
 2024-04-26 10:58:57 [http-nio-8080-exec-10] INFO  c.j.w.controller.UserController - (UserController)用户注册成功
+2024-04-26 11:56:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 11:56:37 [SpringApplicationShutdownHook] WARN  com.zaxxer.hikari.pool.HikariPool - Timed-out waiting for close connection executor to shutdown
+2024-04-26 11:56:37 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 11:56:42 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 41708 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 11:56:42 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 11:56:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 11:56:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 11:56:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-04-26 11:56:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 11:56:43 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 11:56:43 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 11:56:43 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 11:56:44 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 11:56:44 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1181 ms
+2024-04-26 11:56:44 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 11:56:44 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6408be5
+2024-04-26 11:56:44 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 11:56:45 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2d3768ce, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a9ea03f, org.springframework.security.web.context.SecurityContextHolderFilter@5c81ddab, org.springframework.security.web.header.HeaderWriterFilter@6f7a65e, org.springframework.web.filter.CorsFilter@796c68bf, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@6704df84, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d4f266, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b756a62, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1231f25c, org.springframework.security.web.session.SessionManagementFilter@6e22d6bf, org.springframework.security.web.access.ExceptionTranslationFilter@5eae392d, org.springframework.security.web.access.intercept.AuthorizationFilter@3a9040f0]
+2024-04-26 11:56:45 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 11:56:45 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 11:56:45 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.527 seconds (process running for 3.938)
+2024-04-26 11:56:54 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 11:56:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 11:56:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-04-26 11:56:54 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 181 ms
+2024-04-26 11:58:13 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 11:58:13 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 11:58:16 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 21972 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 11:58:16 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 11:58:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 11:58:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 11:58:16 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-04-26 11:58:17 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 11:58:17 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 11:58:17 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 11:58:17 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 11:58:17 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 11:58:17 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1059 ms
+2024-04-26 11:58:17 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 11:58:17 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1dd443c1
+2024-04-26 11:58:17 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 11:58:18 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@32121140, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@96c840a, org.springframework.security.web.context.SecurityContextHolderFilter@59d09ff3, org.springframework.security.web.header.HeaderWriterFilter@1b881f1f, org.springframework.web.filter.CorsFilter@50dc49e1, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@42730828, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39fc17be, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@106edde4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c81ddab, org.springframework.security.web.session.SessionManagementFilter@7bc6b117, org.springframework.security.web.access.ExceptionTranslationFilter@18fa5af6, org.springframework.security.web.access.intercept.AuthorizationFilter@29bf90fc]
+2024-04-26 11:58:19 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 11:58:19 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 11:58:19 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.151 seconds (process running for 3.575)
+2024-04-26 11:58:19 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 11:58:19 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 11:58:19 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-04-26 11:58:19 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 161 ms
+2024-04-26 12:03:38 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 12:03:38 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 12:03:41 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 37796 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 12:03:41 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 12:03:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 12:03:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 12:03:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-04-26 12:03:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 12:03:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:03:42 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 12:03:42 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 12:03:42 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 12:03:42 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1057 ms
+2024-04-26 12:03:42 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 12:03:43 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@26d7cb0d
+2024-04-26 12:03:43 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 12:03:43 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@517d9cd5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5216532a, org.springframework.security.web.context.SecurityContextHolderFilter@f8fe81e, org.springframework.security.web.header.HeaderWriterFilter@6d4f266, org.springframework.web.filter.CorsFilter@63485d7, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@4899799b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7de43652, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7fe0ca60, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@862624f, org.springframework.security.web.session.SessionManagementFilter@394b9e22, org.springframework.security.web.access.ExceptionTranslationFilter@96c840a, org.springframework.security.web.access.intercept.AuthorizationFilter@62871522]
+2024-04-26 12:03:44 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:03:44 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 12:03:44 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 2.997 seconds (process running for 3.386)
+2024-04-26 12:03:49 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 12:03:49 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 12:03:49 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-04-26 12:03:50 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 149 ms
+2024-04-26 12:04:28 [http-nio-8080-exec-2] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:04:28 [http-nio-8080-exec-2] INFO  c.j.w.aspect.CacheLoggingAspect - Cache evicted for key: 3 in method: UserController.delete(..)
+2024-04-26 12:07:39 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 12:07:39 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 12:07:42 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 29700 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 12:07:42 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 12:07:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 12:07:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 12:07:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-04-26 12:07:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 12:07:43 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:07:43 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 12:07:43 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 12:07:44 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 12:07:44 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1153 ms
+2024-04-26 12:07:44 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 12:07:44 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1dd443c1
+2024-04-26 12:07:44 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 12:07:45 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@fdf029a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63896cf7, org.springframework.security.web.context.SecurityContextHolderFilter@5eae392d, org.springframework.security.web.header.HeaderWriterFilter@49322d04, org.springframework.web.filter.CorsFilter@50dc49e1, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@42730828, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e1c5e0d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f7a65e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f838072, org.springframework.security.web.session.SessionManagementFilter@55d8f6bb, org.springframework.security.web.access.ExceptionTranslationFilter@5c43cb12, org.springframework.security.web.access.intercept.AuthorizationFilter@7de43652]
+2024-04-26 12:07:45 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:07:45 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 12:07:45 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.256 seconds (process running for 3.655)
+2024-04-26 12:07:45 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 12:07:45 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 12:07:45 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-04-26 12:07:45 [http-nio-8080-exec-1] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:07:45 [http-nio-8080-exec-1] INFO  c.j.w.aspect.CacheLoggingAspect - Cache evicted for key: 3 in method: UserController.delete(..)
+2024-04-26 12:08:06 [http-nio-8080-exec-2] INFO  c.j.w.aspect.CacheLoggingAspect - Accessing cache for key: 3 in method: UserController.findUserById(..)
+2024-04-26 12:08:06 [http-nio-8080-exec-2] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:08:06 [http-nio-8080-exec-2] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for key: 3 in method: UserController.findUserById(..)
+2024-04-26 12:08:24 [http-nio-8080-exec-4] INFO  c.j.w.aspect.CacheLoggingAspect - Accessing cache for key: 5 in method: UserController.findUserById(..)
+2024-04-26 12:08:24 [http-nio-8080-exec-4] INFO  c.j.w.controller.UserController - (UserController)用户查找成功
+2024-04-26 12:08:24 [http-nio-8080-exec-4] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for key: 5 in method: UserController.findUserById(..)
+2024-04-26 12:08:28 [http-nio-8080-exec-9] INFO  c.j.w.aspect.CacheLoggingAspect - Accessing cache for key: 11 in method: UserController.findUserById(..)
+2024-04-26 12:08:28 [http-nio-8080-exec-9] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:08:28 [http-nio-8080-exec-9] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for key: 11 in method: UserController.findUserById(..)
+2024-04-26 12:08:32 [http-nio-8080-exec-6] INFO  c.j.w.aspect.CacheLoggingAspect - Accessing cache for key: 111 in method: UserController.findUserById(..)
+2024-04-26 12:08:32 [http-nio-8080-exec-6] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:08:32 [http-nio-8080-exec-6] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for key: 111 in method: UserController.findUserById(..)
+2024-04-26 12:17:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 12:17:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 12:17:53 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 21276 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 12:17:53 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 12:17:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 12:17:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 12:17:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-04-26 12:17:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 12:17:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:17:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 12:17:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 12:17:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 12:17:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1148 ms
+2024-04-26 12:17:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 12:17:55 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@300aa927
+2024-04-26 12:17:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 12:17:56 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1b881f1f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51efdb72, org.springframework.security.web.context.SecurityContextHolderFilter@110318a7, org.springframework.security.web.header.HeaderWriterFilter@7af0693b, org.springframework.web.filter.CorsFilter@7cd3e0da, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@46d0f89c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b4228cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d216ee8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7bc6b117, org.springframework.security.web.session.SessionManagementFilter@28d7bd6b, org.springframework.security.web.access.ExceptionTranslationFilter@7c523bdd, org.springframework.security.web.access.intercept.AuthorizationFilter@7fdabb3b]
+2024-04-26 12:17:56 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:17:56 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 12:17:56 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.194 seconds (process running for 3.603)
+2024-04-26 12:17:57 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 12:17:57 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 12:17:57 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-04-26 12:18:13 [http-nio-8080-exec-4] INFO  c.j.w.aspect.CacheLoggingAspect - Attempting to access cache for method: findUserById, key: 12
+2024-04-26 12:18:13 [http-nio-8080-exec-4] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:18:13 [http-nio-8080-exec-4] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for method: findUserById, key: 12
+2024-04-26 12:18:35 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 154 ms
+2024-04-26 12:21:15 [http-nio-8080-exec-4] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:21:15 [http-nio-8080-exec-4] INFO  c.j.w.aspect.CacheLoggingAspect - Cache evicted for method: delete, key: 3
+2024-04-26 12:21:32 [http-nio-8080-exec-5] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:21:32 [http-nio-8080-exec-5] INFO  c.j.w.aspect.CacheLoggingAspect - Cache evicted for method: delete, key: 3
+2024-04-26 12:24:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 12:24:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 12:24:57 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 42688 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 12:24:57 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 12:24:57 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 12:24:57 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 12:24:57 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-04-26 12:24:58 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 12:24:58 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:24:58 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 12:24:58 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 12:24:58 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 12:24:58 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1082 ms
+2024-04-26 12:24:58 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 12:24:58 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1214c98b
+2024-04-26 12:24:58 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 12:24:59 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7af0693b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1791396b, org.springframework.security.web.context.SecurityContextHolderFilter@5ce41f1f, org.springframework.security.web.header.HeaderWriterFilter@3b29d36c, org.springframework.web.filter.CorsFilter@51ed2f68, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@63e4484d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2259d54f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b82f62a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28d7bd6b, org.springframework.security.web.session.SessionManagementFilter@634d3439, org.springframework.security.web.access.ExceptionTranslationFilter@5e663ab, org.springframework.security.web.access.intercept.AuthorizationFilter@3741071d]
+2024-04-26 12:24:59 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:24:59 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 12:24:59 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.105 seconds (process running for 3.486)
+2024-04-26 12:25:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 12:25:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 12:25:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-04-26 12:27:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 12:27:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 12:27:37 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 42520 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 12:27:37 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 12:27:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 12:27:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 12:27:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-04-26 12:27:38 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 12:27:38 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:27:38 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 12:27:38 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 12:27:38 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 12:27:38 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1047 ms
+2024-04-26 12:27:38 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 12:27:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3eb0fd88
+2024-04-26 12:27:39 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 12:27:40 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7607340f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f472245, org.springframework.security.web.context.SecurityContextHolderFilter@1b82f62a, org.springframework.security.web.header.HeaderWriterFilter@44e0c3d, org.springframework.web.filter.CorsFilter@10e56da9, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@1d17423f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2184962c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4d9bccfe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@110318a7, org.springframework.security.web.session.SessionManagementFilter@5ce41f1f, org.springframework.security.web.access.ExceptionTranslationFilter@3b29d36c, org.springframework.security.web.access.intercept.AuthorizationFilter@1791396b]
+2024-04-26 12:27:40 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:27:40 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 12:27:40 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.945 seconds (process running for 4.359)
+2024-04-26 12:27:56 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 12:27:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 12:27:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-04-26 12:34:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 12:34:44 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 12:34:47 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 28380 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 12:34:47 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 12:34:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 12:34:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 12:34:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2024-04-26 12:34:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 12:34:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:34:48 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 12:34:48 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 12:34:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 12:34:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1061 ms
+2024-04-26 12:34:48 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 12:34:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@bb5f9d
+2024-04-26 12:34:48 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 12:34:49 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2184962c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d9bccfe, org.springframework.security.web.context.SecurityContextHolderFilter@1ac2829e, org.springframework.security.web.header.HeaderWriterFilter@772bc4c9, org.springframework.web.filter.CorsFilter@7fc7152e, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@305b43ca, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4946dfde, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@77972964, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@412440c1, org.springframework.security.web.session.SessionManagementFilter@34ea86ff, org.springframework.security.web.access.ExceptionTranslationFilter@e2d9923, org.springframework.security.web.access.intercept.AuthorizationFilter@1b82f62a]
+2024-04-26 12:34:49 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 12:34:49 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 12:34:49 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.043 seconds (process running for 3.45)
+2024-04-26 12:34:50 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 12:34:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 12:34:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-04-26 12:35:07 [http-nio-8080-exec-2] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+2024-04-26 12:35:07 [http-nio-8080-exec-2] INFO  c.j.w.aspect.CacheLoggingAspect - Cache evicted for method: delete, key: 3
+2024-04-26 12:35:27 [http-nio-8080-exec-5] INFO  c.j.w.service.UserService - (UserService)用户注册成功, id = 6. username = 132
+2024-04-26 12:35:43 [http-nio-8080-exec-6] INFO  c.j.w.aspect.CacheLoggingAspect - Attempting to access cache for method: findUserById, key: 6
+2024-04-26 12:35:43 [http-nio-8080-exec-6] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for method: findUserById, key: 6
+2024-04-26 12:35:54 [http-nio-8080-exec-7] INFO  c.j.w.aspect.CacheLoggingAspect - Cache evicted for method: delete, key: 6
+2024-04-26 13:17:58 [http-nio-8080-exec-5] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 135 ms
+2024-04-26 13:20:49 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-26 13:20:49 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-26 13:20:52 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 35892 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 13:20:52 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 13:20:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 13:20:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 13:20:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-04-26 13:20:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 13:20:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 13:20:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 13:20:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 13:20:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 13:20:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1076 ms
+2024-04-26 13:20:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 13:20:54 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ebc5be6
+2024-04-26 13:20:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 13:20:55 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@351d726c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7af0693b, org.springframework.security.web.context.SecurityContextHolderFilter@71891d6b, org.springframework.security.web.header.HeaderWriterFilter@4e25282d, org.springframework.web.filter.CorsFilter@3407aa4f, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@6e00837f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56820446, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2259d54f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1791396b, org.springframework.security.web.session.SessionManagementFilter@d641499, org.springframework.security.web.access.ExceptionTranslationFilter@7aa1fb0e, org.springframework.security.web.access.intercept.AuthorizationFilter@7c523bdd]
+2024-04-26 13:20:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 13:20:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 13:20:55 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.041 seconds (process running for 3.426)

@@ -31,14 +31,14 @@ springdoc:
     path: /swagger-ui.html
 
 # Logger Config
-logging:
-  level:
-    root: INFO
-    com.java.warehousemanagementsystem: INFO
-    com.java.warehousemanagementsystem.controller: INFO
-    com.java.warehousemanagementsystem.service: INFO
-  file:
-    name: log/warehouse.log
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-
+#logging:
+#  level:
+#    root: INFO
+#    com.java.warehousemanagementsystem: INFO
+#    com.java.warehousemanagementsystem.controller: INFO
+#    com.java.warehousemanagementsystem.service: INFO
+#  file:
+#    name: log/warehouse.log
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+#
