@@ -33,11 +33,12 @@ springdoc:
 # Logger Config
 logging:
   level:
-    root: WARN
-    org.springframework.web: INFO
-    com.myapp: DEBUG
+    root: INFO
+    com.java.warehousemanagementsystem: INFO
+    com.java.warehousemanagementsystem.controller: INFO
+    com.java.warehousemanagementsystem.service: INFO
   file:
-    name: app.log
+    name: log/warehouse.log
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 

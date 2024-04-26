@@ -1,0 +1,24 @@
+2024-04-26 10:58:07 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 28788 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+2024-04-26 10:58:07 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2024-04-26 10:58:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-04-26 10:58:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-04-26 10:58:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-04-26 10:58:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-04-26 10:58:08 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-04-26 10:58:08 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-04-26 10:58:08 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-26 10:58:08 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-04-26 10:58:08 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 956 ms
+2024-04-26 10:58:08 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-04-26 10:58:08 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@73be4cdd
+2024-04-26 10:58:08 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-04-26 10:58:09 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@169d1f92, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7fcbc336, org.springframework.security.web.context.SecurityContextHolderFilter@70ad0854, org.springframework.security.web.header.HeaderWriterFilter@138a952f, org.springframework.web.filter.CorsFilter@55d8c2c4, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@ef86c72, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@339cde4b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1774c4e2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1fe7fa16, org.springframework.security.web.session.SessionManagementFilter@6bfdaed7, org.springframework.security.web.access.ExceptionTranslationFilter@e3275d3, org.springframework.security.web.access.intercept.AuthorizationFilter@5737d116]
+2024-04-26 10:58:09 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-04-26 10:58:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2024-04-26 10:58:09 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 2.878 seconds (process running for 3.323)
+2024-04-26 10:58:18 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-26 10:58:18 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-04-26 10:58:18 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-04-26 10:58:18 [http-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 194 ms
+2024-04-26 10:58:57 [http-nio-8080-exec-10] INFO  c.j.w.service.UserService - (UserService)用户注册成功, id = 5. username = tesst
+2024-04-26 10:58:57 [http-nio-8080-exec-10] INFO  c.j.w.controller.UserController - (UserController)用户注册成功

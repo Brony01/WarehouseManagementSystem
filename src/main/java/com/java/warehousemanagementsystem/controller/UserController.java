@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 @Controller
 @RequestMapping("/user") // Uncommented and specified to clearly define the routing path
 public class UserController {
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Resource
     private UserService userService;
