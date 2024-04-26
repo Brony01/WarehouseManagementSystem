@@ -1,0 +1,45 @@
+18:01:03.444 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 20.0.1 with PID 4907 (/Users/silva/Desktop/WarehouseManagementSystem/target/classes started by silva in /Users/silva/Desktop/WarehouseManagementSystem)
+18:01:03.444 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+18:01:03.841 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+18:01:03.842 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+18:01:03.855 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+18:01:04.245 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+18:01:04.250 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+18:01:04.251 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+18:01:04.251 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+18:01:04.273 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+18:01:04.273 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 812 ms
+18:01:04.457 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+18:01:04.694 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45b27ad3
+18:01:04.695 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+18:01:05.321 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7e532f2d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42150951, org.springframework.security.web.context.SecurityContextHolderFilter@336e17be, org.springframework.security.web.header.HeaderWriterFilter@49222187, org.springframework.web.filter.CorsFilter@28e7bb31, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@10131289, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c767288, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@510e6b93, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@248b2091, org.springframework.security.web.session.SessionManagementFilter@2665a2e7, org.springframework.security.web.access.ExceptionTranslationFilter@3fa50a24, org.springframework.security.web.access.intercept.AuthorizationFilter@7272914b]
+18:01:05.575 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+18:01:05.583 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+18:01:05.589 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 2.306 seconds (process running for 2.669)
+18:01:24.587 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+18:01:24.587 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+18:01:24.588 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+18:01:24.633 [http-nio-8080-exec-2] INFO  c.j.w.controller.SessionController -  Request: ["admin","admin"]
+18:01:24.844 [http-nio-8080-exec-2] INFO  c.j.w.controller.SessionController -  Response: {"code":200,"msg":"操作成功","data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjozLCJzdWIiOiJhZG1pbiIsImlzcyI6InNwcmluZ2Jvb3QzLXNlY3VyaXR5IiwiYXVkIjpudWxsLCJpYXQiOjE3MTQxMjU2ODQsImV4cCI6MTcxNDEyNjU4NH0.8DMzSZbP0k5G2yyxyIgkqKanXt5AZfEtRuZWmByCp4M"}}
+18:01:45.280 [http-nio-8080-exec-3] INFO  c.j.w.aspect.CacheLoggingAspect - version: 3
+18:01:45.280 [http-nio-8080-exec-3] INFO  c.j.w.aspect.CacheLoggingAspect - user version: 3
+18:01:45.284 [http-nio-8080-exec-3] INFO  c.j.w.controller.SessionController -  Request: []
+18:01:45.284 [http-nio-8080-exec-3] INFO  c.j.w.controller.SessionController -  Response: "user"
+18:01:51.154 [http-nio-8080-exec-4] INFO  c.j.w.controller.SessionController -  Request: ["admin"]
+18:01:51.209 [http-nio-8080-exec-4] INFO  c.j.w.controller.SessionController -  Response: {"code":200,"msg":"操作成功","data":"登出成功！"}
+18:02:01.764 [http-nio-8080-exec-5] INFO  c.j.w.aspect.CacheLoggingAspect - version: 3
+18:02:01.764 [http-nio-8080-exec-5] INFO  c.j.w.aspect.CacheLoggingAspect - user version: 4
+18:02:01.768 [http-nio-8080-exec-5] INFO  c.j.w.controller.SessionController -  Request: []
+18:02:01.768 [http-nio-8080-exec-5] INFO  c.j.w.controller.SessionController -  Response: "user"
+18:03:23.897 [http-nio-8080-exec-7] INFO  c.j.w.aspect.CacheLoggingAspect - Attempting to access cache for method: findUserById, key: 3
+18:03:23.897 [http-nio-8080-exec-7] INFO  c.j.w.controller.UserController -  Request: [3]
+18:03:23.918 [http-nio-8080-exec-7] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+18:03:23.919 [http-nio-8080-exec-7] INFO  c.j.w.controller.UserController -  Response: {"code":404,"msg":"未找到用户"}
+18:03:23.919 [http-nio-8080-exec-7] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for method: findUserById, key: 3
+18:03:29.044 [http-nio-8080-exec-9] INFO  c.j.w.aspect.CacheLoggingAspect - Attempting to access cache for method: findUserById, key: 2
+18:03:29.045 [http-nio-8080-exec-9] INFO  c.j.w.controller.UserController -  Request: [2]
+18:03:29.068 [http-nio-8080-exec-9] INFO  c.j.w.controller.UserController - (UserController)用户查找成功
+18:03:29.071 [http-nio-8080-exec-9] INFO  c.j.w.controller.UserController -  Response: {"code":200,"msg":"操作成功","data":{"id":2,"username":"user","password":"$2a$10$ToRIRhOInjOZBT8DbpIZDOsZTxHYv4ObRh8jrR/0RxPIntnfocAti","version":1}}
+18:03:29.072 [http-nio-8080-exec-9] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for method: findUserById, key: 2
+18:03:47.936 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+18:03:48.266 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
