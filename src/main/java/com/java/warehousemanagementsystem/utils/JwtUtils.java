@@ -5,8 +5,16 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.java.warehousemanagementsystem.aspect.CacheLoggingAspect;
+import com.java.warehousemanagementsystem.mapper.UserMapper;
+import com.java.warehousemanagementsystem.pojo.User;
+import jakarta.annotation.Resource;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
@@ -19,6 +27,8 @@ import java.util.List;
 public class JwtUtils
 {
 
+    private static final String VERSION_CLAIM = "version";
+    private static final Logger logger = LoggerFactory.getLogger(CacheLoggingAspect.class);
     /**
      * 默认JWT标签头
      */
@@ -81,9 +91,9 @@ public class JwtUtils
      * @param subject 主题
      * @return Token
      */
-    public static String generateToken(String subject)
+    public static String generateToken(String subject, Integer versionId)
     {
-        return generateToken(subject, jwtConfig.getExpirationTime());
+        return generateToken(subject, versionId, jwtConfig.getExpirationTime());
     }
 
     /**
@@ -93,11 +103,12 @@ public class JwtUtils
      * @param expirationTime 过期时间
      * @return Token
      */
-    public static String generateToken(String subject, long expirationTime) {
+    public static String generateToken(String subject, Integer versionId, long expirationTime) {
         Date now = new Date();
         Date expiration = new Date(now.getTime() + expirationTime * 1000);
 
         return JWT.create()
+                .withClaim(VERSION_CLAIM, versionId)
                 .withSubject(subject)
                 .withIssuer(jwtConfig.getIssuer())
                 .withAudience(jwtConfig.getAudience())
@@ -124,7 +135,22 @@ public class JwtUtils
      */
     public static boolean isValidToken(String token) {
         try {
+            String subject = getSubject(token);
             token = getTokenContent(token);
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("username", subject);
+            UserMapper userMapper = ContextUtils.getApplicationContext().getBean(UserMapper.class);
+            User user = userMapper.selectOne(queryWrapper);
+            DecodedJWT jwt = JWT.decode(token);
+            int version = jwt.getClaim(VERSION_CLAIM).asInt();
+            System.out.println(version);
+            System.out.println(subject);
+            logger.info("version: " + version);
+            logger.info("user version: " + user.getVersion());
+
+
+            if(version != user.getVersion()) return false;
+
             Algorithm algorithm = Algorithm.HMAC256(jwtConfig.getSecretKey());
             JWTVerifier verifier = JWT.require(algorithm).build();
             verifier.verify(token);

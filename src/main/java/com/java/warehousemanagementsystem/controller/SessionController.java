@@ -1,11 +1,9 @@
 package com.java.warehousemanagementsystem.controller;
 
 import com.java.warehousemanagementsystem.service.SessionService;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,10 +18,17 @@ public class SessionController
 
     @Operation(summary = "用户登录")
     @PostMapping("")
-    public Map<String, String> login(@Parameter(name = "username", description = "用户名") String username,
-                                     @Parameter(name = "password", description = "密码") String password)
+    public ResponseResult<Object> login(@Parameter(name = "username", description = "用户名") String username,
+                                @Parameter(name = "password", description = "密码") String password)
     {
-        return sessionService.loginSession(username, password);
+        return ResponseResult.success(sessionService.loginSession(username, password));
+    }
+
+    @Operation(summary = "用户登出")
+    @DeleteMapping("")
+    public ResponseResult<Object> logout(@Parameter(name = "username", description = "用户名") String username)
+    {
+        return ResponseResult.success(sessionService.logoutSession(username));
     }
 
     @Operation(summary = "测试admin")
@@ -37,6 +42,7 @@ public class SessionController
     @PostMapping("/test2")
     public String test2()
     {
+        System.out.println(1);
         return "user";
     }
 }

@@ -70,7 +70,7 @@ public class UserController {
             logger.error("(UserController)未找到用户");
             return ResponseResult.failure(404, "未找到用户");
         }
-//        System.out.println("cache测试");
+
         logger.info("(UserController)用户查找成功");
         return ResponseResult.success(user);
     }

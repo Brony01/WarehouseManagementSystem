@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-        User user = new User(null, username, encodedPassword);
+        User user = new User(null, username, encodedPassword, 1);
         userMapper.insert(user);
         logger.info("(UserService)用户注册成功, id = {}. username = {}", user.getId(), user.getUsername());
 
