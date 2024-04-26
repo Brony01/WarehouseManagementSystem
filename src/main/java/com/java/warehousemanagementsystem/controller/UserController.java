@@ -6,6 +6,9 @@ import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.annotation.Resource;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +44,7 @@ public class UserController {
     @Operation(summary = "更新用户数据")
     @PutMapping()
     @ResponseBody
+    @CachePut(value = "user", key = "#id")
     public ResponseResult<?> update(
             @RequestParam @Parameter(description = "用户id") Integer id,
             @RequestParam @Parameter(description = "用户名") String username,
@@ -58,6 +62,7 @@ public class UserController {
     @Operation(summary = "根据id查找用户")
     @GetMapping("/{id}")
     @ResponseBody
+    @Cacheable(value = "user", key = "#id")
     public ResponseResult<User> findUserById(
             @PathVariable @Parameter(description = "用户id") Integer id) {
         User user = userService.findUserById(id);
@@ -65,6 +70,7 @@ public class UserController {
             logger.error("(UserController)未找到用户");
             return ResponseResult.failure(404, "未找到用户");
         }
+//        System.out.println("cache测试");
         logger.info("(UserController)用户查找成功");
         return ResponseResult.success(user);
     }
@@ -72,6 +78,7 @@ public class UserController {
     @Operation(summary = "获取用户列表")
     @GetMapping()
     @ResponseBody
+    @Cacheable(value = "userList")
     public ResponseResult<List<User>> getList() {
         List<User> users = userService.findAllUser();
         logger.info("(UserController)获取用户列表, size = {}, users = {}", users.size(), users);
@@ -81,6 +88,7 @@ public class UserController {
     @Operation(summary = "删除用户")
     @DeleteMapping("/{id}")
     @ResponseBody
+    @CacheEvict(value = "user", key = "#id")
     public ResponseResult<?> delete(
             @PathVariable @Parameter(description = "用户id") Integer id) {
         if (!userService.deleteUser(id)) {

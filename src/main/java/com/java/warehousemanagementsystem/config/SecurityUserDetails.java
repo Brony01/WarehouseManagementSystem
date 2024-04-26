@@ -10,11 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author Silva31
- * @version 1.0
- * @date 2024/4/25 上午10:05
- */
+
 @Data
 @Builder
 public class SecurityUserDetails implements UserDetails
