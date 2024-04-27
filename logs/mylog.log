@@ -43,3 +43,23 @@
 18:03:29.072 [http-nio-8080-exec-9] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for method: findUserById, key: 2
 18:03:47.936 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 18:03:48.266 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:46:04.286 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 20.0.1 with PID 20114 (/Users/silva/Desktop/WarehouseManagementSystem/target/classes started by silva in /Users/silva/Desktop/WarehouseManagementSystem)
+10:46:04.287 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+10:46:04.691 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+10:46:04.692 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+10:46:04.705 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+10:46:05.143 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:46:05.148 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:46:05.149 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:46:05.149 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+10:46:05.172 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:46:05.172 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 866 ms
+10:46:05.378 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:46:05.657 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b3b1124
+10:46:05.658 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:46:06.441 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5f8d4b51, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55821edf, org.springframework.security.web.context.SecurityContextHolderFilter@408d12fc, org.springframework.security.web.header.HeaderWriterFilter@27d0376f, org.springframework.web.filter.CorsFilter@59d5a6fd, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@1544ded3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@759b05d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2696b687, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e5a2b74, org.springframework.security.web.session.SessionManagementFilter@22617270, org.springframework.security.web.access.ExceptionTranslationFilter@3e170abe, org.springframework.security.web.access.intercept.AuthorizationFilter@297454f7]
+10:46:06.695 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:46:06.705 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:46:06.712 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 2.585 seconds (process running for 2.997)
+10:46:27.790 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:46:27.879 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
