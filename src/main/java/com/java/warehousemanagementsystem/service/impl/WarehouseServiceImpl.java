@@ -17,8 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class WarehouseServiceImpl implements WarehouseService
-{
+public class WarehouseServiceImpl implements WarehouseService {
     private static final Logger logger = LoggerFactory.getLogger(WarehouseServiceImpl.class);
     private final SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
@@ -28,7 +27,7 @@ public class WarehouseServiceImpl implements WarehouseService
     @Override
     public Warehouse addWarehouse(String name, String address, String manager, String description) {
         Date createTime = new Date();
-        Warehouse warehouse = new Warehouse(null, name, address, manager, description, createTime);
+        Warehouse warehouse = new Warehouse(null, name, address, manager, description, createTime, null);
         warehouseMapper.insert(warehouse);
         logger.info("(WarehouseServiceImpl)仓库添加成功");
 
@@ -36,49 +35,34 @@ public class WarehouseServiceImpl implements WarehouseService
     }
 
     @Override
-    public void deleteWarehouse(Integer id)
-    {
+    public boolean deleteWarehouse(Integer id) {
         if (id == null) {
             logger.error("(WarehouseServiceImpl)仓库id不能为空");
             throw new IllegalArgumentException("仓库id不能为空");
         }
         warehouseMapper.deleteById(id);
         logger.info("(WarehouseServiceImpl)仓库删除成功");
+        return true;
     }
 
     @Override
-    public Warehouse updateWarehouse(Integer id, String name, String address, String manager, String description, String createTime)
-    {
+    public Warehouse updateWarehouse(Integer id, String name, String address, String manager, String description) {
         QueryWrapper<Warehouse> queryWrapper = new QueryWrapper<>();
         Warehouse warehouse = warehouseMapper.selectById(id);
-        if(!name.isEmpty())
-        {
+        Date updateTime = new Date();
+        if (!name.isEmpty()) {
             warehouse.setName(name);
         }
-        if(!address.isEmpty())
-        {
+        if (!address.isEmpty()) {
             warehouse.setAddress(address);
         }
-        if(!manager.isEmpty())
-        {
+        if (!manager.isEmpty()) {
             warehouse.setManager(manager);
         }
-        if(!description.isEmpty())
-        {
+        if (!description.isEmpty()) {
             warehouse.setDescription(description);
         }
-        if(!createTime.isEmpty())
-        {
-            try
-            {
-                warehouse.setCreateTime(format.parse(createTime));
-            }
-            catch (ParseException e)
-            {
-                logger.info("(WarehouseServiceImpl)时间格式错误");
-                throw new RuntimeException(e);
-            }
-        }
+        warehouse.setUpdateTime(updateTime);
 
         warehouseMapper.updateById(warehouse);
         logger.info("(WarehouseServiceImpl)仓库更新成功");
@@ -87,8 +71,7 @@ public class WarehouseServiceImpl implements WarehouseService
 
     @Override
     public Warehouse selectWarehouse(Integer id) {
-        if (id == null)
-        {
+        if (id == null) {
             logger.error("(WarehouseServiceImpl)仓库id不能为空");
             throw new IllegalArgumentException("仓库id不能为空");
         }

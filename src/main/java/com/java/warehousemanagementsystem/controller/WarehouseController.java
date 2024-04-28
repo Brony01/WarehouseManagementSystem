@@ -49,10 +49,9 @@ public class WarehouseController
             @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库名称") String name,
             @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库位置") String location,
             @RequestParam(required = false, defaultValue = "") @Parameter(description = "管理员") String manager,
-            @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库介绍") String description,
-            @RequestParam(required = false, defaultValue = "") @Parameter(description = "创建时间") String createTime)
+            @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库介绍") String description)
     {
-        Warehouse warehouse = warehouseService.updateWarehouse(id, name, location, manager, description, createTime);
+        Warehouse warehouse = warehouseService.updateWarehouse(id, name, location, manager, description);
         logger.info("(WarehouseController)仓库更新成功");
         return ResponseResult.success(warehouse);
     }
@@ -92,10 +91,11 @@ public class WarehouseController
     @CacheEvict(value = "warehouse", key = "#id")
     public ResponseResult<?> deleteWarehouse(
             @PathVariable @Parameter(description = "仓库id") Integer id) {
-//        if (!warehouseService.deleteWarehouse(id)) {
-//            logger.error("(WarehouseController)未找到仓库");
-//            return ResponseResult.failure(404, "未找到仓库");
-//        }
+        if (!warehouseService.deleteWarehouse(id)) {
+            logger.error("(WarehouseController)未找到仓库");
+            return ResponseResult.failure(404, "未找到仓库");
+        }
+        //warehouseService.deleteWarehouse(id);
         logger.info("(WarehouseController)仓库删除成功");
         return ResponseResult.success("仓库删除成功");
     }

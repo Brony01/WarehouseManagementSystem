@@ -7,18 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse
-{
+public class Item implements Serializable{
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;
-    private String address;
-    private String manager;
     private String description;
+    private Integer quantity;
+    private Double price;
+    private Integer warehouseId;
     private Date createTime;
     private Date updateTime;
 }

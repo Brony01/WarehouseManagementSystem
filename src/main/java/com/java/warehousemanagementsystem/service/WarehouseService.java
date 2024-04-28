@@ -10,9 +10,9 @@ public interface WarehouseService
 {
     Warehouse addWarehouse(String name, String address, String manager, String description);
 
-    void deleteWarehouse(Integer id);
+    boolean deleteWarehouse(Integer id);
 
-    Warehouse updateWarehouse(Integer id, String name, String address, String manager, String description, String createTime);
+    Warehouse updateWarehouse(Integer id, String name, String address, String manager, String description);
 
     Warehouse selectWarehouse(Integer id);
 

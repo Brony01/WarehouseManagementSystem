@@ -3,6 +3,8 @@ package com.java.warehousemanagementsystem.controller;
 import com.java.warehousemanagementsystem.service.SessionService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -13,6 +15,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 @RequestMapping("/session")
 public class SessionController
 {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Resource
     SessionService sessionService;
 
@@ -21,6 +24,7 @@ public class SessionController
     public ResponseResult<Object> login(@Parameter(name = "username", description = "用户名") String username,
                                 @Parameter(name = "password", description = "密码") String password)
     {
+        logger.info("(SessionController)用户登录, username = {}, password = {}", username, password);
         return ResponseResult.success(sessionService.loginSession(username, password));
     }
 
@@ -28,6 +32,7 @@ public class SessionController
     @DeleteMapping("")
     public ResponseResult<Object> logout(@Parameter(name = "username", description = "用户名") String username)
     {
+        logger.info("(SessionController)用户登出, username = {}", username);
         return ResponseResult.success(sessionService.logoutSession(username));
     }
 
