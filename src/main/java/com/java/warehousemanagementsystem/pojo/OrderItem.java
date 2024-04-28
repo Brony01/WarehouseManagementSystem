@@ -6,20 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse
+public class OrderItem implements Serializable
 {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String name;
-    private String address;
-    // username
-    private String manager;
-    private String description;
-    private Date createTime;
-    private Date updateTime;
+    private Integer orderId;
+    private Integer itemId;
 }

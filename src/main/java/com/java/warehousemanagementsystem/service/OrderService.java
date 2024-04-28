@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface OrderService {
     boolean addOrder(Order order);
+    boolean addItem(Integer id, Integer itemId);
     Order findOrderById(Integer id);
     boolean updateOrder(Integer id, Order order);
     boolean deleteOrder(Integer id);

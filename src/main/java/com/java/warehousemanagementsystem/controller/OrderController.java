@@ -38,6 +38,21 @@ public class OrderController {
         }
     }
 
+    @Operation(summary = "添加物品")
+    @PostMapping("/item/{id}")
+    @ResponseBody
+    public ResponseResult<?> addItem(@PathVariable @Parameter(description = "订单ID") Integer id,
+                                     @RequestBody @Parameter(description = "物品ID") Integer itemId)
+    {
+        if (orderService.addItem(id, itemId)) {
+            logger.info("(OrderController)物品添加成功, ID: {}", id);
+            return ResponseResult.success("物品添加成功");
+        } else {
+            logger.error("(OrderController)物品添加失败");
+            return ResponseResult.failure(400, "物品添加失败");
+        }
+    }
+
     @Operation(summary = "获取所有订单")
     @GetMapping
     @ResponseBody
