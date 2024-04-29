@@ -1,5 +1,6 @@
 package com.java.warehousemanagementsystem.controller;
 
+import com.java.warehousemanagementsystem.pojo.Item;
 import com.java.warehousemanagementsystem.pojo.Orders;
 import com.java.warehousemanagementsystem.service.OrdersService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
@@ -12,7 +13,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,20 +67,31 @@ public class OrdersController
         return ResponseResult.success(orders);
     }
 
-    @Operation(summary = "根据ID获取订单信息")
+    @Operation(summary = "根据ID获取订单信息及其物品")
     @GetMapping("/{id}")
     @ResponseBody
     @Cacheable(value = "order", key = "#id")
-    public ResponseResult<Orders> getOrderById(@PathVariable @Parameter(description = "订单ID") Integer id) {
+    public ResponseResult<Map<String, Object>> getOrderById(@PathVariable @Parameter(description = "订单ID") Integer id) {
         Orders orders = ordersService.findOrderById(id);
+        List<Item> items = ordersService.findItemsByOrderId(id);
+
         if (orders != null) {
             logger.info("(OrderController)订单查找成功, ID: {}", id);
-            return ResponseResult.success(orders);
+            Map<String, Object> result = new HashMap<>();
+            result.put("order", orders);
+            if (items != null) {
+                logger.info("(OrderController)物品查找成功, 订单ID: {}", id);
+                result.put("items", items);
+            } else {
+                logger.warn("(OrderController)未找到物品, 订单ID: {}", id);
+            }
+            return ResponseResult.success(result);
         } else {
-            logger.error("(OrderController)未找到订单");
+            logger.error("(OrderController)未找到订单, ID: {}", id);
             return ResponseResult.failure(404, "未找到订单");
         }
     }
+
 
     @Operation(summary = "根据用户ID获取订单信息")
     @GetMapping("/user/{userId}")
@@ -121,6 +135,20 @@ public class OrdersController
         }
     }
 
+//    @Operation(summary = "根据订单查找物品")
+//    @GetMapping("/item/{id}")
+//    @ResponseBody
+//    public ResponseResult<List<Item>> getItemsByOrderId(@PathVariable @Parameter(description = "订单ID") Integer id) {
+//        List<Item> items = ordersService.findItemsByOrderId(id);
+//        if (items != null) {
+//            logger.info("(OrderController)物品查找成功, 订单ID: {}", id);
+//            return ResponseResult.success(items);
+//        } else {
+//            logger.error("(OrderController)未找到物品");
+//            return ResponseResult.failure(404, "未找到物品");
+//        }
+//    }
+
     @Operation(summary = "更新订单信息")
     @PutMapping("/{id}")
     @ResponseBody
@@ -146,6 +174,20 @@ public class OrdersController
         } else {
             logger.error("(OrderController)订单删除失败");
             return ResponseResult.failure(404, "订单删除失败");
+        }
+    }
+
+    @Operation(summary = "删除订单物品")
+    @DeleteMapping("/item/{id}")
+    @ResponseBody
+    public ResponseResult<?> deleteItem(@PathVariable @Parameter(description = "订单ID") Integer id,
+                                        @RequestBody @Parameter(description = "物品ID") Integer itemId) {
+        if (ordersService.deleteItem(id, itemId)) {
+            logger.info("(OrderController)物品删除成功, ID: {}", id);
+            return ResponseResult.success("物品删除成功");
+        } else {
+            logger.error("(OrderController)物品删除失败");
+            return ResponseResult.failure(404, "物品删除失败");
         }
     }
 }

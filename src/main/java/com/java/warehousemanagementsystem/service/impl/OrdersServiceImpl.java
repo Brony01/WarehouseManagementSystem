@@ -92,6 +92,23 @@ public class OrdersServiceImpl implements OrdersService
     }
 
     @Override
+    @Transactional
+    public boolean deleteItem(Integer id, Integer itemId) {
+        try {
+            QueryWrapper<OrderItem> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("order_id", id);
+            queryWrapper.eq("item_id", itemId);
+            orderItemMapper.delete(queryWrapper);
+            updateOrderTotalPrice(id);
+            logger.info("(OrderService) 物品删除成功, ID: {}", id);
+            return true;
+        } catch (Exception e) {
+            logger.error("(OrderService) 删除物品失败: {}", e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
     public List<Orders> findAllOrders()
     {
         return ordersMapper.selectList(null);
@@ -122,6 +139,12 @@ public class OrdersServiceImpl implements OrdersService
         updateByOrderList(queryWrapper);
         logger.info("(OrderService) 根据地址查找订单, 地址: {}", address);
         return ordersMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public List<Item> findItemsByOrderId(Integer id)
+    {
+        return ordersMapper.getItemsByOrderId(id);
     }
 
     private void updateOrderTotalPrice(Integer id)
