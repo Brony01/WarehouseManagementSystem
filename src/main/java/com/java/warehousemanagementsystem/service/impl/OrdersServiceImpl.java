@@ -3,13 +3,11 @@ package com.java.warehousemanagementsystem.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.java.warehousemanagementsystem.mapper.OrderItemMapper;
 import com.java.warehousemanagementsystem.pojo.Item;
-import com.java.warehousemanagementsystem.pojo.Order;
-import com.java.warehousemanagementsystem.mapper.OrderMapper;
+import com.java.warehousemanagementsystem.pojo.Orders;
+import com.java.warehousemanagementsystem.mapper.OrdersMapper;
 import com.java.warehousemanagementsystem.pojo.OrderItem;
-import com.java.warehousemanagementsystem.service.OrderService;
+import com.java.warehousemanagementsystem.service.OrdersService;
 import jakarta.annotation.Resource;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,21 +17,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
-public class OrderServiceImpl implements OrderService {
-    private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
+public class OrdersServiceImpl implements OrdersService
+{
+    private static final Logger logger = LoggerFactory.getLogger(OrdersService.class);
 
     @Resource
-    private OrderMapper orderMapper;
+    private OrdersMapper ordersMapper;
 
     @Resource
     OrderItemMapper orderItemMapper;
 
     @Override
     @Transactional
-    public boolean addOrder(Order order) {
+    public boolean addOrder(Orders orders) {
         try {
-            orderMapper.insert(order);
-            logger.info("(OrderService) 订单添加成功, ID: {}", order.getId());
+            ordersMapper.insert(orders);
+            logger.info("(OrderService) 订单添加成功, ID: {}", orders.getId());
             return true;
         } catch (Exception e) {
             logger.error("(OrderService) 添加订单失败: {}", e.getMessage());
@@ -59,17 +58,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order findOrderById(Integer id) {
+    public Orders findOrderById(Integer id) {
         updateOrderTotalPrice(id);
-        return orderMapper.selectById(id);
+        return ordersMapper.selectById(id);
     }
 
     @Override
     @Transactional
-    public boolean updateOrder(Integer id, Order order) {
+    public boolean updateOrder(Integer id, Orders orders) {
         try {
-            order.setId(id);  // Ensure the order has the correct ID
-            orderMapper.updateById(order);
+            orders.setId(id);  // Ensure the order has the correct ID
+            ordersMapper.updateById(orders);
             updateOrderTotalPrice(id);
             logger.info("(OrderService) 订单更新成功, ID: {}", id);
             return true;
@@ -83,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public boolean deleteOrder(Integer id) {
         try {
-            orderMapper.deleteById(id);
+            ordersMapper.deleteById(id);
             logger.info("(OrderService) 订单删除成功, ID: {}", id);
             return true;
         } catch (Exception e) {
@@ -93,55 +92,55 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAllOrders()
+    public List<Orders> findAllOrders()
     {
-        return orderMapper.selectList(null);
+        return ordersMapper.selectList(null);
     }
 
     @Override
-    public List<Order> findOrdersByUserId(Integer userId) {
-        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+    public List<Orders> findOrdersByUserId(Integer userId) {
+        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
         updateByOrderList(queryWrapper);
         logger.info("(OrderService) 根据用户ID查找订单, ID: {}", userId);
-        return orderMapper.selectList(queryWrapper);
+        return ordersMapper.selectList(queryWrapper);
     }
 
     @Override
-    public List<Order> findOrdersByStatus(String status) {
-        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+    public List<Orders> findOrdersByStatus(String status) {
+        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("status", status);
         updateByOrderList(queryWrapper);
         logger.info("(OrderService) 根据状态查找订单, 状态: {}", status);
-        return orderMapper.selectList(queryWrapper);
+        return ordersMapper.selectList(queryWrapper);
     }
 
     @Override
-    public List<Order> findOrdersByAddress(String address) {
-        QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
+    public List<Orders> findOrdersByAddress(String address) {
+        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("address", address);
         updateByOrderList(queryWrapper);
         logger.info("(OrderService) 根据地址查找订单, 地址: {}", address);
-        return orderMapper.selectList(queryWrapper);
+        return ordersMapper.selectList(queryWrapper);
     }
 
     private void updateOrderTotalPrice(Integer id)
     {
-        Order order = orderMapper.selectById(id);
-        List<Item> items = orderMapper.getItemsByOrderId(id);
+        Orders orders = ordersMapper.selectById(id);
+        List<Item> items = ordersMapper.getItemsByOrderId(id);
         double totalPrice = 0;
         for (Item item : items)
         {
             totalPrice += item.getPrice();
         }
-        order.setTotalPrice(totalPrice);
-        orderMapper.updateById(order);
+        orders.setTotalPrice(totalPrice);
+        ordersMapper.updateById(orders);
     }
 
-    private void updateByOrderList(QueryWrapper<Order> queryWrapper)
+    private void updateByOrderList(QueryWrapper<Orders> queryWrapper)
     {
-        List<Order> orders = orderMapper.selectList(queryWrapper);
-        for (Order order : orders)
+        List<Orders> orders = ordersMapper.selectList(queryWrapper);
+        for (Orders order : orders)
         {
             updateOrderTotalPrice(order.getId());
         }

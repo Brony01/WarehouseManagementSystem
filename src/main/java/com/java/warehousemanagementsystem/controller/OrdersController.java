@@ -1,7 +1,7 @@
 package com.java.warehousemanagementsystem.controller;
 
-import com.java.warehousemanagementsystem.pojo.Order;
-import com.java.warehousemanagementsystem.service.OrderService;
+import com.java.warehousemanagementsystem.pojo.Orders;
+import com.java.warehousemanagementsystem.service.OrdersService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,18 +19,19 @@ import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/order")
-public class OrderController {
-    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+public class OrdersController
+{
+    private static final Logger logger = LoggerFactory.getLogger(OrdersController.class);
 
     @Resource
-    private OrderService orderService;
+    private OrdersService ordersService;
 
     @Operation(summary = "添加新订单")
     @PostMapping
     @ResponseBody
-    public ResponseResult<?> addOrder(@RequestBody @Parameter(description = "订单") Order order) {
-        if (orderService.addOrder(order)) {
-            logger.info("(OrderController)订单添加成功, ID: {}", order.getId());
+    public ResponseResult<?> addOrder(@RequestBody @Parameter(description = "订单") Orders orders) {
+        if (ordersService.addOrder(orders)) {
+            logger.info("(OrderController)订单添加成功, ID: {}", orders.getId());
             return ResponseResult.success("订单添加成功");
         } else {
             logger.error("(OrderController)订单添加失败");
@@ -44,7 +45,7 @@ public class OrderController {
     public ResponseResult<?> addItem(@PathVariable @Parameter(description = "订单ID") Integer id,
                                      @RequestBody @Parameter(description = "物品ID") Integer itemId)
     {
-        if (orderService.addItem(id, itemId)) {
+        if (ordersService.addItem(id, itemId)) {
             logger.info("(OrderController)物品添加成功, ID: {}", id);
             return ResponseResult.success("物品添加成功");
         } else {
@@ -57,8 +58,8 @@ public class OrderController {
     @GetMapping
     @ResponseBody
     @Cacheable(value = "allOrders")
-    public ResponseResult<List<Order>> getAllOrders() {
-        List<Order> orders = orderService.findAllOrders();
+    public ResponseResult<List<Orders>> getAllOrders() {
+        List<Orders> orders = ordersService.findAllOrders();
         logger.info("(OrderController)获取订单列表, size = {}", orders.size());
         return ResponseResult.success(orders);
     }
@@ -67,11 +68,11 @@ public class OrderController {
     @GetMapping("/{id}")
     @ResponseBody
     @Cacheable(value = "order", key = "#id")
-    public ResponseResult<Order> getOrderById(@PathVariable @Parameter(description = "订单ID") Integer id) {
-        Order order = orderService.findOrderById(id);
-        if (order != null) {
+    public ResponseResult<Orders> getOrderById(@PathVariable @Parameter(description = "订单ID") Integer id) {
+        Orders orders = ordersService.findOrderById(id);
+        if (orders != null) {
             logger.info("(OrderController)订单查找成功, ID: {}", id);
-            return ResponseResult.success(order);
+            return ResponseResult.success(orders);
         } else {
             logger.error("(OrderController)未找到订单");
             return ResponseResult.failure(404, "未找到订单");
@@ -81,8 +82,8 @@ public class OrderController {
     @Operation(summary = "根据用户ID获取订单信息")
     @GetMapping("/user/{userId}")
     @ResponseBody
-    public ResponseResult<List<Order>> getOrdersByUserId(@PathVariable @Parameter(description = "用户ID") Integer userId) {
-        List<Order> orders = orderService.findOrdersByUserId(userId);
+    public ResponseResult<List<Orders>> getOrdersByUserId(@PathVariable @Parameter(description = "用户ID") Integer userId) {
+        List<Orders> orders = ordersService.findOrdersByUserId(userId);
         if (orders != null) {
             logger.info("(OrderController)订单查找成功, 用户ID: {}", userId);
             return ResponseResult.success(orders);
@@ -93,10 +94,10 @@ public class OrderController {
     }
 
     @Operation(summary = "根据订单状态获取订单信息")
-    @GetMapping("/{status}")
+    @GetMapping("/status/{status}")
     @ResponseBody
-    public ResponseResult<List<Order>> getOrdersByStatus(@PathVariable @Parameter(description = "订单状态") String status) {
-        List<Order> orders = orderService.findOrdersByStatus(status);
+    public ResponseResult<List<Orders>> getOrdersByStatus(@PathVariable @Parameter(description = "订单状态") String status) {
+        List<Orders> orders = ordersService.findOrdersByStatus(status);
         if (orders != null) {
             logger.info("(OrderController)订单查找成功, 订单状态: {}", status);
             return ResponseResult.success(orders);
@@ -107,10 +108,10 @@ public class OrderController {
     }
 
     @Operation(summary = "根据地址获取订单信息")
-    @GetMapping("/{address}")
+    @GetMapping("/address/{address}")
     @ResponseBody
-    public ResponseResult<List<Order>> getOrdersByAddress(@PathVariable @Parameter(description = "地址") String address) {
-        List<Order> orders = orderService.findOrdersByAddress(address);
+    public ResponseResult<List<Orders>> getOrdersByAddress(@PathVariable @Parameter(description = "地址") String address) {
+        List<Orders> orders = ordersService.findOrdersByAddress(address);
         if (orders != null) {
             logger.info("(OrderController)订单查找成功, 地址: {}", address);
             return ResponseResult.success(orders);
@@ -124,8 +125,8 @@ public class OrderController {
     @PutMapping("/{id}")
     @ResponseBody
     @CachePut(value = "order", key = "#id")
-    public ResponseResult<?> updateOrder(@PathVariable @Parameter(description = "订单ID") Integer id, @RequestBody @Parameter(description = "订单") Order order) {
-        if (orderService.updateOrder(id, order)) {
+    public ResponseResult<?> updateOrder(@PathVariable @Parameter(description = "订单ID") Integer id, @RequestBody @Parameter(description = "订单") Orders orders) {
+        if (ordersService.updateOrder(id, orders)) {
             logger.info("(OrderController)订单信息更新成功, ID: {}", id);
             return ResponseResult.success("订单信息更新成功");
         } else {
@@ -139,7 +140,7 @@ public class OrderController {
     @ResponseBody
     @CacheEvict(value = "order", key = "#id")
     public ResponseResult<?> deleteOrder(@PathVariable @Parameter(description = "订单ID") Integer id) {
-        if (orderService.deleteOrder(id)) {
+        if (ordersService.deleteOrder(id)) {
             logger.info("(OrderController)订单删除成功, ID: {}", id);
             return ResponseResult.success("订单删除成功");
         } else {

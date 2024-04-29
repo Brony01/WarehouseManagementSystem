@@ -17,7 +17,7 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order implements Serializable{
+public class Orders implements Serializable{
     @TableId(type = IdType.AUTO)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private Integer id;
