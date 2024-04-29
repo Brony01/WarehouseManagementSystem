@@ -1,31 +1,19 @@
 package com.java.warehousemanagementsystem.controller;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java.warehousemanagementsystem.pojo.Warehouse;
-import com.java.warehousemanagementsystem.service.WarehouseService;
-import com.java.warehousemanagementsystem.vo.ResponseResult;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.java.warehousemanagementsystem.pojo.Warehouse;
+import com.java.warehousemanagementsystem.service.WarehouseService;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import java.util.Arrays;
-import java.util.List;
-
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 public class WarehouseControllerTest {
-
-    private MockMvc mockMvc;
 
     @Mock
     private WarehouseService warehouseService;
@@ -33,81 +21,100 @@ public class WarehouseControllerTest {
     @InjectMocks
     private WarehouseController warehouseController;
 
-    @BeforeEach
-    public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(warehouseController).build();
+    @Test
+    void testCreateWarehouse() {
+        String name = "Main Warehouse";
+        String address = "Downtown";
+        String manager = "John Doe";
+        String description = "Central warehouse";
+        Warehouse warehouse = new Warehouse();
+        warehouse.setName(name);
+        warehouse.setAddress(address);
+        warehouse.setManager(manager);
+        warehouse.setDescription(description);
+        when(warehouseService.addWarehouse(name, address, manager, description)).thenReturn(warehouse);
+
+        ResponseResult<?> result = warehouseController.createWarehouse(name, address, manager, description);
+
+        assertEquals(200, result.getCode());
+        assertEquals(warehouse, result.getData());
     }
 
     @Test
-    public void testCreateWarehouse() throws Exception {
-        Warehouse warehouse = new Warehouse(); // Initialize with test data as necessary
-        when(warehouseService.addWarehouse(anyString(), anyString(), anyString(), anyString())).thenReturn(warehouse);
+    void testUpdateWarehouse() {
+        Integer id = 1;
+        String name = "Updated Warehouse";
+        String location = "Uptown";
+        String manager = "Jane Doe";
+        String description = "Updated description";
+        Warehouse updatedWarehouse = new Warehouse();
+        updatedWarehouse.setId(id);
+        updatedWarehouse.setName(name);
+        updatedWarehouse.setAddress(location);
+        updatedWarehouse.setManager(manager);
+        updatedWarehouse.setDescription(description);
+        when(warehouseService.updateWarehouse(id, name, location, manager, description)).thenReturn(updatedWarehouse);
 
-        mockMvc.perform(post("/warehouse")
-                        .param("name", "Main Warehouse")
-                        .param("location", "Downtown")
-                        .param("manager", "Alice")
-                        .param("description", "Central storage facility")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data").exists());
+        ResponseResult<?> result = warehouseController.updateWarehouse(id, name, location, manager, description);
 
-        verify(warehouseService, times(1)).addWarehouse("Main Warehouse", "Downtown", "Alice", "Central storage facility");
+        assertEquals(200, result.getCode());
+        assertEquals(updatedWarehouse, result.getData());
     }
 
     @Test
-    public void testUpdateWarehouse() throws Exception {
-        Warehouse warehouse = new Warehouse(); // Initialize with test data as necessary
-        when(warehouseService.updateWarehouse(anyInt(), anyString(), anyString(), anyString(), anyString())).thenReturn(warehouse);
+    void testFindWarehouseById() {
+        Integer id = 1;
+        Warehouse warehouse = new Warehouse();
+        warehouse.setId(id);
+        when(warehouseService.selectWarehouse(id)).thenReturn(warehouse);
 
-        mockMvc.perform(put("/warehouse/1")
-                        .param("name", "Updated Warehouse")
-                        .param("location", "Uptown")
-                        .param("manager", "Bob")
-                        .param("description", "Updated facility")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data").exists());
+        ResponseResult<Warehouse> result = warehouseController.findWarehouseById(id);
 
-        verify(warehouseService, times(1)).updateWarehouse(1, "Updated Warehouse", "Uptown", "Bob", "Updated facility");
+        assertEquals(200, result.getCode());
+        assertEquals(warehouse, result.getData());
     }
 
     @Test
-    public void testFindWarehouseById() throws Exception {
-        Warehouse warehouse = new Warehouse(); // Assume initialized
-        when(warehouseService.selectWarehouse(anyInt())).thenReturn(warehouse);
+    void testFindWarehouseByIdNotFound() {
+        Integer id = 99;
+        when(warehouseService.selectWarehouse(id)).thenReturn(null);
 
-        mockMvc.perform(get("/warehouse/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data").exists());
+        ResponseResult<Warehouse> result = warehouseController.findWarehouseById(id);
 
-        verify(warehouseService, times(1)).selectWarehouse(1);
+        assertEquals(404, result.getCode());
+        assertNull(result.getData());
     }
 
     @Test
-    public void testGetWarehouseList() throws Exception {
-        Page<Warehouse> page = new Page<>(); // Assume initialization and setting data
-        when(warehouseService.selectWarehouse(anyString(), anyLong(), anyLong())).thenReturn(page);
+    void testGetWarehouseList() {
+        Page<Warehouse> page = new Page<>();
+        when(warehouseService.selectWarehouse("", 1L, 10L)).thenReturn(page);
 
-        mockMvc.perform(get("/warehouse")
-                        .param("name", "Main")
-                        .param("pageNo", "1")
-                        .param("pageSize", "10")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data").exists());
+        ResponseResult<Page<Warehouse>> result = warehouseController.getWarehouseList("", 1L, 10L);
 
-        verify(warehouseService, times(1)).selectWarehouse("Main", 1L, 10L);
+        assertEquals(200, result.getCode());
+        assertEquals(page, result.getData());
     }
 
     @Test
-    public void testDeleteWarehouse() throws Exception {
-        when(warehouseService.deleteWarehouse(1)).thenReturn(true);
+    void testDeleteWarehouse() {
+        Integer id = 1;
+        when(warehouseService.deleteWarehouse(id)).thenReturn(true);
 
-        mockMvc.perform(delete("/warehouse/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
+        ResponseResult<?> result = warehouseController.deleteWarehouse(id);
 
-        verify(warehouseService, times(1)).deleteWarehouse(1);
+        assertEquals(200, result.getCode());
+        assertEquals("操作成功", result.getMsg());
+    }
+
+    @Test
+    void testDeleteWarehouseNotFound() {
+        Integer id = 99;
+        when(warehouseService.deleteWarehouse(id)).thenReturn(false);
+
+        ResponseResult<?> result = warehouseController.deleteWarehouse(id);
+
+        assertEquals(404, result.getCode());
+        assertEquals("未找到仓库", result.getMsg());
     }
 }

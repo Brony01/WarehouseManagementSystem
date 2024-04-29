@@ -459,3 +459,717 @@ java.lang.IllegalStateException: Ambiguous handler methods mapped for '/orders/1
 15:52:01.497 [http-nio-8080-exec-9] INFO  o.s.webmvc.api.OpenApiWebMvcResource - Request argument: "zh_CN"
 15:52:01.767 [http-nio-8080-exec-9] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 268 ms
 15:52:01.781 [http-nio-8080-exec-9] INFO  o.s.webmvc.api.OpenApiWebMvcResource - Response: "{\"openapi\":\"3.0.1\",\"info\":{\"title\":\"swagger-api文档\",\"description\":\"API文档\",\"license\":{\"name\":\"Apache 2.0\",\"url\":\"http://springdoc.org\"},\"version\":\"v1\"},\"externalDocs\":{\"description\":\"外部文档\",\"url\":\"https://springshop.wiki.github.org/docs\"},\"servers\":[{\"url\":\"http://localhost:8080\",\"description\":\"Generated server url\"}],\"paths\":{\"/warehouse/{id}\":{\"get\":{\"tags\":[\"warehouse-controller\"],\"summary\":\"根据id查找仓库\",\"operationId\":\"findWarehouseById\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"仓库id\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultWarehouse\"}}}}}},\"put\":{\"tags\":[\"warehouse-controller\"],\"summary\":\"更新仓库信息\",\"operationId\":\"updateWarehouse\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"仓库id\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}},{\"name\":\"name\",\"in\":\"query\",\"description\":\"仓库名称\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"\"}},{\"name\":\"location\",\"in\":\"query\",\"description\":\"仓库位置\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"\"}},{\"name\":\"manager\",\"in\":\"query\",\"description\":\"管理员\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"\"}},{\"name\":\"description\",\"in\":\"query\",\"description\":\"仓库介绍\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}},\"delete\":{\"tags\":[\"warehouse-controller\"],\"summary\":\"删除仓库\",\"operationId\":\"deleteWarehouse\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"仓库id\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/user\":{\"get\":{\"tags\":[\"user-controller\"],\"summary\":\"获取用户列表\",\"operationId\":\"getList\",\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultListUser\"}}}}}},\"put\":{\"tags\":[\"user-controller\"],\"summary\":\"更新用户数据\",\"operationId\":\"update\",\"parameters\":[{\"name\":\"id\",\"in\":\"query\",\"description\":\"用户id\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}},{\"name\":\"username\",\"in\":\"query\",\"description\":\"用户名\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"password\",\"in\":\"query\",\"description\":\"密码\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"confirmedPassword\",\"in\":\"query\",\"description\":\"确认密码\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}},\"post\":{\"tags\":[\"user-controller\"],\"summary\":\"用户注册\",\"operationId\":\"register\",\"parameters\":[{\"name\":\"username\",\"in\":\"query\",\"description\":\"用户名\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"password\",\"in\":\"query\",\"description\":\"密码\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"confirmedPassword\",\"in\":\"query\",\"description\":\"确认密码\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/order/{id}\":{\"get\":{\"tags\":[\"orders-controller\"],\"summary\":\"根据ID获取订单信息及其物品\",\"operationId\":\"getOrderById\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"订单ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultMapStringObject\"}}}}}},\"put\":{\"tags\":[\"orders-controller\"],\"summary\":\"更新订单信息\",\"operationId\":\"updateOrder\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"订单ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/Orders\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}},\"delete\":{\"tags\":[\"orders-controller\"],\"summary\":\"删除订单\",\"operationId\":\"deleteOrder\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"订单ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/item/{id}\":{\"get\":{\"tags\":[\"item-controller\"],\"summary\":\"根据ID获取物品信息\",\"operationId\":\"getItemById\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"物品ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultItem\"}}}}}},\"put\":{\"tags\":[\"item-controller\"],\"summary\":\"更新物品信息\",\"operationId\":\"updateItem\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"物品ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}},{\"name\":\"name\",\"in\":\"query\",\"description\":\"物品名称\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"description\",\"in\":\"query\",\"description\":\"物品描述\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"quantity\",\"in\":\"query\",\"description\":\"物品数量\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}},{\"name\":\"price\",\"in\":\"query\",\"description\":\"物品价格\",\"required\":true,\"schema\":{\"type\":\"number\",\"format\":\"double\"}},{\"name\":\"warehouseId\",\"in\":\"query\",\"description\":\"仓库ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}},\"delete\":{\"tags\":[\"item-controller\"],\"summary\":\"删除物品\",\"operationId\":\"deleteItem_1\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"物品ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/warehouse\":{\"get\":{\"tags\":[\"warehouse-controller\"],\"summary\":\"获取仓库列表\",\"operationId\":\"getWarehouseList\",\"parameters\":[{\"name\":\"name\",\"in\":\"query\",\"description\":\"仓库名称\",\"required\":false,\"schema\":{\"type\":\"string\",\"default\":\"\"}},{\"name\":\"pageNo\",\"in\":\"query\",\"description\":\"页码\",\"required\":false,\"schema\":{\"type\":\"integer\",\"format\":\"int64\",\"default\":1}},{\"name\":\"pageSize\",\"in\":\"query\",\"description\":\"每页数量\",\"required\":false,\"schema\":{\"type\":\"integer\",\"format\":\"int64\",\"default\":10}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultPageWarehouse\"}}}}}},\"post\":{\"tags\":[\"warehouse-controller\"],\"summary\":\"创建新仓库\",\"operationId\":\"createWarehouse\",\"parameters\":[{\"name\":\"name\",\"in\":\"query\",\"description\":\"仓库名称\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"location\",\"in\":\"query\",\"description\":\"仓库位置\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"manager\",\"in\":\"query\",\"description\":\"管理员\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"description\",\"in\":\"query\",\"description\":\"仓库介绍\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/session\":{\"post\":{\"tags\":[\"session-controller\"],\"summary\":\"用户登录\",\"operationId\":\"login\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\",\"description\":\"用户名\"},\"password\":{\"type\":\"string\",\"description\":\"密码\"}}}}}},\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}},\"delete\":{\"tags\":[\"session-controller\"],\"summary\":\"用户登出\",\"operationId\":\"logout\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"string\",\"description\":\"用户名\"}}}},\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/session/test\":{\"post\":{\"tags\":[\"session-controller\"],\"summary\":\"测试admin\",\"operationId\":\"test\",\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"type\":\"string\"}}}}}}},\"/session/test2\":{\"post\":{\"tags\":[\"session-controller\"],\"summary\":\"测试user\",\"operationId\":\"test2\",\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"type\":\"string\"}}}}}}},\"/order\":{\"get\":{\"tags\":[\"orders-controller\"],\"summary\":\"获取所有订单\",\"operationId\":\"getAllOrders\",\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultListOrders\"}}}}}},\"post\":{\"tags\":[\"orders-controller\"],\"summary\":\"添加新订单\",\"operationId\":\"addOrder\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/Orders\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/order/item/{id}\":{\"post\":{\"tags\":[\"orders-controller\"],\"summary\":\"添加物品\",\"operationId\":\"addItem\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"订单ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"integer\",\"description\":\"物品ID\",\"format\":\"int32\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}},\"delete\":{\"tags\":[\"orders-controller\"],\"summary\":\"删除订单物品\",\"operationId\":\"deleteItem\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"订单ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"integer\",\"description\":\"物品ID\",\"format\":\"int32\"}}},\"required\":true},\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/item\":{\"get\":{\"tags\":[\"item-controller\"],\"summary\":\"获取物品列表\",\"operationId\":\"getAllItems\",\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultListItem\"}}}}}},\"post\":{\"tags\":[\"item-controller\"],\"summary\":\"添加新物品\",\"operationId\":\"addItem_1\",\"parameters\":[{\"name\":\"name\",\"in\":\"query\",\"description\":\"物品名称\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"description\",\"in\":\"query\",\"description\":\"物品描述\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"quantity\",\"in\":\"query\",\"description\":\"物品数量\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}},{\"name\":\"price\",\"in\":\"query\",\"description\":\"物品价格\",\"required\":true,\"schema\":{\"type\":\"number\",\"format\":\"double\"}},{\"name\":\"warehouseId\",\"in\":\"query\",\"description\":\"仓库ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/user/{id}\":{\"get\":{\"tags\":[\"user-controller\"],\"summary\":\"根据id查找用户\",\"operationId\":\"findUserById\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"用户id\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultUser\"}}}}}},\"delete\":{\"tags\":[\"user-controller\"],\"summary\":\"删除用户\",\"operationId\":\"delete\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"description\":\"用户id\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultObject\"}}}}}}},\"/order/user/{userId}\":{\"get\":{\"tags\":[\"orders-controller\"],\"summary\":\"根据用户ID获取订单信息\",\"operationId\":\"getOrdersByUserId\",\"parameters\":[{\"name\":\"userId\",\"in\":\"path\",\"description\":\"用户ID\",\"required\":true,\"schema\":{\"type\":\"integer\",\"format\":\"int32\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultListOrders\"}}}}}}},\"/order/status/{status}\":{\"get\":{\"tags\":[\"orders-controller\"],\"summary\":\"根据订单状态获取订单信息\",\"operationId\":\"getOrdersByStatus\",\"parameters\":[{\"name\":\"status\",\"in\":\"path\",\"description\":\"订单状态\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultListOrders\"}}}}}}},\"/order/address/{address}\":{\"get\":{\"tags\":[\"orders-controller\"],\"summary\":\"根据地址获取订单信息\",\"operationId\":\"getOrdersByAddress\",\"parameters\":[{\"name\":\"address\",\"in\":\"path\",\"description\":\"地址\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"OK\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/ResponseResultListOrders\"}}}}}}}},\"components\":{\"schemas\":{\"ResponseResultObject\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"object\"}}},\"Orders\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"format\":\"int32\"},\"username\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"totalPrice\":{\"type\":\"number\",\"format\":\"double\"},\"address\":{\"type\":\"string\"},\"createTime\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateTime\":{\"type\":\"string\",\"format\":\"date-time\"},\"items\":{\"type\":\"object\",\"additionalProperties\":{\"type\":\"integer\",\"format\":\"int32\"}}},\"description\":\"订单\"},\"OrderItem\":{\"type\":\"object\",\"properties\":{\"column\":{\"type\":\"string\"},\"asc\":{\"type\":\"boolean\"}}},\"PageWarehouse\":{\"type\":\"object\",\"properties\":{\"records\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/Warehouse\"}},\"total\":{\"type\":\"integer\",\"format\":\"int64\"},\"size\":{\"type\":\"integer\",\"format\":\"int64\"},\"current\":{\"type\":\"integer\",\"format\":\"int64\"},\"orders\":{\"type\":\"array\",\"writeOnly\":true,\"items\":{\"$ref\":\"#/components/schemas/OrderItem\"}},\"optimizeCountSql\":{\"$ref\":\"#/components/schemas/PageWarehouse\"},\"searchCount\":{\"$ref\":\"#/components/schemas/PageWarehouse\"},\"optimizeJoinOfCountSql\":{\"type\":\"boolean\",\"writeOnly\":true},\"maxLimit\":{\"type\":\"integer\",\"format\":\"int64\",\"writeOnly\":true},\"countId\":{\"type\":\"string\",\"writeOnly\":true},\"pages\":{\"type\":\"integer\",\"format\":\"int64\"}}},\"ResponseResultPageWarehouse\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"$ref\":\"#/components/schemas/PageWarehouse\"}}},\"Warehouse\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"format\":\"int32\"},\"name\":{\"type\":\"string\"},\"address\":{\"type\":\"string\"},\"manager\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"createTime\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateTime\":{\"type\":\"string\",\"format\":\"date-time\"}}},\"ResponseResultWarehouse\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"$ref\":\"#/components/schemas/Warehouse\"}}},\"ResponseResultListUser\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/User\"}}}},\"User\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"format\":\"int32\"},\"username\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"},\"version\":{\"type\":\"integer\",\"format\":\"int32\"}}},\"ResponseResultUser\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"$ref\":\"#/components/schemas/User\"}}},\"ResponseResultListOrders\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/Orders\"}}}},\"ResponseResultMapStringObject\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"object\",\"additionalProperties\":{\"type\":\"object\"}}}},\"Item\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"format\":\"int32\"},\"name\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"quantity\":{\"type\":\"integer\",\"format\":\"int32\"},\"price\":{\"type\":\"number\",\"format\":\"double\"},\"warehouseId\":{\"type\":\"integer\",\"format\":\"int32\"},\"createTime\":{\"type\":\"string\",\"format\":\"date-time\"},\"updateTime\":{\"type\":\"string\",\"format\":\"date-time\"}}},\"ResponseResultListItem\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/Item\"}}}},\"ResponseResultItem\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"integer\",\"format\":\"int32\"},\"msg\":{\"type\":\"string\"},\"data\":{\"$ref\":\"#/components/schemas/Item\"}}}}}}"
+16:22:14.588 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+16:22:14.696 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+17:35:16.028 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:35:53.854 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:20.901 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:23.224 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:23.290 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.OrdersControllerTest]: OrdersControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:23.313 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:23.318 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:23.328 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:32.792 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:32.876 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.OrdersControllerTest]: OrdersControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:32.876 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:32.892 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:32.892 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:39.594 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:36:56.233 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:37:38.243 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:41:30.704 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 23696 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+17:41:30.704 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+17:41:31.362 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+17:41:31.364 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+17:41:31.384 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+17:41:31.994 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+17:41:32.001 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:41:32.002 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17:41:32.002 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+17:41:32.059 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+17:41:32.059 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1317 ms
+17:41:32.360 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+17:41:33.068 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7672960e
+17:41:33.070 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+17:41:34.201 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@46c9ee28, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31f5ffb9, org.springframework.security.web.context.SecurityContextHolderFilter@6f7a65e, org.springframework.security.web.header.HeaderWriterFilter@56b48163, org.springframework.web.filter.CorsFilter@49653791, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@2dcd0e41, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e22d6bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32121140, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@19b3d3a4, org.springframework.security.web.session.SessionManagementFilter@5eae392d, org.springframework.security.web.access.ExceptionTranslationFilter@49322d04, org.springframework.security.web.access.intercept.AuthorizationFilter@63896cf7]
+17:41:34.510 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:41:34.523 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+17:41:34.528 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 4.126 seconds (process running for 4.659)
+17:41:37.795 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:42:16.105 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.OrdersControllerTest]: OrdersControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:42:28.722 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:45:11.438 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:55:16.864 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:55:33.034 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.OrdersControllerTest]: OrdersControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:55:39.226 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.OrdersControllerTest]: OrdersControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:56:15.953 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.WarehouseManagementSystemApplicationTests]: WarehouseManagementSystemApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:56:16.036 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.WarehouseManagementSystemApplicationTests
+18:00:22.173 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:45:10.774 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h38m13s120ms290µs200ns).
+23:04:28.058 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:04:28.190 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+23:05:42.972 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:05:43.107 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+23:15:21.125 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:15:21.271 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+23:17:29.930 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:17:30.096 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+23:17:30.427 [main] INFO  c.j.w.controller.ItemControllerTest - Starting ItemControllerTest using Java 17.0.9 with PID 26548 (started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+23:17:30.428 [main] INFO  c.j.w.controller.ItemControllerTest - No active profile set, falling back to 1 default profile: "default"
+23:17:32.187 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'myAuthenticationFilter': Injection of resource dependencies failed
+23:17:32.204 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+23:17:32.239 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'com.java.warehousemanagementsystem.service.SecurityUserDetailsService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.java.warehousemanagementsystem.service.SecurityUserDetailsService' in your configuration.
+
+23:17:32.252 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener] to prepare test instance [com.java.warehousemanagementsystem.controller.ItemControllerTest@2b0454d2]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@4b93dd6a testClass = com.java.warehousemanagementsystem.controller.ItemControllerTest, locations = [], classes = [com.java.warehousemanagementsystem.WarehouseManagementSystemApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@582a3b19 key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@38089a5a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@332796d3, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@40efaf46, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@64a40280, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@63881749, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@f5ac5b3e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@2f1de2d6, org.springframework.boot.test.context.SpringBootTestAnnotation@5108c66a], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.postProcessFields(MockitoTestExecutionListener.java:122)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.injectFields(MockitoTestExecutionListener.java:106)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.prepareTestInstance(MockitoTestExecutionListener.java:63)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:382)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:377)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:376)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:289)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:288)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:278)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:277)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:105)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:104)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'myAuthenticationFilter': Injection of resource dependencies failed
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:369)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	... 73 common frames omitted
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.java.warehousemanagementsystem.service.SecurityUserDetailsService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@jakarta.annotation.Resource(shareable=true, lookup="", name="", description="", authenticationType=CONTAINER, type=java.lang.Object.class, mappedName="")}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1880)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1406)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:596)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:574)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:736)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:270)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:366)
+	... 95 common frames omitted
+23:17:32.302 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener] to prepare test instance [com.java.warehousemanagementsystem.controller.ItemControllerTest@5f0f70c7]
+java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceeded: skipping repeated attempt to load context for [WebMergedContextConfiguration@4b93dd6a testClass = com.java.warehousemanagementsystem.controller.ItemControllerTest, locations = [], classes = [com.java.warehousemanagementsystem.WarehouseManagementSystemApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@582a3b19 key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@38089a5a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@332796d3, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@40efaf46, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@64a40280, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@63881749, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@f5ac5b3e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@2f1de2d6, org.springframework.boot.test.context.SpringBootTestAnnotation@5108c66a], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:145)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.postProcessFields(MockitoTestExecutionListener.java:122)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.injectFields(MockitoTestExecutionListener.java:106)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.prepareTestInstance(MockitoTestExecutionListener.java:63)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:382)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:377)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:376)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:289)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:288)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:278)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:277)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:105)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:104)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+23:17:32.306 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener] to prepare test instance [com.java.warehousemanagementsystem.controller.ItemControllerTest@40d96578]
+java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceeded: skipping repeated attempt to load context for [WebMergedContextConfiguration@4b93dd6a testClass = com.java.warehousemanagementsystem.controller.ItemControllerTest, locations = [], classes = [com.java.warehousemanagementsystem.WarehouseManagementSystemApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@582a3b19 key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@38089a5a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@332796d3, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@40efaf46, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@64a40280, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@63881749, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@f5ac5b3e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@2f1de2d6, org.springframework.boot.test.context.SpringBootTestAnnotation@5108c66a], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:145)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.postProcessFields(MockitoTestExecutionListener.java:122)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.injectFields(MockitoTestExecutionListener.java:106)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.prepareTestInstance(MockitoTestExecutionListener.java:63)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:382)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:377)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:376)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:289)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:288)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:278)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:277)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:105)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:104)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+23:17:32.309 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener] to prepare test instance [com.java.warehousemanagementsystem.controller.ItemControllerTest@283ab206]
+java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceeded: skipping repeated attempt to load context for [WebMergedContextConfiguration@4b93dd6a testClass = com.java.warehousemanagementsystem.controller.ItemControllerTest, locations = [], classes = [com.java.warehousemanagementsystem.WarehouseManagementSystemApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@582a3b19 key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@38089a5a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@332796d3, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@40efaf46, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@64a40280, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@63881749, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@f5ac5b3e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@2f1de2d6, org.springframework.boot.test.context.SpringBootTestAnnotation@5108c66a], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:145)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.postProcessFields(MockitoTestExecutionListener.java:122)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.injectFields(MockitoTestExecutionListener.java:106)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.prepareTestInstance(MockitoTestExecutionListener.java:63)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:382)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:377)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:376)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:289)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:288)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:278)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:277)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:105)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:104)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+23:17:32.312 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener] to prepare test instance [com.java.warehousemanagementsystem.controller.ItemControllerTest@3e03046d]
+java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceeded: skipping repeated attempt to load context for [WebMergedContextConfiguration@4b93dd6a testClass = com.java.warehousemanagementsystem.controller.ItemControllerTest, locations = [], classes = [com.java.warehousemanagementsystem.WarehouseManagementSystemApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@582a3b19 key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@38089a5a, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@332796d3, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@40efaf46, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@64a40280, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@63881749, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@f5ac5b3e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@2f1de2d6, org.springframework.boot.test.context.SpringBootTestAnnotation@5108c66a], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:145)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.postProcessFields(MockitoTestExecutionListener.java:122)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.injectFields(MockitoTestExecutionListener.java:106)
+	at org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.prepareTestInstance(MockitoTestExecutionListener.java:63)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:382)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:377)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:376)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:289)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:288)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:278)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:277)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:105)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:104)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+23:18:04.049 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:18:05.839 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:18:05.839 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:18:05.841 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:18:05.894 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登录, username = alice, password = password123
+23:18:13.762 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:18:15.578 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:18:15.578 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:18:15.581 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+23:18:15.641 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:18:15.641 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:18:15.641 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:18:15.656 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登录, username = alice, password = password123
+23:18:15.719 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:18:15.719 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:18:15.719 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:18:15.720 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登出, username = alice
+23:18:15.734 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:18:15.734 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:18:15.734 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:18:45.331 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:18:47.090 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:18:47.091 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:18:47.093 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:18:47.143 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登出, username = alice
+23:19:10.990 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:19:12.801 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:19:12.801 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:19:12.804 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:19:12.851 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登出, username = alice
+23:20:04.436 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:20:06.216 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:20:06.216 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:20:06.219 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+23:20:06.266 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品查找成功
+23:20:06.346 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:20:06.346 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:20:06.346 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:20:06.354 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品添加成功
+23:20:06.380 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:20:06.380 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:20:06.380 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:20:06.381 [main] INFO  c.j.w.controller.ItemController - (ItemController)获取物品列表, size = 2, items = [Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null), Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null)]
+23:20:06.417 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:20:06.418 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:20:06.418 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:20:06.419 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品信息更新成功
+23:20:06.429 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:20:06.430 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:20:06.430 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:20:06.431 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品删除成功
+23:31:41.418 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品添加成功
+23:31:41.450 [main] INFO  c.j.w.controller.ItemController - (ItemController)获取物品列表, size = 2, items = [Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null), Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null)]
+23:31:41.467 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品信息更新成功
+23:31:41.472 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品删除成功
+23:31:41.478 [main] ERROR c.j.w.controller.ItemController - (ItemController)未找到物品
+23:33:24.850 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品添加成功
+23:33:24.882 [main] INFO  c.j.w.controller.ItemController - (ItemController)获取物品列表, size = 2, items = [Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null), Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null)]
+23:33:24.899 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品信息更新成功
+23:33:24.903 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品删除成功
+23:33:24.908 [main] ERROR c.j.w.controller.ItemController - (ItemController)未找到物品
+23:35:47.587 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品添加成功
+23:35:47.609 [main] INFO  c.j.w.controller.ItemController - (ItemController)获取物品列表, size = 2, items = [Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null), Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null)]
+23:35:47.624 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品信息更新成功
+23:35:47.627 [main] INFO  c.j.w.controller.ItemController - (ItemController)物品删除成功
+23:35:47.631 [main] ERROR c.j.w.controller.ItemController - (ItemController)未找到物品
+23:38:35.019 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.OrdersControllerTest]: OrdersControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:38:36.879 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:36.879 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:36.881 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:38:36.931 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单删除成功, ID: 1
+23:38:37.009 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.009 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.009 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.031 [main] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Integer` from Object value (token `JsonToken.START_OBJECT`)]
+23:38:37.042 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.042 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.042 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.084 [main] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json' is not supported]
+23:38:37.097 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.097 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.097 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.099 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 地址: 123 Main St
+23:38:37.124 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.124 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.124 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.128 [main] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json' is not supported]
+23:38:37.137 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.137 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.137 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.138 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 订单状态: shipped
+23:38:37.151 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.151 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.151 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.153 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 用户ID: 123
+23:38:37.167 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.167 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.167 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.168 [main] INFO  c.j.w.controller.OrdersController - (OrderController)获取订单列表, size = 2
+23:38:37.177 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.177 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.177 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.179 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, ID: 1
+23:38:37.179 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品查找成功, 订单ID: 1
+23:38:37.196 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:37.196 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:37.196 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:38:37.197 [main] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Integer` from Object value (token `JsonToken.START_OBJECT`)]
+23:47:08.359 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单删除成功, ID: 1
+23:47:08.386 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品添加成功, ID: 1
+23:47:08.391 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单信息更新成功, ID: 1
+23:47:08.395 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 地址: 123 Main St
+23:47:08.405 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单添加成功, ID: null
+23:47:08.409 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 订单状态: processed
+23:47:08.413 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 用户ID: 1
+23:47:08.414 [main] INFO  c.j.w.controller.OrdersController - (OrderController)获取订单列表, size = 2
+23:47:08.418 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, ID: 1
+23:47:08.418 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品查找成功, 订单ID: 1
+23:47:08.423 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品删除成功, ID: 1
+23:47:43.431 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单删除成功, ID: 1
+23:47:43.462 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品添加成功, ID: 1
+23:47:43.466 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单信息更新成功, ID: 1
+23:47:43.469 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 地址: 123 Main St
+23:47:43.472 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单添加成功, ID: null
+23:47:43.475 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 订单状态: processed
+23:47:43.478 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, 用户ID: 1
+23:47:43.480 [main] INFO  c.j.w.controller.OrdersController - (OrderController)获取订单列表, size = 2
+23:47:43.485 [main] INFO  c.j.w.controller.OrdersController - (OrderController)订单查找成功, ID: 1
+23:47:43.485 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品查找成功, 订单ID: 1
+23:47:43.489 [main] INFO  c.j.w.controller.OrdersController - (OrderController)物品删除成功, ID: 1
+23:57:31.341 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:57:33.098 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:57:33.099 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:57:33.101 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:57:33.157 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:57:33.157 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:57:33.157 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:57:33.176 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登录, username = alice, password = password123
+23:57:33.239 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:57:33.239 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:57:33.239 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:57:33.241 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登出, username = alice
+23:57:33.256 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:57:33.256 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:57:33.256 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:57:54.899 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.SessionControllerTest]: SessionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:57:56.664 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:57:56.664 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:57:56.667 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:57:56.712 [main] INFO  c.j.w.controller.UserController - (SessionController)用户登出, username = alice
+23:58:03.516 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:58:05.316 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:58:05.316 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:58:05.319 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:58:05.363 [main] INFO  c.j.w.controller.UserController - (UserController)获取用户列表, size = 2, users = [User(id=null, username=null, password=null, version=null), User(id=null, username=null, password=null, version=null)]
+23:58:05.460 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:58:05.460 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:58:05.461 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:58:05.471 [main] INFO  c.j.w.controller.UserController - (UserController)用户注册成功
+23:58:05.490 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:58:05.490 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:58:05.490 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:58:05.493 [main] INFO  c.j.w.controller.UserController - (UserController)用户查找成功
+23:58:05.507 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:58:05.507 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:58:05.507 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+23:58:05.508 [main] INFO  c.j.w.controller.UserController - (UserController)用户删除成功
+23:58:05.517 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:58:05.517 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:58:05.518 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 1 ms
+23:58:05.519 [main] INFO  c.j.w.controller.UserController - (UserController)用户数据更新成功
+23:59:55.544 [main] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+23:59:55.566 [main] ERROR c.j.w.controller.UserController - (UserController)用户注册失败
+23:59:55.571 [main] INFO  c.j.w.controller.UserController - (UserController)获取用户列表, size = 2, users = [User(id=null, username=null, password=null, version=null), User(id=null, username=null, password=null, version=null)]
+23:59:55.588 [main] INFO  c.j.w.controller.UserController - (UserController)用户注册成功
+23:59:55.601 [main] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+23:59:55.604 [main] INFO  c.j.w.controller.UserController - (UserController)用户查找成功
+23:59:55.608 [main] INFO  c.j.w.controller.UserController - (UserController)用户删除成功
+23:59:55.613 [main] INFO  c.j.w.controller.UserController - (UserController)用户数据更新成功
+00:00:41.604 [main] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+00:00:41.630 [main] ERROR c.j.w.controller.UserController - (UserController)用户注册失败
+00:00:41.634 [main] INFO  c.j.w.controller.UserController - (UserController)获取用户列表, size = 2, users = [User(id=null, username=null, password=null, version=null), User(id=null, username=null, password=null, version=null)]
+00:00:41.652 [main] INFO  c.j.w.controller.UserController - (UserController)用户注册成功
+00:00:41.657 [main] ERROR c.j.w.controller.UserController - (UserController)未找到用户
+00:00:41.660 [main] INFO  c.j.w.controller.UserController - (UserController)用户查找成功
+00:00:41.666 [main] INFO  c.j.w.controller.UserController - (UserController)用户删除成功
+00:00:41.669 [main] INFO  c.j.w.controller.UserController - (UserController)用户数据更新成功
+00:00:50.654 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+00:00:52.600 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+00:00:52.600 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+00:00:52.603 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+00:00:52.652 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库删除成功
+00:00:52.734 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+00:00:52.735 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+00:00:52.735 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+00:00:52.742 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库更新成功
+00:00:52.765 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+00:00:52.765 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+00:00:52.765 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+00:00:52.766 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库查找成功
+00:00:52.777 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+00:00:52.777 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+00:00:52.777 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+00:00:52.778 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库创建成功
+00:00:52.788 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+00:00:52.789 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+00:00:52.789 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+00:00:52.791 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)获取仓库列表
+00:04:00.993 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库删除成功
+00:04:01.030 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库更新成功
+00:04:01.039 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库查找成功
+00:04:01.042 [main] ERROR c.j.w.controller.WarehouseController - (WarehouseController)未找到仓库
+00:04:01.047 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库创建成功
+00:04:01.051 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)获取仓库列表
+00:04:01.054 [main] ERROR c.j.w.controller.WarehouseController - (WarehouseController)未找到仓库
+00:05:24.949 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库删除成功
+00:05:24.982 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库更新成功
+00:05:24.985 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库查找成功
+00:05:24.988 [main] ERROR c.j.w.controller.WarehouseController - (WarehouseController)未找到仓库
+00:05:24.993 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库创建成功
+00:05:24.996 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)获取仓库列表
+00:05:24.999 [main] ERROR c.j.w.controller.WarehouseController - (WarehouseController)未找到仓库
