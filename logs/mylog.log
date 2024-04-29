@@ -1173,3 +1173,19 @@ java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceed
 00:05:24.993 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)仓库创建成功
 00:05:24.996 [main] INFO  c.j.w.controller.WarehouseController - (WarehouseController)获取仓库列表
 00:05:24.999 [main] ERROR c.j.w.controller.WarehouseController - (WarehouseController)未找到仓库
+00:12:39.067 [main] INFO  c.j.w.service.ItemService - (ItemService)获取物品列表, size = 2, items = [Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null), Item(id=null, name=null, description=null, quantity=null, price=null, warehouseId=null, createTime=null, updateTime=null)]
+00:12:39.088 [main] ERROR c.j.w.service.ItemService - (ItemService)物品ID不能为空
+00:12:39.091 [main] INFO  c.j.w.service.ItemService - (ItemService)物品信息更新成功, id = 1. name = Updated Item, description = Updated description, quantity = 15, price = 25.0, warehouseId = 1, updateTime = Tue Apr 30 00:12:39 CST 2024
+00:12:39.106 [main] ERROR c.j.w.service.ItemService - (ItemService)物品ID不能为空
+00:12:39.114 [main] ERROR c.j.w.service.ItemService - (ItemService)物品不存在
+00:12:39.126 [main] ERROR c.j.w.service.ItemService - (ItemService)物品ID不能为空
+00:12:39.132 [main] ERROR c.j.w.service.ItemService - (ItemService)物品名称不能为空
+00:12:39.133 [main] ERROR c.j.w.service.ItemService - (ItemService)物品描述不能为空
+00:12:39.133 [main] ERROR c.j.w.service.ItemService - (ItemService)物品数量不正确
+00:12:39.134 [main] ERROR c.j.w.service.ItemService - (ItemService)物品价格不正确
+00:12:39.136 [main] ERROR c.j.w.service.ItemService - (ItemService)物品名称不能为空
+00:12:39.137 [main] ERROR c.j.w.service.ItemService - (ItemService)物品描述不能为空
+00:12:39.137 [main] ERROR c.j.w.service.ItemService - (ItemService)物品数量不正确
+00:12:39.137 [main] ERROR c.j.w.service.ItemService - (ItemService)物品价格不正确
+00:23:48.865 [main] INFO  c.j.w.service.ItemService - (ItemService)物品添加成功, id = null. name = Item1, description = A new item, quantity = 10, price = 20.0, warehouseId = 1, createTime = Tue Apr 30 00:23:48 CST 2024
+00:23:54.566 [main] ERROR c.j.w.service.ItemService - (ItemService)同一仓库中物品已存在
