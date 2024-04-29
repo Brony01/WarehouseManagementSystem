@@ -1,5 +1,8 @@
 package com.java.warehousemanagementsystem.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum AppHttpCodeEnum {
     // 成功响应
     SUCCESS(200, "操作成功"),
@@ -44,11 +47,4 @@ public enum AppHttpCodeEnum {
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }
