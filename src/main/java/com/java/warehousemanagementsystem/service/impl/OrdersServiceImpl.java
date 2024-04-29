@@ -11,6 +11,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ public class OrdersServiceImpl implements OrdersService
     @Transactional
     public boolean addOrder(Orders orders) {
         try {
+            orders.setCreateTime(new Date());
             ordersMapper.insert(orders);
             logger.info("(OrderService) 订单添加成功, ID: {}", orders.getId());
             return true;
@@ -68,6 +70,7 @@ public class OrdersServiceImpl implements OrdersService
     public boolean updateOrder(Integer id, Orders orders) {
         try {
             orders.setId(id);  // Ensure the order has the correct ID
+            orders.setUpdateTime(new Date());
             ordersMapper.updateById(orders);
             updateOrderTotalPrice(id);
             logger.info("(OrderService) 订单更新成功, ID: {}", id);

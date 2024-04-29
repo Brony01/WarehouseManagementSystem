@@ -431,3 +431,5 @@ java.lang.IllegalStateException: Ambiguous handler methods mapped for '/orders/1
 15:43:07.286 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
 15:43:07.312 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
 15:43:07.318 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 3.443 seconds (process running for 3.94)
+15:51:49.513 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:51:49.623 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
