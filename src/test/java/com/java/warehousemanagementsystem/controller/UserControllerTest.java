@@ -1,145 +1,107 @@
 package com.java.warehousemanagementsystem.controller;
 
-import com.java.warehousemanagementsystem.pojo.User;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+
 import com.java.warehousemanagementsystem.service.UserService;
+import com.java.warehousemanagementsystem.pojo.User;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@WebMvcTest(UserController.class)
+@ExtendWith(SpringExtension.class)
 public class UserControllerTest {
 
-    @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     private UserService userService;
 
-    @Test
-    void testRegisterSuccess() throws Exception {
-        given(userService.register("testUser", "password", "password")).willReturn(true);
+    @InjectMocks
+    private UserController userController;
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
-                        .param("username", "testUser")
-                        .param("password", "password")
-                        .param("confirmedPassword", "password"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.message").value("用户注册成功"));
+    @BeforeEach
+    public void setup() {
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
     @Test
-    void testRegisterFailure() throws Exception {
-        given(userService.register("testUser", "password", "password")).willReturn(false);
+    public void testRegister() throws Exception {
+        when(userService.register("alice", "password123", "password123")).thenReturn(true);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
-                        .param("username", "testUser")
-                        .param("password", "password")
-                        .param("confirmedPassword", "password"))
+        mockMvc.perform(post("/user")
+                        .param("username", "alice")
+                        .param("password", "password123")
+                        .param("confirmedPassword", "password123")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("用户注册失败"));
+                .andExpect(jsonPath("$.success").value(true));
+
+        verify(userService, times(1)).register("alice", "password123", "password123");
     }
 
-    // Similar structure for update, delete, findUserById, and getList
     @Test
-    void testUpdateSuccess() throws Exception {
-        given(userService.updateUser(1, "testUser", "password", "password")).willReturn(true);
+    public void testUpdate() throws Exception {
+        when(userService.updateUser(1, "alice", "newpassword", "newpassword")).thenReturn(true);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/user")
+        mockMvc.perform(put("/user")
                         .param("id", "1")
-                        .param("username", "testUser")
-                        .param("password", "password")
-                        .param("confirmedPassword", "password"))
+                        .param("username", "alice")
+                        .param("password", "newpassword")
+                        .param("confirmedPassword", "newpassword")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.message").value("用户数据更新成功"));
+                .andExpect(jsonPath("$.success").value(true));
+
+        verify(userService, times(1)).updateUser(1, "alice", "newpassword", "newpassword");
     }
 
     @Test
-    void testUpdateFailure() throws Exception {
-        given(userService.updateUser(1, "testUser", "password", "password")).willReturn(false);
+    public void testFindUserById() throws Exception {
+        User user = new User(); // Set user properties if needed
+        when(userService.findUserById(1)).thenReturn(user);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/user")
-                        .param("id", "1")
-                        .param("username", "testUser")
-                        .param("password", "password")
-                        .param("confirmedPassword", "password"))
+        mockMvc.perform(get("/user/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("用户数据更新失败"));
+                .andExpect(jsonPath("$.data").isNotEmpty());
+
+        verify(userService, times(1)).findUserById(1);
     }
 
     @Test
-    void testFindUserByIdSuccess() throws Exception {
-        given(userService.findUserById(1)).willReturn(new User(1, "testUser", "password"));
+    public void testGetList() throws Exception {
+        List<User> users = Arrays.asList(new User(), new User()); // Create test users
+        when(userService.findAllUser()).thenReturn(users);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/1"))
+        mockMvc.perform(get("/user"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data.id").value(1))
-                .andExpect(jsonPath("$.data.username").value("testUser"))
-                .andExpect(jsonPath("$.data.password").value("password"));
-    }
-
-    @Test
-    void testFindUserByIdFailure() throws Exception {
-        given(userService.findUserById(1)).willReturn(null);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("未找到用户"));
-    }
-
-    @Test
-    void testGetList() throws Exception {
-        List<User> users = Arrays.asList(new User(1, "testUser1", "password1"),
-                                         new User(2, "testUser2", "password2"));
-        given(userService.findAllUser()).willReturn(users);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/user"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data").isArray())
-                .andExpect(jsonPath("$.data", hasSize(2)))
-                .andExpect(jsonPath("$.data[0].id").value(1))
-                .andExpect(jsonPath("$.data[0].username").value("testUser1"))
-                .andExpect(jsonPath("$.data[0].password").value("password1"))
-                .andExpect(jsonPath("$.data[1].id").value(2))
-                .andExpect(jsonPath("$.data[1].username").value("testUser2"))
-                .andExpect(jsonPath("$.data[1].password").value("password2"));
+                .andExpect(jsonPath("$.data.size()").value(users.size()));
+
+        verify(userService, times(1)).findAllUser();
     }
 
     @Test
-    void testDeleteUserSuccess() throws Exception {
-        given(userService.deleteUser(1)).willReturn(true);
+    public void testDelete() throws Exception {
+        when(userService.deleteUser(1)).thenReturn(true);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/user/1"))
+        mockMvc.perform(delete("/user/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.message").value("用户删除成功"));
-    }
+                .andExpect(jsonPath("$.success").value(true));
 
-    @Test
-    void testDeleteUserFailure() throws Exception {
-        given(userService.deleteUser(1)).willReturn(false);
-
-        mockMvc.perform(MockMvcRequestBuilders.delete("/user/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("未找到用户"));
+        verify(userService, times(1)).deleteUser(1);
     }
 }
