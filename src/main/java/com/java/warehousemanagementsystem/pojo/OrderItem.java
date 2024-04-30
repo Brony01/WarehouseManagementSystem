@@ -13,8 +13,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItem implements Serializable
-{
+public class OrderItem implements Serializable {
     @TableId(type = IdType.AUTO)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private Integer id;

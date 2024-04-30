@@ -1,20 +1,21 @@
 package com.java.warehousemanagementsystem.controller;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
+import com.java.warehousemanagementsystem.pojo.User;
+import com.java.warehousemanagementsystem.service.UserService;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.java.warehousemanagementsystem.pojo.User;
-import com.java.warehousemanagementsystem.service.UserService;
-import com.java.warehousemanagementsystem.vo.ResponseResult;
-import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
-
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserControllerTest {

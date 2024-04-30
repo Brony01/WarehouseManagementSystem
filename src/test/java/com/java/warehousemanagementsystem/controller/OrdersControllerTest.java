@@ -1,7 +1,10 @@
 package com.java.warehousemanagementsystem.controller;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
+import com.java.warehousemanagementsystem.pojo.Item;
+import com.java.warehousemanagementsystem.pojo.Orders;
+import com.java.warehousemanagementsystem.service.OrdersService;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -9,15 +12,14 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.java.warehousemanagementsystem.pojo.Item;
-import com.java.warehousemanagementsystem.pojo.Orders;
-import com.java.warehousemanagementsystem.service.OrdersService;
-import com.java.warehousemanagementsystem.vo.ResponseResult;
-import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class OrdersControllerTest {

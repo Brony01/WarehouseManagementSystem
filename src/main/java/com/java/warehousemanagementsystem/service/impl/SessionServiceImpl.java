@@ -10,7 +10,6 @@ import jakarta.annotation.Resource;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,8 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class SessionServiceImpl implements SessionService
-{
+public class SessionServiceImpl implements SessionService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     // Adding setter for testing
     @Setter
@@ -32,13 +30,11 @@ public class SessionServiceImpl implements SessionService
     private AuthenticationManager authenticationManager;
 
     @Override
-    public Map<String, String> loginSession(String username, String password)
-    {
+    public Map<String, String> loginSession(String username, String password) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-        if(authenticate == null)
-        {
+        if (authenticate == null) {
             logger.error("(SessionServiceImpl)登录失败,authenticate == null");
             return null;
         }
@@ -55,8 +51,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
-    public String logoutSession(String username)
-    {
+    public String logoutSession(String username) {
         User user = userMapper.selectOne(new QueryWrapper<User>().eq("username", username));
         user.setVersion(user.getVersion() + 1);
         userMapper.updateById(user);

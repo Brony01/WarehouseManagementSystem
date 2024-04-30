@@ -7,6 +7,8 @@ import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,13 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Controller
 @RequestMapping("/order")
-public class OrdersController
-{
+public class OrdersController {
     private static final Logger logger = LoggerFactory.getLogger(OrdersController.class);
 
     @Resource
@@ -33,8 +31,7 @@ public class OrdersController
     @PostMapping
     @ResponseBody
     public ResponseResult<?> addOrder(@RequestParam @Parameter(description = "订单") String username,
-                                      @RequestParam @Parameter(description = "订单") String address )
-    {
+                                      @RequestParam @Parameter(description = "订单") String address) {
         Orders orders = new Orders();
         orders.setUsername(username);
         orders.setAddress(address);
@@ -51,8 +48,7 @@ public class OrdersController
     @PostMapping("/item/{id}")
     @ResponseBody
     public ResponseResult<?> addItem(@PathVariable @Parameter(description = "订单ID") Integer id,
-                                     @RequestParam @Parameter(description = "物品ID") Integer itemId)
-    {
+                                     @RequestParam @Parameter(description = "物品ID") Integer itemId) {
         if (ordersService.addItem(id, itemId)) {
             logger.info("(OrderController)物品添加成功, ID: {}", id);
             return ResponseResult.success("物品添加成功");

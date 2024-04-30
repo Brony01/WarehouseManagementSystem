@@ -1,12 +1,6 @@
 package com.java.warehousemanagementsystem.controller;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-
 import com.java.warehousemanagementsystem.service.SessionService;
-import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +12,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Map;
+
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 public class SessionControllerTest {
@@ -58,7 +57,7 @@ public class SessionControllerTest {
                         .param("username", "alice")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isOk());
-                //.andExpect(jsonPath("$.success").value(true));
+        //.andExpect(jsonPath("$.success").value(true));
 
         verify(sessionService, times(1)).logoutSession("alice");
     }

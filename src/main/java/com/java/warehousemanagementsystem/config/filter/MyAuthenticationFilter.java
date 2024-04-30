@@ -20,8 +20,7 @@ import java.io.IOException;
 
 
 @Component
-public class MyAuthenticationFilter extends OncePerRequestFilter
-{
+public class MyAuthenticationFilter extends OncePerRequestFilter {
 
     @Resource
     private SecurityUserDetailsService securityUserDetailsService;
@@ -29,12 +28,10 @@ public class MyAuthenticationFilter extends OncePerRequestFilter
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException
-    {
+                                    FilterChain filterChain) throws ServletException, IOException {
         String requestToken = request.getHeader(JwtUtils.getCurrentConfig().getHeader());
         // 读取请求头中的token
-        if (StringUtils.isNotBlank(requestToken))
-        {
+        if (StringUtils.isNotBlank(requestToken)) {
             // 判断token是否有效
             boolean verifyToken = JwtUtils.isValidToken(requestToken);
             if (!verifyToken) {

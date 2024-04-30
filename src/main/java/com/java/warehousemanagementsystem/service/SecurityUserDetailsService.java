@@ -11,11 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SecurityUserDetailsService implements UserDetailsService
-{
+public class SecurityUserDetailsService implements UserDetailsService {
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-    {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 获取用户信息
         String password = SecurityConstant.USER_MAP.get(username);
         if (StringUtils.isBlank(password)) {

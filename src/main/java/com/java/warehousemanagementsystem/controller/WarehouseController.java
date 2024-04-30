@@ -14,13 +14,9 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-
 @RestController
 @RequestMapping("/warehouse")
-public class WarehouseController
-{
+public class WarehouseController {
     private static final Logger logger = LoggerFactory.getLogger(WarehouseController.class);
 
     @Resource
@@ -33,8 +29,7 @@ public class WarehouseController
             @RequestParam @Parameter(description = "仓库名称") String name,
             @RequestParam @Parameter(description = "仓库位置") String location,
             @RequestParam @Parameter(description = "管理员") String manager,
-            @RequestParam @Parameter(description = "仓库介绍") String description)
-    {
+            @RequestParam @Parameter(description = "仓库介绍") String description) {
         Warehouse warehouse = warehouseService.addWarehouse(name, location, manager, description);
         logger.info("(WarehouseController)仓库创建成功");
         return ResponseResult.success(warehouse);
@@ -49,8 +44,7 @@ public class WarehouseController
             @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库名称") String name,
             @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库位置") String location,
             @RequestParam(required = false, defaultValue = "") @Parameter(description = "管理员") String manager,
-            @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库介绍") String description)
-    {
+            @RequestParam(required = false, defaultValue = "") @Parameter(description = "仓库介绍") String description) {
         Warehouse warehouse = warehouseService.updateWarehouse(id, name, location, manager, description);
         logger.info("(WarehouseController)仓库更新成功");
         return ResponseResult.success(warehouse);

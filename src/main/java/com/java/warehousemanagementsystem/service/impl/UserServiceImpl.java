@@ -1,17 +1,16 @@
 package com.java.warehousemanagementsystem.service.impl;
 
-import com.java.warehousemanagementsystem.pojo.User;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.java.warehousemanagementsystem.mapper.UserMapper;
+import com.java.warehousemanagementsystem.pojo.User;
 import com.java.warehousemanagementsystem.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -106,7 +105,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUser() {
         logger.info("(UserService)获取用户列表, size = {}, users = {}", userMapper.selectList(null).size(), userMapper.selectList(null));
-        QueryWrapper<User> queryWrapper  = new QueryWrapper<>();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("id", "username", "version");
         return userMapper.selectList(queryWrapper);
     }

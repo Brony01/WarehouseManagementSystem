@@ -4,7 +4,7 @@ import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
 import lombok.Getter;
 
 @Getter
-public class SystemException extends RuntimeException{
+public class SystemException extends RuntimeException {
     private final int code;
     private final String msg;
 

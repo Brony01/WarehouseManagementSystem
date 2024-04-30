@@ -7,6 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 @Mapper
-public interface OrderItemMapper extends BaseMapper<OrderItem>
-{
+public interface OrderItemMapper extends BaseMapper<OrderItem> {
 }

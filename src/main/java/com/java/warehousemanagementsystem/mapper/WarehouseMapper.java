@@ -5,6 +5,5 @@ import com.java.warehousemanagementsystem.pojo.Warehouse;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface WarehouseMapper extends BaseMapper<Warehouse>
-{
+public interface WarehouseMapper extends BaseMapper<Warehouse> {
 }

@@ -33,8 +33,7 @@ import java.util.Map;
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration
-{
+public class SecurityConfiguration {
 
     @Resource
     private UserDetailsService userDetailsService;
@@ -45,8 +44,7 @@ public class SecurityConfiguration
      * 鉴权管理类
      */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
-    {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
@@ -54,8 +52,7 @@ public class SecurityConfiguration
      * 加密类
      */
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -63,8 +60,7 @@ public class SecurityConfiguration
      * Spring Security 过滤链
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
-    {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 // 禁用明文验证
                 .httpBasic(AbstractHttpConfigurer::disable)
@@ -90,39 +86,31 @@ public class SecurityConfiguration
                             String requestURI = object.getRequest().getRequestURI();
                             PathMatcher pathMatcher = new AntPathMatcher();
                             // 白名单请求直接放行
-                            for (String url : SecurityConstant.WHITELIST)
-                            {
-                                if (pathMatcher.match(url, requestURI))
-                                {
+                            for (String url : SecurityConstant.WHITELIST) {
+                                if (pathMatcher.match(url, requestURI)) {
                                     return new AuthorizationDecision(true);
                                 }
                             }
                             // 获取访问该路径所需权限
                             Map<String, ConfigAttribute> permissionMap = SecurityConstant.PERMISSION_MAP;
                             List<ConfigAttribute> apiNeedPermissions = new ArrayList<>();
-                            for (Map.Entry<String, ConfigAttribute> config : permissionMap.entrySet())
-                            {
-                                if (pathMatcher.match(config.getKey(), requestURI))
-                                {
+                            for (Map.Entry<String, ConfigAttribute> config : permissionMap.entrySet()) {
+                                if (pathMatcher.match(config.getKey(), requestURI)) {
                                     apiNeedPermissions.add(config.getValue());
                                 }
                             }
                             // 如果接口没有配置权限则直接放行
-                            if (apiNeedPermissions.isEmpty())
-                            {
+                            if (apiNeedPermissions.isEmpty()) {
                                 return new AuthorizationDecision(true);
                             }
                             // 获取当前登录用户权限信息
                             Collection<? extends GrantedAuthority> authorities = authentication.get().getAuthorities();
                             // 判断当前用户是否有足够的权限访问
-                            for (ConfigAttribute configAttribute : apiNeedPermissions)
-                            {
+                            for (ConfigAttribute configAttribute : apiNeedPermissions) {
                                 // 将访问所需资源和用户拥有资源进行比对
                                 String needAuthority = configAttribute.getAttribute();
-                                for (GrantedAuthority grantedAuthority : authorities)
-                                {
-                                    if (needAuthority.trim().equals(grantedAuthority.getAuthority()))
-                                    {
+                                for (GrantedAuthority grantedAuthority : authorities) {
+                                    if (needAuthority.trim().equals(grantedAuthority.getAuthority())) {
                                         // 权限匹配放行
                                         return new AuthorizationDecision(true);
                                     }

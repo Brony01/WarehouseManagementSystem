@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JwtConfig
-{
+public class JwtConfig {
     @Value("${jwt.secret}")
     private String secretKey;
     @Value("${jwt.issuer}")
@@ -21,8 +20,7 @@ public class JwtConfig
     private String tokenHead;
 
     @PostConstruct
-    public void jwtInit()
-    {
+    public void jwtInit() {
         JwtUtils.initialize(header, tokenHead, issuer, secretKey, expirationTime);
     }
 

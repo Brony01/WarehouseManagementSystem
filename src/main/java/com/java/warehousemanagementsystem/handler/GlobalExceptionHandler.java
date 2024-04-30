@@ -16,6 +16,7 @@ public class GlobalExceptionHandler {
         log.error("出现了异常! {}", e);
         return ResponseResult.failure(e.getCode(), e.getMsg());
     }
+
     @ExceptionHandler(Exception.class)
     public ResponseResult exceptionHandler(Exception e) {
         log.error("出现了异常! {}", e);

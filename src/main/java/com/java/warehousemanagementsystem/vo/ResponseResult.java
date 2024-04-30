@@ -1,7 +1,7 @@
 package com.java.warehousemanagementsystem.vo;
 
-import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -13,8 +13,7 @@ import java.util.stream.Collectors;
 
 @Data
 @Builder
-public class SecurityUserDetails implements UserDetails
-{
+public class SecurityUserDetails implements UserDetails {
     private String username;
 
     private String password;
@@ -35,20 +34,17 @@ public class SecurityUserDetails implements UserDetails
     }
 
     @Override
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
     @Override
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
     @Override
-    public boolean isAccountNonExpired()
-    {
+    public boolean isAccountNonExpired() {
         return true;
     }
 
@@ -58,14 +54,12 @@ public class SecurityUserDetails implements UserDetails
     }
 
     @Override
-    public boolean isCredentialsNonExpired()
-    {
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled()
-    {
+    public boolean isEnabled() {
         return true;
     }
 }

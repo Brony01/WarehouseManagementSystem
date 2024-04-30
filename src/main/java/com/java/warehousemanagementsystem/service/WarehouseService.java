@@ -4,10 +4,7 @@ package com.java.warehousemanagementsystem.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.java.warehousemanagementsystem.pojo.Warehouse;
 
-import java.util.Date;
-
-public interface WarehouseService
-{
+public interface WarehouseService {
     Warehouse addWarehouse(String name, String address, String manager, String description);
 
     boolean deleteWarehouse(Integer id);

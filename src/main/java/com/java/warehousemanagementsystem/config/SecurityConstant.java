@@ -15,8 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class SecurityConstant
-{
+public class SecurityConstant {
 
     @Autowired
     UserMapper userMapper;
@@ -43,8 +42,7 @@ public class SecurityConstant
     public static final String[] WHITELIST = {"/session", "/user"};
 
     @PostConstruct
-    public void init()
-    {
+    public void init() {
         /*
           账号：
           admin admin
@@ -55,32 +53,26 @@ public class SecurityConstant
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         List<User> users = userMapper.selectList(queryWrapper);
-        for (User user : users)
-        {
+        for (User user : users) {
             USER_MAP.put(user.getUsername(), user.getPassword());
 
-            if(user.getUsername().equals("admin"))
-            {
+            if (user.getUsername().equals("admin")) {
                 //赋予当前用户管理员权限
                 USER_PERMISSION_MAP.put(user.getUsername(), List.of(PERMISSION.ADMIN, PERMISSION.USER));
-            }
-            else
-            {
+            } else {
                 //普通用户
                 USER_PERMISSION_MAP.put(user.getUsername(), List.of(PERMISSION.USER));
             }
         }
     }
 
-    public void update()
-    {
+    public void update() {
         USER_MAP.clear();
         USER_PERMISSION_MAP.clear();
         init();
     }
 
-    static
-    {
+    static {
         // 填充接口权限 需要权限的接口都要写下面
 
         // 只允许admin访问
@@ -94,14 +86,12 @@ public class SecurityConstant
      * 模拟权限
      */
     @Getter
-    public enum PERMISSION
-    {
+    public enum PERMISSION {
         ADMIN("admin"), USER("user");
 
         private final String value;
 
-        PERMISSION(String value)
-        {
+        PERMISSION(String value) {
             this.value = value;
         }
     }

@@ -2,24 +2,22 @@ package com.java.warehousemanagementsystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.java.warehousemanagementsystem.mapper.OrderItemMapper;
-import com.java.warehousemanagementsystem.pojo.Item;
-import com.java.warehousemanagementsystem.pojo.Orders;
 import com.java.warehousemanagementsystem.mapper.OrdersMapper;
+import com.java.warehousemanagementsystem.pojo.Item;
 import com.java.warehousemanagementsystem.pojo.OrderItem;
+import com.java.warehousemanagementsystem.pojo.Orders;
 import com.java.warehousemanagementsystem.service.OrdersService;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Service
-public class OrdersServiceImpl implements OrdersService
-{
+public class OrdersServiceImpl implements OrdersService {
     private static final Logger logger = LoggerFactory.getLogger(OrdersService.class);
 
     @Resource
@@ -43,8 +41,7 @@ public class OrdersServiceImpl implements OrdersService
     }
 
     @Override
-    public boolean addItem(Integer id, Integer itemId)
-    {
+    public boolean addItem(Integer id, Integer itemId) {
         try {
             OrderItem orderItem = new OrderItem();
             orderItem.setOrderId(id);
@@ -112,8 +109,7 @@ public class OrdersServiceImpl implements OrdersService
     }
 
     @Override
-    public List<Orders> findAllOrders()
-    {
+    public List<Orders> findAllOrders() {
         return ordersMapper.selectList(null);
     }
 
@@ -145,8 +141,7 @@ public class OrdersServiceImpl implements OrdersService
     }
 
     @Override
-    public List<Item> findItemsByOrderId(Integer id)
-    {
+    public List<Item> findItemsByOrderId(Integer id) {
         return ordersMapper.getItemsByOrderId(id);
     }
 
@@ -166,11 +161,9 @@ public class OrdersServiceImpl implements OrdersService
     }
 
 
-    private void updateByOrderList(QueryWrapper<Orders> queryWrapper)
-    {
+    private void updateByOrderList(QueryWrapper<Orders> queryWrapper) {
         List<Orders> orders = ordersMapper.selectList(queryWrapper);
-        for (Orders order : orders)
-        {
+        for (Orders order : orders) {
             updateOrderTotalPrice(order.getId());
         }
     }

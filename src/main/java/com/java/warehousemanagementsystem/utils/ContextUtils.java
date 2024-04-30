@@ -5,6 +5,7 @@ package com.java.warehousemanagementsystem.utils;
  * @version 1.0
  * @date 2024/4/26 下午4:22
  */
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

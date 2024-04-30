@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.java.warehousemanagementsystem.aspect.CacheLoggingAspect;
 import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.pojo.User;
-import jakarta.annotation.Resource;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,8 +23,7 @@ import java.util.List;
 /**
  * JWT工具类
  */
-public class JwtUtils
-{
+public class JwtUtils {
 
     private static final String VERSION_CLAIM = "version";
     private static final Logger logger = LoggerFactory.getLogger(CacheLoggingAspect.class);
@@ -44,24 +42,22 @@ public class JwtUtils
     /**
      * 初始化参数
      *
-     * @param header     JWT标签头
-     * @param tokenHead    Token头
-     * @param issuer     签发者
-     * @param secretKey    密钥 最小长度：4
+     * @param header         JWT标签头
+     * @param tokenHead      Token头
+     * @param issuer         签发者
+     * @param secretKey      密钥 最小长度：4
      * @param expirationTime Token过期时间 单位：秒
-     * @param issuers     签发者列表 校验签发者时使用
-     * @param audience    接受者
+     * @param issuers        签发者列表 校验签发者时使用
+     * @param audience       接受者
      */
-    public static void initialize(String header, String tokenHead, String issuer, String secretKey, long expirationTime, List<String> issuers, String audience)
-    {
+    public static void initialize(String header, String tokenHead, String issuer, String secretKey, long expirationTime, List<String> issuers, String audience) {
         jwtConfig = new JwtConfig();
         jwtConfig.setHeader(StringUtils.isNotBlank(header) ? header : HEADER);
         jwtConfig.setTokenHead(tokenHead);
         jwtConfig.setIssuer(issuer);
         jwtConfig.setSecretKey(secretKey);
         jwtConfig.setExpirationTime(expirationTime);
-        if (CollectionUtils.isEmpty(issuers))
-        {
+        if (CollectionUtils.isEmpty(issuers)) {
             issuers = Collections.singletonList(issuer);
         }
         jwtConfig.setIssuers(issuers);
@@ -72,8 +68,7 @@ public class JwtUtils
     /**
      * 初始化参数
      */
-    public static void initialize(String header, String issuer, String secretKey, long expirationTime)
-    {
+    public static void initialize(String header, String issuer, String secretKey, long expirationTime) {
         initialize(header, null, issuer, secretKey, expirationTime, null, null);
     }
 
@@ -91,15 +86,14 @@ public class JwtUtils
      * @param subject 主题
      * @return Token
      */
-    public static String generateToken(String subject, Integer versionId)
-    {
+    public static String generateToken(String subject, Integer versionId) {
         return generateToken(subject, versionId, jwtConfig.getExpirationTime());
     }
 
     /**
      * 生成 Token
      *
-     * @param subject     主题
+     * @param subject        主题
      * @param expirationTime 过期时间
      * @return Token
      */
@@ -149,7 +143,7 @@ public class JwtUtils
             logger.info("user version: " + user.getVersion());
 
 
-            if(version != user.getVersion()) return false;
+            if (version != user.getVersion()) return false;
 
             Algorithm algorithm = Algorithm.HMAC256(jwtConfig.getSecretKey());
             JWTVerifier verifier = JWT.require(algorithm).build();
@@ -196,14 +190,12 @@ public class JwtUtils
     /**
      * 获取当前Jwt配置信息
      */
-    public static JwtConfig getCurrentConfig()
-    {
+    public static JwtConfig getCurrentConfig() {
         return jwtConfig;
     }
 
     @Data
-    public static class JwtConfig
-    {
+    public static class JwtConfig {
         /**
          * JwtToken Header标签
          */
