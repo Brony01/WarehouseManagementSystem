@@ -15,7 +15,6 @@ import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.HashMap;
 import java.util.Map;
 
 @ExtendWith(MockitoExtension.class)
@@ -107,7 +106,7 @@ public class OrdersControllerTest {
     @Test
     void testGetOrdersByUserId() {
         List<Orders> orders = Arrays.asList(new Orders(), new Orders());
-        when(ordersService.findOrdersByUserId(1)).thenReturn(orders);
+        when(ordersService.findOrdersByUsername(1)).thenReturn(orders);
 
         ResponseResult<List<Orders>> result = ordersController.getOrdersByUserId(1);
 

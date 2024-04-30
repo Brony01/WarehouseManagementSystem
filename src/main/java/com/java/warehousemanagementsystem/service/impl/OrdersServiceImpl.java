@@ -118,11 +118,11 @@ public class OrdersServiceImpl implements OrdersService
     }
 
     @Override
-    public List<Orders> findOrdersByUserId(Integer userId) {
+    public List<Orders> findOrdersByUsername(String username) {
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id", userId);
+        queryWrapper.eq("username", username);
         updateByOrderList(queryWrapper);
-        logger.info("(OrderService) 根据用户ID查找订单, ID: {}", userId);
+        logger.info("(OrderService) 根据用户ID查找订单, ID: {}", username);
         return ordersMapper.selectList(queryWrapper);
     }
 

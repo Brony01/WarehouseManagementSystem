@@ -14,7 +14,7 @@ public interface OrdersService
     boolean deleteOrder(Integer id);
     boolean deleteItem(Integer id, Integer itemId);
     List<Orders> findAllOrders();
-    List<Orders> findOrdersByUserId(Integer userId);
+    List<Orders> findOrdersByUsername(String username);
     List<Orders> findOrdersByStatus(String status);
     List<Orders> findOrdersByAddress(String address);
     List<Item> findItemsByOrderId(Integer id);

@@ -72,11 +72,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(int id, String username, String password, String confirmedPassword)
+    public boolean updateUser(String username, String password, String confirmedPassword)
             throws IllegalArgumentException {
         check(username, password, confirmedPassword);
-
-        User user = userMapper.selectById(id);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        User user = userMapper.selectOne(queryWrapper);
         if (user == null) {
             logger.error("(UserService)用户不存在");
             throw new IllegalArgumentException("用户不存在");
@@ -97,13 +98,17 @@ public class UserServiceImpl implements UserService {
             logger.error("(UserService)用户id不能为空");
             throw new IllegalArgumentException("用户id不能为空");
         }
-        return userMapper.selectById(id);
+        User user = userMapper.selectById(id);
+        user.setPassword(null);
+        return user;
     }
 
     @Override
     public List<User> findAllUser() {
         logger.info("(UserService)获取用户列表, size = {}, users = {}", userMapper.selectList(null).size(), userMapper.selectList(null));
-        return userMapper.selectList(null);
+        QueryWrapper<User> queryWrapper  = new QueryWrapper<>();
+        queryWrapper.select("id", "username", "version");
+        return userMapper.selectList(queryWrapper);
     }
 
     @Override

@@ -7,7 +7,7 @@ public interface UserService
 {
     boolean register(String username, String password, String confirmedPassword);
 
-    boolean updateUser(int id, String username, String password, String confirmedPassword);
+    boolean updateUser(String username, String password, String confirmedPassword);
 
     User findUserById(Integer id);
 

@@ -32,7 +32,12 @@ public class OrdersController
     @Operation(summary = "添加新订单")
     @PostMapping
     @ResponseBody
-    public ResponseResult<?> addOrder(@RequestBody @Parameter(description = "订单") Orders orders) {
+    public ResponseResult<?> addOrder(@RequestParam @Parameter(description = "订单") String username,
+                                      @RequestParam @Parameter(description = "订单") String address )
+    {
+        Orders orders = new Orders();
+        orders.setUsername(username);
+        orders.setAddress(address);
         if (ordersService.addOrder(orders)) {
             logger.info("(OrderController)订单添加成功, ID: {}", orders.getId());
             return ResponseResult.success("订单添加成功");
@@ -46,7 +51,7 @@ public class OrdersController
     @PostMapping("/item/{id}")
     @ResponseBody
     public ResponseResult<?> addItem(@PathVariable @Parameter(description = "订单ID") Integer id,
-                                     @RequestBody @Parameter(description = "物品ID") Integer itemId)
+                                     @RequestParam @Parameter(description = "物品ID") Integer itemId)
     {
         if (ordersService.addItem(id, itemId)) {
             logger.info("(OrderController)物品添加成功, ID: {}", id);
@@ -93,13 +98,13 @@ public class OrdersController
     }
 
 
-    @Operation(summary = "根据用户ID获取订单信息")
-    @GetMapping("/user/{userId}")
+    @Operation(summary = "根据用户名获取订单信息")
+    @GetMapping("/user")
     @ResponseBody
-    public ResponseResult<List<Orders>> getOrdersByUserId(@PathVariable @Parameter(description = "用户ID") Integer userId) {
-        List<Orders> orders = ordersService.findOrdersByUserId(userId);
+    public ResponseResult<List<Orders>> getOrdersByUserId(@RequestParam @Parameter(description = "用户名") String username) {
+        List<Orders> orders = ordersService.findOrdersByUsername(username);
         if (orders != null) {
-            logger.info("(OrderController)订单查找成功, 用户ID: {}", userId);
+            logger.info("(OrderController)订单查找成功, 用户ID: {}", username);
             return ResponseResult.success(orders);
         } else {
             logger.error("(OrderController)未找到订单");
@@ -122,9 +127,9 @@ public class OrdersController
     }
 
     @Operation(summary = "根据地址获取订单信息")
-    @GetMapping("/address/{address}")
+    @GetMapping("/address")
     @ResponseBody
-    public ResponseResult<List<Orders>> getOrdersByAddress(@PathVariable @Parameter(description = "地址") String address) {
+    public ResponseResult<List<Orders>> getOrdersByAddress(@RequestParam @Parameter(description = "地址") String address) {
         List<Orders> orders = ordersService.findOrdersByAddress(address);
         if (orders != null) {
             logger.info("(OrderController)订单查找成功, 地址: {}", address);
@@ -181,7 +186,7 @@ public class OrdersController
     @DeleteMapping("/item/{id}")
     @ResponseBody
     public ResponseResult<?> deleteItem(@PathVariable @Parameter(description = "订单ID") Integer id,
-                                        @RequestBody @Parameter(description = "物品ID") Integer itemId) {
+                                        @RequestParam @Parameter(description = "物品ID") Integer itemId) {
         if (ordersService.deleteItem(id, itemId)) {
             logger.info("(OrderController)物品删除成功, ID: {}", id);
             return ResponseResult.success("物品删除成功");

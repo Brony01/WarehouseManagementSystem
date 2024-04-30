@@ -57,7 +57,7 @@ public class UserControllerTest {
         String username = "updatedUser";
         String password = "updatedPass";
         String confirmedPassword = "updatedPass";
-        when(userService.updateUser(id, username, password, confirmedPassword)).thenReturn(true);
+        when(userService.updateUser(username, password, confirmedPassword)).thenReturn(true);
 
         ResponseResult<?> result = userController.update(id, username, password, confirmedPassword);
 

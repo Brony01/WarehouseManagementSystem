@@ -27,7 +27,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public Warehouse addWarehouse(String name, String address, String manager, String description) {
         Date createTime = new Date();
-        Warehouse warehouse = new Warehouse(null, name, address, manager, description, createTime, null);
+        Warehouse warehouse = new Warehouse(null, name, address, manager, description, createTime);
         warehouseMapper.insert(warehouse);
         logger.info("(WarehouseServiceImpl)仓库添加成功");
 
@@ -49,7 +49,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     public Warehouse updateWarehouse(Integer id, String name, String address, String manager, String description) {
         QueryWrapper<Warehouse> queryWrapper = new QueryWrapper<>();
         Warehouse warehouse = warehouseMapper.selectById(id);
-        Date updateTime = new Date();
+
         if (!name.isEmpty()) {
             warehouse.setName(name);
         }
@@ -62,7 +62,7 @@ public class WarehouseServiceImpl implements WarehouseService {
         if (!description.isEmpty()) {
             warehouse.setDescription(description);
         }
-        warehouse.setUpdateTime(updateTime);
+//        warehouse.setUpdateTime(updateTime);
 
         warehouseMapper.updateById(warehouse);
         logger.info("(WarehouseServiceImpl)仓库更新成功");

@@ -44,13 +44,11 @@ public class UserController {
     @Operation(summary = "更新用户数据")
     @PutMapping()
     @ResponseBody
-    @CachePut(value = "user", key = "#id")
     public ResponseResult<?> update(
-            @RequestParam @Parameter(description = "用户id") Integer id,
             @RequestParam @Parameter(description = "用户名") String username,
             @RequestParam @Parameter(description = "密码") String password,
             @RequestParam @Parameter(description = "确认密码") String confirmedPassword) {
-        if (userService.updateUser(id, username, password, confirmedPassword)) {
+        if (userService.updateUser(username, password, confirmedPassword)) {
             logger.info("(UserController)用户数据更新成功");
             return ResponseResult.success("用户数据更新成功");
         } else {

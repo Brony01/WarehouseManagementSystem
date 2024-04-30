@@ -9,12 +9,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Warehouse
+public class Warehouse implements Serializable
 {
     @TableId(type = IdType.AUTO)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -26,7 +27,7 @@ public class Warehouse
     private String description;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+//
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    private Date updateTime;
 }
