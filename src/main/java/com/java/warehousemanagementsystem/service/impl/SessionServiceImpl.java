@@ -7,6 +7,7 @@ import com.java.warehousemanagementsystem.service.SessionService;
 import com.java.warehousemanagementsystem.service.UserService;
 import com.java.warehousemanagementsystem.utils.JwtUtils;
 import jakarta.annotation.Resource;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ import java.util.Map;
 public class SessionServiceImpl implements SessionService
 {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    // Adding setter for testing
+    @Setter
     @Resource
     UserMapper userMapper;
 

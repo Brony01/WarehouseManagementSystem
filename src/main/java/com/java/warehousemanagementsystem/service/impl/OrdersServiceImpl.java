@@ -150,18 +150,21 @@ public class OrdersServiceImpl implements OrdersService
         return ordersMapper.getItemsByOrderId(id);
     }
 
-    private void updateOrderTotalPrice(Integer id)
-    {
+    private void updateOrderTotalPrice(Integer id) {
         Orders orders = ordersMapper.selectById(id);
+        if (orders == null) {
+            logger.error("(OrderService) No order found with ID: {}", id);
+            return; // Early exit if no order is found
+        }
         List<Item> items = ordersMapper.getItemsByOrderId(id);
         double totalPrice = 0;
-        for (Item item : items)
-        {
+        for (Item item : items) {
             totalPrice += item.getPrice();
         }
         orders.setTotalPrice(totalPrice);
         ordersMapper.updateById(orders);
     }
+
 
     private void updateByOrderList(QueryWrapper<Orders> queryWrapper)
     {

@@ -4,6 +4,8 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -26,15 +28,44 @@ public class OrdersControllerTest {
     @InjectMocks
     private OrdersController ordersController;
 
-    @Test
-    void testAddOrder() {
-        Orders order = new Orders();
-        when(ordersService.addOrder(order)).thenReturn(true);
+    @Captor
+    private ArgumentCaptor<Orders> orderArgumentCaptor;
 
-        ResponseResult<?> result = ordersController.addOrder(order);
+
+    @Test
+    void testAddOrderSuccess() {
+        String username = "testUser";
+        String address = "123 Main St";
+
+        when(ordersService.addOrder(any(Orders.class))).thenReturn(true);
+
+        ResponseResult<?> result = ordersController.addOrder(username, address);
 
         assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
         assertEquals("操作成功", result.getMsg());
+
+        verify(ordersService).addOrder(orderArgumentCaptor.capture());
+        Orders capturedOrder = orderArgumentCaptor.getValue();
+        assertEquals(username, capturedOrder.getUsername());
+        assertEquals(address, capturedOrder.getAddress());
+    }
+
+    @Test
+    void testAddOrderFailure() {
+        String username = "testUser";
+        String address = "123 Main St";
+
+        when(ordersService.addOrder(any(Orders.class))).thenReturn(false);
+
+        ResponseResult<?> result = ordersController.addOrder(username, address);
+
+        assertEquals(AppHttpCodeEnum.BAD_REQUEST.getCode(), result.getCode());
+        assertEquals("订单添加失败", result.getMsg());
+
+        verify(ordersService).addOrder(orderArgumentCaptor.capture());
+        Orders capturedOrder = orderArgumentCaptor.getValue();
+        assertEquals(username, capturedOrder.getUsername());
+        assertEquals(address, capturedOrder.getAddress());
     }
 
     @Test
@@ -106,9 +137,9 @@ public class OrdersControllerTest {
     @Test
     void testGetOrdersByUserId() {
         List<Orders> orders = Arrays.asList(new Orders(), new Orders());
-        when(ordersService.findOrdersByUsername(1)).thenReturn(orders);
+        when(ordersService.findOrdersByUsername(String.valueOf(1))).thenReturn(orders);
 
-        ResponseResult<List<Orders>> result = ordersController.getOrdersByUserId(1);
+        ResponseResult<List<Orders>> result = ordersController.getOrdersByUserId(String.valueOf(1));
 
         assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
         assertEquals(2, result.getData().size());

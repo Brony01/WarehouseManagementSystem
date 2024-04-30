@@ -59,7 +59,7 @@ public class UserControllerTest {
         String confirmedPassword = "updatedPass";
         when(userService.updateUser(username, password, confirmedPassword)).thenReturn(true);
 
-        ResponseResult<?> result = userController.update(id, username, password, confirmedPassword);
+        ResponseResult<?> result = userController.update(username, password, confirmedPassword);
 
         assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
         assertEquals("操作成功", result.getMsg());
