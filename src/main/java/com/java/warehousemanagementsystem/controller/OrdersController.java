@@ -6,6 +6,8 @@ import com.java.warehousemanagementsystem.service.OrdersService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Tag(name = "订单管理", description = "订单管理的相关操作")
 @Controller
 @RequestMapping("/order")
 public class OrdersController {
@@ -29,6 +32,8 @@ public class OrdersController {
 
     @Operation(summary = "添加新订单")
     @PostMapping
+    @ApiResponse(responseCode = "200", description = "订单添加成功")
+    @ApiResponse(responseCode = "400", description = "订单添加失败")
     @ResponseBody
     public ResponseResult<?> addOrder(@RequestParam @Parameter(description = "订单") String username,
                                       @RequestParam @Parameter(description = "订单") String address) {
@@ -46,6 +51,8 @@ public class OrdersController {
 
     @Operation(summary = "添加物品")
     @PostMapping("/item/{id}")
+    @ApiResponse(responseCode = "200", description = "物品添加成功")
+    @ApiResponse(responseCode = "400", description = "物品添加失败")
     @ResponseBody
     public ResponseResult<?> addItem(@PathVariable @Parameter(description = "订单ID") Integer id,
                                      @RequestParam @Parameter(description = "物品ID") Integer itemId) {
@@ -60,6 +67,9 @@ public class OrdersController {
 
     @Operation(summary = "获取所有订单")
     @GetMapping
+    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
+    @ApiResponse(responseCode = "404", description = "未找到订单")
+    @ApiResponse(responseCode = "400", description = "获取订单失败")
     @ResponseBody
     @Cacheable(value = "allOrders")
     public ResponseResult<List<Orders>> getAllOrders() {
@@ -96,6 +106,9 @@ public class OrdersController {
 
     @Operation(summary = "根据用户名获取订单信息")
     @GetMapping("/user")
+    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
+    @ApiResponse(responseCode = "404", description = "未找到订单")
+    @ApiResponse(responseCode = "400", description = "获取订单失败")
     @ResponseBody
     public ResponseResult<List<Orders>> getOrdersByUserId(@RequestParam @Parameter(description = "用户名") String username) {
         List<Orders> orders = ordersService.findOrdersByUsername(username);
@@ -110,6 +123,9 @@ public class OrdersController {
 
     @Operation(summary = "根据订单状态获取订单信息")
     @GetMapping("/status/{status}")
+    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
+    @ApiResponse(responseCode = "404", description = "未找到订单")
+    @ApiResponse(responseCode = "400", description = "获取订单失败")
     @ResponseBody
     public ResponseResult<List<Orders>> getOrdersByStatus(@PathVariable @Parameter(description = "订单状态") String status) {
         List<Orders> orders = ordersService.findOrdersByStatus(status);
@@ -124,6 +140,9 @@ public class OrdersController {
 
     @Operation(summary = "根据地址获取订单信息")
     @GetMapping("/address")
+    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
+    @ApiResponse(responseCode = "404", description = "未找到订单")
+    @ApiResponse(responseCode = "400", description = "获取订单失败")
     @ResponseBody
     public ResponseResult<List<Orders>> getOrdersByAddress(@RequestParam @Parameter(description = "地址") String address) {
         List<Orders> orders = ordersService.findOrdersByAddress(address);
@@ -152,6 +171,8 @@ public class OrdersController {
 
     @Operation(summary = "更新订单信息")
     @PutMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "订单信息更新成功")
+    @ApiResponse(responseCode = "400", description = "订单信息更新失败")
     @ResponseBody
     @CachePut(value = "order", key = "#id")
     public ResponseResult<?> updateOrder(@PathVariable @Parameter(description = "订单ID") Integer id, @RequestBody @Parameter(description = "订单") Orders orders) {
@@ -166,6 +187,9 @@ public class OrdersController {
 
     @Operation(summary = "删除订单")
     @DeleteMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "订单删除成功")
+    @ApiResponse(responseCode = "404", description = "订单删除失败")
+    @ApiResponse(responseCode = "400", description = "订单删除失败")
     @ResponseBody
     @CacheEvict(value = "order", key = "#id")
     public ResponseResult<?> deleteOrder(@PathVariable @Parameter(description = "订单ID") Integer id) {
@@ -180,6 +204,9 @@ public class OrdersController {
 
     @Operation(summary = "删除订单物品")
     @DeleteMapping("/item/{id}")
+    @ApiResponse(responseCode = "200", description = "物品删除成功")
+    @ApiResponse(responseCode = "404", description = "物品删除失败")
+    @ApiResponse(responseCode = "400", description = "物品删除失败")
     @ResponseBody
     public ResponseResult<?> deleteItem(@PathVariable @Parameter(description = "订单ID") Integer id,
                                         @RequestParam @Parameter(description = "物品ID") Integer itemId) {

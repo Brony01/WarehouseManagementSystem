@@ -5,6 +5,8 @@ import com.java.warehousemanagementsystem.service.UserService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "用户管理", description = "用户管理的相关操作")
 @Controller
 @RequestMapping("/user") // Uncommented and specified to clearly define the routing path
 public class UserController {
@@ -25,6 +28,8 @@ public class UserController {
 
     @Operation(summary = "用户注册")
     @PostMapping()
+    @ApiResponse(responseCode = "200", description = "注册成功")
+    @ApiResponse(responseCode = "400", description = "注册失败")
     @ResponseBody
     public ResponseResult<?> register(
             @RequestParam @Parameter(description = "用户名") String username,
@@ -41,6 +46,8 @@ public class UserController {
 
     @Operation(summary = "更新用户数据")
     @PutMapping()
+    @ApiResponse(responseCode = "200", description = "用户数据更新成功")
+    @ApiResponse(responseCode = "400", description = "用户数据更新失败")
     @ResponseBody
     public ResponseResult<?> update(
             @RequestParam @Parameter(description = "用户名") String username,
@@ -57,6 +64,9 @@ public class UserController {
 
     @Operation(summary = "根据id查找用户")
     @GetMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "成功找到用户")
+    @ApiResponse(responseCode = "404", description = "未找到用户")
+    @ApiResponse(responseCode = "400", description = "查找用户失败")
     @ResponseBody
     @Cacheable(value = "user", key = "#id")
     public ResponseResult<User> findUserById(
@@ -73,6 +83,9 @@ public class UserController {
 
     @Operation(summary = "获取用户列表")
     @GetMapping()
+    @ApiResponse(responseCode = "200", description = "成功获取所有用户数据")
+    @ApiResponse(responseCode = "404", description = "未找到用户")
+    @ApiResponse(responseCode = "400", description = "获取用户失败")
     @ResponseBody
     @Cacheable(value = "userList")
     public ResponseResult<List<User>> getList() {
@@ -83,6 +96,9 @@ public class UserController {
 
     @Operation(summary = "删除用户")
     @DeleteMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "用户删除成功")
+    @ApiResponse(responseCode = "404", description = "未找到用户")
+    @ApiResponse(responseCode = "400", description = "用户删除失败")
     @ResponseBody
     @CacheEvict(value = "user", key = "#id")
     public ResponseResult<?> delete(

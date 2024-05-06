@@ -4,14 +4,14 @@ import com.java.warehousemanagementsystem.service.SessionService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "会话管理", description = "会话管理的相关操作")
 @RestController
 @RequestMapping("/session")
 public class SessionController {
@@ -20,6 +20,9 @@ public class SessionController {
     SessionService sessionService;
 
     @Operation(summary = "用户登录")
+    @ApiResponse(responseCode = "200", description = "登录成功")
+    @ApiResponse(responseCode = "400", description = "登录失败")
+    @ResponseBody
     @PostMapping("")
     public ResponseResult<Object> login(@Parameter(name = "username", description = "用户名") String username,
                                         @Parameter(name = "password", description = "密码") String password) {
@@ -28,6 +31,9 @@ public class SessionController {
     }
 
     @Operation(summary = "用户登出")
+    @ApiResponse(responseCode = "200", description = "登出成功")
+    @ApiResponse(responseCode = "400", description = "登出失败")
+    @ResponseBody
     @DeleteMapping("")
     public ResponseResult<Object> logout(@Parameter(name = "username", description = "用户名") String username) {
         logger.info("(SessionController)用户登出, username = {}", username);

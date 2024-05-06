@@ -13676,3 +13676,24 @@ java.lang.NullPointerException: Cannot invoke "com.java.warehousemanagementsyste
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
 19:11:16.526 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 19:11:16.668 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+19:32:25.521 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Starting WarehouseManagementSystemApplication using Java 17.0.9 with PID 38352 (C:\Users\26368\Desktop\WMS\WarehouseManagementSystem\target\classes started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+19:32:25.521 [main] INFO  c.j.w.WarehouseManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+19:32:26.268 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+19:32:26.270 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+19:32:26.289 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+19:32:27.138 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+19:32:27.158 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:32:27.159 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:32:27.159 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+19:32:27.241 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:32:27.241 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1678 ms
+19:32:27.648 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+19:32:28.013 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78fb72cb
+19:32:28.015 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+19:32:29.191 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1c528f2f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34ff08c6, org.springframework.security.web.context.SecurityContextHolderFilter@19b3d3a4, org.springframework.security.web.header.HeaderWriterFilter@fdf029a, org.springframework.web.filter.CorsFilter@3a0896b3, com.java.warehousemanagementsystem.config.filter.MyAuthenticationFilter@72224107, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33214124, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d3768ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e2344da, org.springframework.security.web.session.SessionManagementFilter@3f838072, org.springframework.security.web.access.ExceptionTranslationFilter@6ad0cd43, org.springframework.security.web.access.intercept.AuthorizationFilter@c7443f]
+19:32:29.539 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:32:29.564 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+19:32:29.582 [main] INFO  c.j.w.WarehouseManagementSystemApplication - Started WarehouseManagementSystemApplication in 4.359 seconds (process running for 5.017)
+21:30:08.778 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m8s670ms369µs600ns).
+21:35:15.778 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:35:15.835 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

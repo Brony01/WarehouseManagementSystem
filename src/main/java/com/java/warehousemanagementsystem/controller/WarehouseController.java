@@ -6,6 +6,8 @@ import com.java.warehousemanagementsystem.service.WarehouseService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "仓库管理", description = "仓库管理的相关操作")
 @RestController
 @RequestMapping("/warehouse")
 public class WarehouseController {
@@ -24,6 +27,8 @@ public class WarehouseController {
 
     @Operation(summary = "创建新仓库")
     @PostMapping()
+    @ApiResponse(responseCode = "200", description = "仓库创建成功")
+    @ApiResponse(responseCode = "400", description = "仓库创建失败")
     @ResponseBody
     public ResponseResult<?> createWarehouse(
             @RequestParam @Parameter(description = "仓库名称") String name,
@@ -37,6 +42,8 @@ public class WarehouseController {
 
     @Operation(summary = "更新仓库信息")
     @PutMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "仓库更新成功")
+    @ApiResponse(responseCode = "400", description = "仓库更新失败")
     @ResponseBody
     @CachePut(value = "warehouse", key = "#id")
     public ResponseResult<?> updateWarehouse(
@@ -52,6 +59,9 @@ public class WarehouseController {
 
     @Operation(summary = "根据id查找仓库")
     @GetMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "查找成功")
+    @ApiResponse(responseCode = "404", description = "未找到仓库")
+    @ApiResponse(responseCode = "400", description = "查找失败")
     @ResponseBody
     @Cacheable(value = "warehouse", key = "#id")
     public ResponseResult<Warehouse> findWarehouseById(
@@ -68,6 +78,9 @@ public class WarehouseController {
 
     @Operation(summary = "获取仓库列表")
     @GetMapping()
+    @ApiResponse(responseCode = "200", description = "成功获取仓库列表")
+    @ApiResponse(responseCode = "404", description = "未找到仓库")
+    @ApiResponse(responseCode = "400", description = "获取仓库列表失败")
     @ResponseBody
     @Cacheable(value = "warehouseList")
     public ResponseResult<Page<Warehouse>> getWarehouseList(
@@ -81,6 +94,9 @@ public class WarehouseController {
 
     @Operation(summary = "删除仓库")
     @DeleteMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "仓库删除成功")
+    @ApiResponse(responseCode = "404", description = "未找到仓库")
+    @ApiResponse(responseCode = "400", description = "仓库删除失败")
     @ResponseBody
     @CacheEvict(value = "warehouse", key = "#id")
     public ResponseResult<?> deleteWarehouse(
@@ -93,7 +109,5 @@ public class WarehouseController {
         logger.info("(WarehouseController)仓库删除成功");
         return ResponseResult.success("仓库删除成功");
     }
-
-
 }
 

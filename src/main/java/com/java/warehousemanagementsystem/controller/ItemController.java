@@ -5,6 +5,8 @@ import com.java.warehousemanagementsystem.service.ItemService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "物品管理", description = "物品管理的相关操作")
 @Controller
 @RequestMapping("/item")
 public class ItemController {
@@ -26,6 +29,9 @@ public class ItemController {
 
     @Operation(summary = "获取物品列表")
     @GetMapping()
+    @ApiResponse(responseCode = "200", description = "成功获取物品列表")
+    @ApiResponse(responseCode = "404", description = "未找到物品")
+    @ApiResponse(responseCode = "400", description = "获取物品列表失败")
     @ResponseBody
     @Cacheable(value = "itemList")
     public ResponseResult<List<Item>> getAllItems() {
@@ -36,6 +42,8 @@ public class ItemController {
 
     @Operation(summary = "添加新物品")
     @PostMapping()
+    @ApiResponse(responseCode = "200", description = "物品添加成功")
+    @ApiResponse(responseCode = "400", description = "物品添加失败")
     @ResponseBody
     public ResponseResult<?> addItem(
             @RequestParam @Parameter(description = "物品名称") String name,
@@ -54,6 +62,9 @@ public class ItemController {
 
     @Operation(summary = "根据ID获取物品信息")
     @GetMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "成功获取物品信息")
+    @ApiResponse(responseCode = "404", description = "未找到物品")
+    @ApiResponse(responseCode = "400", description = "获取物品信息失败")
     @ResponseBody
     @Cacheable(value = "item", key = "#id")
     public ResponseResult<Item> getItemById(
@@ -70,6 +81,8 @@ public class ItemController {
 
     @Operation(summary = "更新物品信息")
     @PutMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "物品信息更新成功")
+    @ApiResponse(responseCode = "400", description = "物品信息更新失败")
     @ResponseBody
     @CachePut(value = "item", key = "#id")
     public ResponseResult<?> updateItem(
@@ -90,6 +103,9 @@ public class ItemController {
 
     @Operation(summary = "删除物品")
     @DeleteMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "物品删除成功")
+    @ApiResponse(responseCode = "404", description = "物品删除失败")
+    @ApiResponse(responseCode = "400", description = "物品删除失败")
     @ResponseBody
     @CacheEvict(value = "item", key = "#id")
     public ResponseResult<?> deleteItem(
