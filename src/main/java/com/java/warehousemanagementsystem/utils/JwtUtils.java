@@ -1,28 +1,27 @@
 package com.java.warehousemanagementsystem.utils;
 
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.java.warehousemanagementsystem.aspect.CacheLoggingAspect;
-import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.pojo.User;
+import com.java.warehousemanagementsystem.repository.UserRepository;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import reactor.core.publisher.Mono;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-/**
- * JWT工具类
- */
+@Component
 public class JwtUtils {
 
     private static final String VERSION_CLAIM = "version";
@@ -35,6 +34,9 @@ public class JwtUtils {
      * JWT配置信息
      */
     private static JwtConfig jwtConfig;
+
+    @Autowired
+    private UserRepository userRepository;
 
     private JwtUtils() {
     }
@@ -78,7 +80,6 @@ public class JwtUtils {
     public static void initialize(String header, String tokenHead, String issuer, String secretKey, long expirationTime) {
         initialize(header, tokenHead, issuer, secretKey, expirationTime, null, null);
     }
-
 
     /**
      * 生成 Token
@@ -131,24 +132,19 @@ public class JwtUtils {
         try {
             String subject = getSubject(token);
             token = getTokenContent(token);
-            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("username", subject);
-            UserMapper userMapper = ContextUtils.getApplicationContext().getBean(UserMapper.class);
-            User user = userMapper.selectOne(queryWrapper);
             DecodedJWT jwt = JWT.decode(token);
             int version = jwt.getClaim(VERSION_CLAIM).asInt();
-            System.out.println(version);
-            System.out.println(subject);
             logger.info("version: " + version);
-            logger.info("user version: " + user.getVersion());
-
-
-            if (version != user.getVersion()) return false;
-
             Algorithm algorithm = Algorithm.HMAC256(jwtConfig.getSecretKey());
             JWTVerifier verifier = JWT.require(algorithm).build();
             verifier.verify(token);
-            return true;
+
+            UserRepository userRepository = ContextUtils.getApplicationContext().getBean(UserRepository.class);
+            Mono<User> userMono = userRepository.findByUsername(subject);
+
+            return userMono.map(user -> version == user.getVersion())
+                    .defaultIfEmpty(false)
+                    .block(); // 使用阻塞操作，因为此方法仍然是同步的
         } catch (JWTVerificationException exception) {
             // Token验证失败
             return false;
@@ -230,4 +226,3 @@ public class JwtUtils {
         private Algorithm algorithm;
     }
 }
-

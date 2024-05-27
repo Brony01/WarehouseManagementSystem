@@ -1,14 +1,16 @@
 package com.java.warehousemanagementsystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.pojo.User;
+import com.java.warehousemanagementsystem.repository.UserRepository;
 import com.java.warehousemanagementsystem.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -17,30 +19,31 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean register(String username, String password, String confirmedPassword)
-            throws IllegalArgumentException {
-        check(username, password, confirmedPassword);
-
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", username);
-        long count = userMapper.selectCount(queryWrapper);
-        if (count > 0) {
-            logger.error("(UserService)用户已存在");
-            throw new IllegalArgumentException("用户已存在");
+    public Mono<Boolean> register(String username, String password, String confirmedPassword) {
+        try {
+            check(username, password, confirmedPassword);
+        } catch (IllegalArgumentException e) {
+            return Mono.error(e);
         }
 
-        String encodedPassword = passwordEncoder.encode(password);
-        User user = new User(null, username, encodedPassword, 1);
-        userMapper.insert(user);
-        logger.info("(UserService)用户注册成功, id = {}. username = {}", user.getId(), user.getUsername());
-
-        return true; // Successful registration
+        return userRepository.findByUsername(username)
+                .flatMap(existingUser -> {
+                    logger.error("(UserService)用户已存在");
+                    return Mono.error(new IllegalArgumentException("用户已存在"));
+                })
+                .switchIfEmpty(Mono.defer(() -> {
+                    String encodedPassword = passwordEncoder.encode(password);
+                    User user = new User(null, username, encodedPassword, 1);
+                    return userRepository.save(user)
+                            .doOnSuccess(savedUser -> logger.info("(UserService)用户注册成功, id = {}. username = {}", savedUser.getId(), savedUser.getUsername()))
+                            .thenReturn(true);
+                })).hasElement();
     }
 
     private void check(String username, String password, String confirmedPassword) {
@@ -71,51 +74,56 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(String username, String password, String confirmedPassword)
-            throws IllegalArgumentException {
-        check(username, password, confirmedPassword);
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", username);
-        User user = userMapper.selectOne(queryWrapper);
-        if (user == null) {
-            logger.error("(UserService)用户不存在");
-            throw new IllegalArgumentException("用户不存在");
+    public Mono<Boolean> updateUser(String username, String password, String confirmedPassword) {
+        try {
+            check(username, password, confirmedPassword);
+        } catch (IllegalArgumentException e) {
+            return Mono.error(e);
         }
 
-        String encodedPassword = passwordEncoder.encode(password);
-        user.setUsername(username);
-        user.setPassword(encodedPassword);
-        userMapper.updateById(user);
-        logger.info("(UserService)用户数据更新成功, id = {}. username = {}", user.getId(), user.getUsername());
-
-        return true; // Successful update
+        return userRepository.findByUsername(username)
+                .flatMap(user -> {
+                    String encodedPassword = passwordEncoder.encode(password);
+                    user.setPassword(encodedPassword);
+                    return userRepository.save(user)
+                            .doOnSuccess(savedUser -> logger.info("(UserService)用户数据更新成功, id = {}. username = {}", savedUser.getId(), savedUser.getUsername()))
+                            .thenReturn(true);
+                })
+                .switchIfEmpty(Mono.defer(() -> {
+                    logger.error("(UserService)用户不存在");
+                    return Mono.error(new IllegalArgumentException("用户不存在"));
+                }));
     }
 
     @Override
-    public User findUserById(Integer id) {
+    public Mono<User> findUserById(Integer id) {
         if (id == null) {
             logger.error("(UserService)用户id不能为空");
-            throw new IllegalArgumentException("用户id不能为空");
+            return Mono.error(new IllegalArgumentException("用户id不能为空"));
         }
-        User user = userMapper.selectById(id);
-        user.setPassword(null);
-        return user;
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setPassword(null);
+                    return user;
+                });
     }
 
     @Override
-    public List<User> findAllUser() {
-        logger.info("(UserService)获取用户列表, size = {}, users = {}", userMapper.selectList(null).size(), userMapper.selectList(null));
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id", "username", "version");
-        return userMapper.selectList(queryWrapper);
+    public Flux<User> findAllUsers() {
+        return userRepository.findAll()
+                .doOnNext(user -> user.setPassword(null))
+                .doOnComplete(() -> logger.info("(UserService)获取用户列表"));
     }
 
     @Override
-    public boolean deleteUser(Integer id) {
+    public Mono<Boolean> deleteUser(Integer id) {
         if (id == null) {
             logger.error("(UserService)用户id不能为空");
-            throw new IllegalArgumentException("用户id不能为空");
+            return Mono.error(new IllegalArgumentException("用户id不能为空"));
         }
-        return userMapper.deleteById(id) > 0;
+        return userRepository.deleteById(id)
+                .thenReturn(true)
+                .doOnSuccess(success -> logger.info("(UserService)用户删除成功, id = {}", id))
+                .onErrorReturn(false);
     }
 }

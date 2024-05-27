@@ -4,24 +4,18 @@ import com.java.warehousemanagementsystem.pojo.Item;
 
 import java.util.List;
 
-//public class Item implements Serializable{
-//    @TableId(type = IdType.AUTO)
-//    private Integer id;
-//    private String name;
-//    private String description;
-//    private Integer quantity;
-//    private Double price;
-//    private Integer warehouseId;
-//    private Date createTime;
-//}
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 public interface ItemService {
-    List<Item> findAllItems();
+    Flux<Item> findAllItems();
 
-    boolean addItem(String name, String description, Integer quantity, Double price, Integer warehouseId);
+    Mono<Boolean> addItem(String name, String description, Integer quantity, Double price, Integer warehouseId);
 
-    Item findItemById(Integer id);
+    Mono<Item> findItemById(Integer id);
 
-    boolean updateItem(Integer id, String name, String description, Integer quantity, Double price, Integer warehouseId);
+    Mono<Boolean> updateItem(Integer id, String name, String description, Integer quantity, Double price, Integer warehouseId);
 
-    boolean deleteItem(Integer id);
+    Mono<Boolean> deleteItem(Integer id);
 }
+

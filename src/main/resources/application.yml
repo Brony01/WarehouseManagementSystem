@@ -4,14 +4,19 @@ server:
   port: 8080
 
 spring:
-  datasource:
-    username: root
-    password: bjtu2024
-    url: jdbc:mysql://39.106.39.209:3306/warehouse?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+#  datasource:
+#    username: root
+#    password: bjtu2024
+#    url: jdbc:mysql://39.106.39.209:3306/warehouse?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
   data:
     redis:
       port: 6379
       host: 39.106.39.209
+  r2dbc:
+    url: r2dbc:mysql://39.106.39.209:3306/warehouse
+    username: root
+    password: bjtu2024
+
 
 
 jwt:

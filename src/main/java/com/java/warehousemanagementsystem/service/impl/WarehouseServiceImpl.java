@@ -1,15 +1,16 @@
 package com.java.warehousemanagementsystem.service.impl;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java.warehousemanagementsystem.mapper.WarehouseMapper;
 import com.java.warehousemanagementsystem.pojo.Warehouse;
+import com.java.warehousemanagementsystem.repository.WarehouseRepository;
 import com.java.warehousemanagementsystem.service.WarehouseService;
-import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,73 +20,66 @@ public class WarehouseServiceImpl implements WarehouseService {
     private static final Logger logger = LoggerFactory.getLogger(WarehouseServiceImpl.class);
     private final SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
-    @Resource
-    WarehouseMapper warehouseMapper;
+    @Autowired
+    private WarehouseRepository warehouseRepository;
 
     @Override
-    public Warehouse addWarehouse(String name, String address, String manager, String description) {
+    public Mono<Warehouse> addWarehouse(String name, String address, String manager, String description) {
         Date createTime = new Date();
         Warehouse warehouse = new Warehouse(null, name, address, manager, description, createTime);
-        warehouseMapper.insert(warehouse);
-        logger.info("(WarehouseServiceImpl)仓库添加成功");
-
-        return warehouse;
+        return warehouseRepository.save(warehouse)
+                .doOnSuccess(savedWarehouse -> logger.info("(WarehouseServiceImpl)仓库添加成功"));
     }
 
     @Override
-    public boolean deleteWarehouse(Integer id) {
+    public Mono<Boolean> deleteWarehouse(Integer id) {
         if (id == null) {
             logger.error("(WarehouseServiceImpl)仓库id不能为空");
-            throw new IllegalArgumentException("仓库id不能为空");
+            return Mono.error(new IllegalArgumentException("仓库id不能为空"));
         }
-        warehouseMapper.deleteById(id);
-        logger.info("(WarehouseServiceImpl)仓库删除成功");
-        return true;
+        return warehouseRepository.deleteById(id)
+                .thenReturn(true)
+                .doOnSuccess(success -> logger.info("(WarehouseServiceImpl)仓库删除成功"));
     }
 
     @Override
-    public Warehouse updateWarehouse(Integer id, String name, String address, String manager, String description) {
-        QueryWrapper<Warehouse> queryWrapper = new QueryWrapper<>();
-        Warehouse warehouse = warehouseMapper.selectById(id);
-
-        if (!name.isEmpty()) {
-            warehouse.setName(name);
-        }
-        if (!address.isEmpty()) {
-            warehouse.setAddress(address);
-        }
-        if (!manager.isEmpty()) {
-            warehouse.setManager(manager);
-        }
-        if (!description.isEmpty()) {
-            warehouse.setDescription(description);
-        }
-//        warehouse.setUpdateTime(updateTime);
-
-        warehouseMapper.updateById(warehouse);
-        logger.info("(WarehouseServiceImpl)仓库更新成功");
-        return warehouse;
+    public Mono<Warehouse> updateWarehouse(Integer id, String name, String address, String manager, String description) {
+        return warehouseRepository.findById(id)
+                .flatMap(warehouse -> {
+                    if (!name.isEmpty()) {
+                        warehouse.setName(name);
+                    }
+                    if (!address.isEmpty()) {
+                        warehouse.setAddress(address);
+                    }
+                    if (!manager.isEmpty()) {
+                        warehouse.setManager(manager);
+                    }
+                    if (!description.isEmpty()) {
+                        warehouse.setDescription(description);
+                    }
+                    return warehouseRepository.save(warehouse)
+                            .doOnSuccess(updatedWarehouse -> logger.info("(WarehouseServiceImpl)仓库更新成功"));
+                })
+                .switchIfEmpty(Mono.error(new IllegalArgumentException("仓库不存在")));
     }
 
     @Override
-    public Warehouse selectWarehouse(Integer id) {
+    public Mono<Warehouse> selectWarehouse(Integer id) {
         if (id == null) {
             logger.error("(WarehouseServiceImpl)仓库id不能为空");
-            throw new IllegalArgumentException("仓库id不能为空");
+            return Mono.error(new IllegalArgumentException("仓库id不能为空"));
         }
-
-        Warehouse warehouse = warehouseMapper.selectById(id);
-
-        logger.info("(WarehouseServiceImpl)仓库查找成功，仓库信息：" + warehouse);
-        return warehouse;
+        return warehouseRepository.findById(id)
+                .doOnSuccess(warehouse -> logger.info("(WarehouseServiceImpl)仓库查找成功，仓库信息：" + warehouse));
     }
 
     @Override
-    public Page<Warehouse> selectWarehouse(String name, Long pageNo, Long pageSize) {
-
-        QueryWrapper<Warehouse> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("name", name);
-        Page<Warehouse> page = new Page<>(pageNo, pageSize);
-        return warehouseMapper.selectPage(page, queryWrapper);
+    public Mono<PageImpl<Warehouse>> selectWarehouse(String name, Long pageNo, Long pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNo.intValue(), pageSize.intValue());
+        return warehouseRepository.findByNameContaining(name, pageRequest)
+                .collectList()
+                .zipWith(warehouseRepository.count())
+                .map(tuple -> new PageImpl<>(tuple.getT1(), pageRequest, tuple.getT2()));
     }
 }

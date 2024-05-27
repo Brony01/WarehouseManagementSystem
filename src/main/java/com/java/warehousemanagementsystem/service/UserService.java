@@ -1,17 +1,19 @@
 package com.java.warehousemanagementsystem.service;
 
 import com.java.warehousemanagementsystem.pojo.User;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 public interface UserService {
-    boolean register(String username, String password, String confirmedPassword);
+    Mono<Boolean> register(String username, String password, String confirmedPassword);
 
-    boolean updateUser(String username, String password, String confirmedPassword);
+    Mono<Boolean> updateUser(String username, String password, String confirmedPassword);
 
-    User findUserById(Integer id);
+    Mono<User> findUserById(Integer id);
 
-    List<User> findAllUser();
+    Flux<User> findAllUsers();
 
-    boolean deleteUser(Integer id);
+    Mono<Boolean> deleteUser(Integer id);
 }

@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.io.IOException;
 
@@ -30,31 +32,41 @@ public class MyAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String requestToken = request.getHeader(JwtUtils.getCurrentConfig().getHeader());
-        // 读取请求头中的token
-        if (StringUtils.isNotBlank(requestToken)) {
-            // 判断token是否有效
+
+        if (requestToken != null && !requestToken.trim().isEmpty()) {
             boolean verifyToken = JwtUtils.isValidToken(requestToken);
+
             if (!verifyToken) {
                 filterChain.doFilter(request, response);
+                return;
             }
 
-            // 解析token中的用户信息
             String subject = JwtUtils.getSubject(requestToken);
-            if (StringUtils.isNotBlank(subject) && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-                SecurityUserDetails userDetails = (SecurityUserDetails) securityUserDetailsService.loadUserByUsername(subject);
-                // 保存用户信息到当前会话
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null,
-                                userDetails.getAuthorities());
-                // 将authentication填充到安全上下文
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+            if (subject != null && !subject.trim().isEmpty() && SecurityContextHolder.getContext().getAuthentication() == null) {
+                Mono<SecurityUserDetails> userDetailsMono = securityUserDetailsService.findByUsername(subject)
+                        .cast(SecurityUserDetails.class);
+
+                userDetailsMono.subscribeOn(Schedulers.boundedElastic())
+                        .doOnNext(userDetails -> {
+                            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                                    userDetails, null, userDetails.getAuthorities());
+                            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                            SecurityContextHolder.getContext().setAuthentication(authentication);
+                        })
+                        .doOnTerminate(() -> {
+                            try {
+                                filterChain.doFilter(request, response);
+                            } catch (IOException | ServletException e) {
+                                e.printStackTrace();
+                            }
+                        })
+                        .subscribe();
+            } else {
+                filterChain.doFilter(request, response);
             }
+        } else {
+            filterChain.doFilter(request, response);
         }
-        filterChain.doFilter(request, response);
-
     }
 }

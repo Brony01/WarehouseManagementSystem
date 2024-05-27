@@ -1,14 +1,15 @@
 package com.java.warehousemanagementsystem.config;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.pojo.User;
+import com.java.warehousemanagementsystem.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SecurityConstant {
 
     @Autowired
-    UserMapper userMapper;
-
+    private UserRepository userRepository;
 
     /**
      * 模拟用户数据。key：用户名，value：密码
@@ -43,33 +43,34 @@ public class SecurityConstant {
 
     @PostConstruct
     public void init() {
-        /*
-          账号：
-          admin admin
-          user user
-          user1 user1
-          user2 user2
-         */
-
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        List<User> users = userMapper.selectList(queryWrapper);
-        for (User user : users) {
-            USER_MAP.put(user.getUsername(), user.getPassword());
-
-            if (user.getUsername().equals("admin")) {
-                //赋予当前用户管理员权限
-                USER_PERMISSION_MAP.put(user.getUsername(), List.of(PERMISSION.ADMIN, PERMISSION.USER));
-            } else {
-                //普通用户
-                USER_PERMISSION_MAP.put(user.getUsername(), List.of(PERMISSION.USER));
-            }
-        }
+        initUsers()
+                .doOnSuccess(success -> System.out.println("User data initialized successfully"))
+                .doOnError(error -> System.err.println("User data initialization failed: " + error.getMessage()))
+                .subscribe();
     }
 
-    public void update() {
+    public Mono<Void> initUsers() {
+        return userRepository.findAll()
+                .collectList()
+                .flatMap(users -> {
+                    users.forEach(user -> {
+                        USER_MAP.put(user.getUsername(), user.getPassword());
+                        if ("admin".equals(user.getUsername())) {
+                            //赋予当前用户管理员权限
+                            USER_PERMISSION_MAP.put(user.getUsername(), List.of(PERMISSION.ADMIN, PERMISSION.USER));
+                        } else {
+                            //普通用户
+                            USER_PERMISSION_MAP.put(user.getUsername(), List.of(PERMISSION.USER));
+                        }
+                    });
+                    return Mono.empty();
+                });
+    }
+
+    public Mono<Void> update() {
         USER_MAP.clear();
         USER_PERMISSION_MAP.clear();
-        init();
+        return initUsers();
     }
 
     static {

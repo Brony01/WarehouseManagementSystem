@@ -5,26 +5,29 @@ import com.java.warehousemanagementsystem.pojo.Orders;
 
 import java.util.List;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 public interface OrdersService {
-    boolean addOrder(Orders orders);
+    Mono<Boolean> addOrder(Orders orders);
 
-    boolean addItem(Integer id, Integer itemId);
+    Mono<Boolean> addItem(Integer id, Integer itemId);
 
-    Orders findOrderById(Integer id);
+    Mono<Orders> findOrderById(Integer id);
 
-    boolean updateOrder(Integer id, Orders orders);
+    Mono<Boolean> updateOrder(Integer id, Orders orders);
 
-    boolean deleteOrder(Integer id);
+    Mono<Boolean> deleteOrder(Integer id);
 
-    boolean deleteItem(Integer id, Integer itemId);
+    Mono<Boolean> deleteItem(Integer id, Integer itemId);
 
-    List<Orders> findAllOrders();
+    Flux<Orders> findAllOrders();
 
-    List<Orders> findOrdersByUsername(String username);
+    Flux<Orders> findOrdersByUsername(String username);
 
-    List<Orders> findOrdersByStatus(String status);
+    Flux<Orders> findOrdersByStatus(String status);
 
-    List<Orders> findOrdersByAddress(String address);
+    Flux<Orders> findOrdersByAddress(String address);
 
-    List<Item> findItemsByOrderId(Integer id);
+    Flux<Item> findItemsByOrderId(Integer id);
 }
