@@ -2,29 +2,16 @@ package com.java.warehousemanagementsystem.service;
 
 import com.java.warehousemanagementsystem.pojo.Item;
 import com.java.warehousemanagementsystem.pojo.Orders;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 public interface OrdersService {
-    boolean addOrder(Orders orders);
-
-    boolean addItem(Integer id, Integer itemId);
-
-    Orders findOrderById(Integer id);
-
-    boolean updateOrder(Integer id, Orders orders);
-
-    boolean deleteOrder(Integer id);
-
-    boolean deleteItem(Integer id, Integer itemId);
-
-    List<Orders> findAllOrders();
-
-    List<Orders> findOrdersByUsername(String username);
-
-    List<Orders> findOrdersByStatus(String status);
-
-    List<Orders> findOrdersByAddress(String address);
-
-    List<Item> findItemsByOrderId(Integer id);
+    Mono<Boolean> addOrder(Orders orders);
+    Mono<Boolean> updateOrder(Orders orders);
+    Mono<Orders> findOrderById(Integer id);
+    Flux<Orders> findOrdersByStatus(String status);
+    Flux<Orders> findOrdersByAddress(String address);
+    Flux<Item> findItemsByOrderId(Integer id);
 }

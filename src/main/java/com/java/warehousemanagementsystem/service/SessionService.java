@@ -1,10 +1,10 @@
 package com.java.warehousemanagementsystem.service;
 
+import reactor.core.publisher.Mono;
+
 import java.util.Map;
 
-
 public interface SessionService {
-    Map<String, String> loginSession(String username, String password);
-
-    String logoutSession(String username);
+    Mono<Map<String, String>> loginSession(String username, String password);
+    Mono<String> logoutSession(String username);
 }

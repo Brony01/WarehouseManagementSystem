@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,32 +31,32 @@ public class SessionServiceImpl implements SessionService {
     private AuthenticationManager authenticationManager;
 
     @Override
-    public Map<String, String> loginSession(String username, String password) {
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-
-        Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-        if (authenticate == null) {
-            logger.error("(SessionServiceImpl)登录失败,authenticate == null");
-            return null;
-        }
-
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", username);
-        User user = userMapper.selectOne(queryWrapper);
-
-        Map<String, String> map = new HashMap<>();
-
-        map.put("token", JwtUtils.generateToken(username, user.getVersion()));
-        logger.info("(SessionServiceImpl)登录成功, token = {}", map.get("token"));
-        return map;
+    public Mono<Map<String, String>> loginSession(String username, String password) {
+        return Mono.fromCallable(() -> {
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+            Authentication authenticate = authenticationManager.authenticate(authenticationToken);
+            if (authenticate == null) {
+                logger.error("(SessionServiceImpl)登录失败, authenticate == null");
+                return null;
+            }
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("username", username);
+            User user = userMapper.selectOne(queryWrapper);
+            Map<String, String> map = new HashMap<>();
+            map.put("token", JwtUtils.generateToken(username, user.getVersion()));
+            logger.info("(SessionServiceImpl)登录成功, token = {}", map.get("token"));
+            return map;
+        });
     }
 
     @Override
-    public String logoutSession(String username) {
-        User user = userMapper.selectOne(new QueryWrapper<User>().eq("username", username));
-        user.setVersion(user.getVersion() + 1);
-        userMapper.updateById(user);
-        logger.info("(SessionServiceImpl)登出成功");
-        return "登出成功！";
+    public Mono<String> logoutSession(String username) {
+        return Mono.fromCallable(() -> {
+            User user = userMapper.selectOne(new QueryWrapper<User>().eq("username", username));
+            user.setVersion(user.getVersion() + 1);
+            userMapper.updateById(user);
+            logger.info("(SessionServiceImpl)登出成功");
+            return "登出成功！";
+        });
     }
 }

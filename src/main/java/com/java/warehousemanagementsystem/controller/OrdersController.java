@@ -8,214 +8,83 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Tag(name = "订单管理", description = "订单管理的相关操作")
-@Controller
+@RestController
 @RequestMapping("/order")
 public class OrdersController {
     private static final Logger logger = LoggerFactory.getLogger(OrdersController.class);
 
-    @Resource
-    private OrdersService ordersService;
+    private final OrdersService ordersService;
+
+    public OrdersController(OrdersService ordersService) {
+        this.ordersService = ordersService;
+    }
 
     @Operation(summary = "添加新订单")
     @PostMapping
     @ApiResponse(responseCode = "200", description = "订单添加成功")
     @ApiResponse(responseCode = "400", description = "订单添加失败")
     @ResponseBody
-    public ResponseResult<?> addOrder(@RequestParam @Parameter(description = "订单") String username,
-                                      @RequestParam @Parameter(description = "订单") String address) {
+    public Mono<ResponseResult<String>> addOrder(
+            @RequestParam @Parameter(description = "用户名") String username,
+            @RequestParam @Parameter(description = "地址") String address) {
         Orders orders = new Orders();
         orders.setUsername(username);
         orders.setAddress(address);
-        if (ordersService.addOrder(orders)) {
-            logger.info("(OrderController)订单添加成功, ID: {}", orders.getId());
-            return ResponseResult.success("订单添加成功");
-        } else {
-            logger.error("(OrderController)订单添加失败");
-            return ResponseResult.failure(400, "订单添加失败");
-        }
+        return ordersService.addOrder(orders)
+                .map(success -> success ? ResponseResult.success("订单添加成功") : ResponseResult.failure(400, "订单添加失败"));
     }
 
-    @Operation(summary = "添加物品")
-    @PostMapping("/item/{id}")
-    @ApiResponse(responseCode = "200", description = "物品添加成功")
-    @ApiResponse(responseCode = "400", description = "物品添加失败")
+    @Operation(summary = "更新订单")
+    @PutMapping
+    @ApiResponse(responseCode = "200", description = "订单更新成功")
+    @ApiResponse(responseCode = "400", description = "订单更新失败")
     @ResponseBody
-    public ResponseResult<?> addItem(@PathVariable @Parameter(description = "订单ID") Integer id,
-                                     @RequestParam @Parameter(description = "物品ID") Integer itemId) {
-        if (ordersService.addItem(id, itemId)) {
-            logger.info("(OrderController)物品添加成功, ID: {}", id);
-            return ResponseResult.success("物品添加成功");
-        } else {
-            logger.error("(OrderController)物品添加失败");
-            return ResponseResult.failure(400, "物品添加失败");
-        }
+    public Mono<ResponseResult<String>> updateOrder(@RequestBody Orders orders) {
+        return ordersService.updateOrder(orders)
+                .map(success -> success ? ResponseResult.success("订单更新成功") : ResponseResult.failure(400, "订单更新失败"));
     }
 
-    @Operation(summary = "获取所有订单")
-    @GetMapping
-    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
-    @ApiResponse(responseCode = "404", description = "未找到订单")
-    @ApiResponse(responseCode = "400", description = "获取订单失败")
-    @ResponseBody
-    @Cacheable(value = "allOrders")
-    public ResponseResult<List<Orders>> getAllOrders() {
-        List<Orders> orders = ordersService.findAllOrders();
-        logger.info("(OrderController)获取订单列表, size = {}", orders.size());
-        return ResponseResult.success(orders);
-    }
-
-    @Operation(summary = "根据ID获取订单信息及其物品")
+    @Operation(summary = "根据ID查找订单")
     @GetMapping("/{id}")
+    @ApiResponse(responseCode = "200", description = "订单查找成功")
+    @ApiResponse(responseCode = "400", description = "订单查找失败")
     @ResponseBody
-    @Cacheable(value = "order", key = "#id")
-    public ResponseResult<Map<String, Object>> getOrderById(@PathVariable @Parameter(description = "订单ID") Integer id) {
-        Orders orders = ordersService.findOrderById(id);
-        List<Item> items = ordersService.findItemsByOrderId(id);
-
-        if (orders != null) {
-            logger.info("(OrderController)订单查找成功, ID: {}", id);
-            Map<String, Object> result = new HashMap<>();
-            result.put("order", orders);
-            if (items != null) {
-                logger.info("(OrderController)物品查找成功, 订单ID: {}", id);
-                result.put("items", items);
-            } else {
-                logger.warn("(OrderController)未找到物品, 订单ID: {}", id);
-            }
-            return ResponseResult.success(result);
-        } else {
-            logger.error("(OrderController)未找到订单, ID: {}", id);
-            return ResponseResult.failure(404, "未找到订单");
-        }
+    public Mono<ResponseResult<Orders>> getOrderById(@PathVariable Integer id) {
+        return ordersService.findOrderById(id)
+                .map(ResponseResult::success);
     }
 
-
-    @Operation(summary = "根据用户名获取订单信息")
-    @GetMapping("/user")
-    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
-    @ApiResponse(responseCode = "404", description = "未找到订单")
-    @ApiResponse(responseCode = "400", description = "获取订单失败")
+    @Operation(summary = "根据状态查找订单")
+    @GetMapping("/status")
+    @ApiResponse(responseCode = "200", description = "订单查找成功")
+    @ApiResponse(responseCode = "400", description = "订单查找失败")
     @ResponseBody
-    public ResponseResult<List<Orders>> getOrdersByUserId(@RequestParam @Parameter(description = "用户名") String username) {
-        List<Orders> orders = ordersService.findOrdersByUsername(username);
-        if (orders != null) {
-            logger.info("(OrderController)订单查找成功, 用户ID: {}", username);
-            return ResponseResult.success(orders);
-        } else {
-            logger.error("(OrderController)未找到订单");
-            return ResponseResult.failure(404, "未找到订单");
-        }
+    public Flux<Orders> getOrdersByStatus(@RequestParam @Parameter(description = "订单状态") String status) {
+        return ordersService.findOrdersByStatus(status);
     }
 
-    @Operation(summary = "根据订单状态获取订单信息")
-    @GetMapping("/status/{status}")
-    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
-    @ApiResponse(responseCode = "404", description = "未找到订单")
-    @ApiResponse(responseCode = "400", description = "获取订单失败")
-    @ResponseBody
-    public ResponseResult<List<Orders>> getOrdersByStatus(@PathVariable @Parameter(description = "订单状态") String status) {
-        List<Orders> orders = ordersService.findOrdersByStatus(status);
-        if (orders != null) {
-            logger.info("(OrderController)订单查找成功, 订单状态: {}", status);
-            return ResponseResult.success(orders);
-        } else {
-            logger.error("(OrderController)未找到订单");
-            return ResponseResult.failure(404, "未找到订单");
-        }
-    }
-
-    @Operation(summary = "根据地址获取订单信息")
+    @Operation(summary = "根据地址查找订单")
     @GetMapping("/address")
-    @ApiResponse(responseCode = "200", description = "成功获取所有订单数据")
-    @ApiResponse(responseCode = "404", description = "未找到订单")
-    @ApiResponse(responseCode = "400", description = "获取订单失败")
+    @ApiResponse(responseCode = "200", description = "订单查找成功")
+    @ApiResponse(responseCode = "400", description = "订单查找失败")
     @ResponseBody
-    public ResponseResult<List<Orders>> getOrdersByAddress(@RequestParam @Parameter(description = "地址") String address) {
-        List<Orders> orders = ordersService.findOrdersByAddress(address);
-        if (orders != null) {
-            logger.info("(OrderController)订单查找成功, 地址: {}", address);
-            return ResponseResult.success(orders);
-        } else {
-            logger.error("(OrderController)未找到订单");
-            return ResponseResult.failure(404, "未找到订单");
-        }
+    public Flux<Orders> getOrdersByAddress(@RequestParam @Parameter(description = "订单地址") String address) {
+        return ordersService.findOrdersByAddress(address);
     }
 
-//    @Operation(summary = "根据订单查找物品")
-//    @GetMapping("/item/{id}")
-//    @ResponseBody
-//    public ResponseResult<List<Item>> getItemsByOrderId(@PathVariable @Parameter(description = "订单ID") Integer id) {
-//        List<Item> items = ordersService.findItemsByOrderId(id);
-//        if (items != null) {
-//            logger.info("(OrderController)物品查找成功, 订单ID: {}", id);
-//            return ResponseResult.success(items);
-//        } else {
-//            logger.error("(OrderController)未找到物品");
-//            return ResponseResult.failure(404, "未找到物品");
-//        }
-//    }
-
-    @Operation(summary = "更新订单信息")
-    @PutMapping("/{id}")
-    @ApiResponse(responseCode = "200", description = "订单信息更新成功")
-    @ApiResponse(responseCode = "400", description = "订单信息更新失败")
+    @Operation(summary = "获取订单中的商品")
+    @GetMapping("/{id}/items")
+    @ApiResponse(responseCode = "200", description = "订单商品查找成功")
+    @ApiResponse(responseCode = "400", description = "订单商品查找失败")
     @ResponseBody
-    @CachePut(value = "order", key = "#id")
-    public ResponseResult<?> updateOrder(@PathVariable @Parameter(description = "订单ID") Integer id, @RequestBody @Parameter(description = "订单") Orders orders) {
-        if (ordersService.updateOrder(id, orders)) {
-            logger.info("(OrderController)订单信息更新成功, ID: {}", id);
-            return ResponseResult.success("订单信息更新成功");
-        } else {
-            logger.error("(OrderController)订单信息更新失败");
-            return ResponseResult.failure(400, "订单信息更新失败");
-        }
-    }
-
-    @Operation(summary = "删除订单")
-    @DeleteMapping("/{id}")
-    @ApiResponse(responseCode = "200", description = "订单删除成功")
-    @ApiResponse(responseCode = "404", description = "订单删除失败")
-    @ApiResponse(responseCode = "400", description = "订单删除失败")
-    @ResponseBody
-    @CacheEvict(value = "order", key = "#id")
-    public ResponseResult<?> deleteOrder(@PathVariable @Parameter(description = "订单ID") Integer id) {
-        if (ordersService.deleteOrder(id)) {
-            logger.info("(OrderController)订单删除成功, ID: {}", id);
-            return ResponseResult.success("订单删除成功");
-        } else {
-            logger.error("(OrderController)订单删除失败");
-            return ResponseResult.failure(404, "订单删除失败");
-        }
-    }
-
-    @Operation(summary = "删除订单物品")
-    @DeleteMapping("/item/{id}")
-    @ApiResponse(responseCode = "200", description = "物品删除成功")
-    @ApiResponse(responseCode = "404", description = "物品删除失败")
-    @ApiResponse(responseCode = "400", description = "物品删除失败")
-    @ResponseBody
-    public ResponseResult<?> deleteItem(@PathVariable @Parameter(description = "订单ID") Integer id,
-                                        @RequestParam @Parameter(description = "物品ID") Integer itemId) {
-        if (ordersService.deleteItem(id, itemId)) {
-            logger.info("(OrderController)物品删除成功, ID: {}", id);
-            return ResponseResult.success("物品删除成功");
-        } else {
-            logger.error("(OrderController)物品删除失败");
-            return ResponseResult.failure(404, "物品删除失败");
-        }
+    public Flux<Item> getItemsByOrderId(@PathVariable Integer id) {
+        return ordersService.findItemsByOrderId(id);
     }
 }
