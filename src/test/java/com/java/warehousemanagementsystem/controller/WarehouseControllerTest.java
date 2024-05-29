@@ -1,122 +1,109 @@
 package com.java.warehousemanagementsystem.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.java.warehousemanagementsystem.pojo.Warehouse;
 import com.java.warehousemanagementsystem.service.WarehouseService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.when;
+import java.util.Arrays;
+import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
+import static org.mockito.BDDMockito.given;
+import static org.springframework.web.reactive.function.BodyInserters.fromValue;
+
+@WebFluxTest(WarehouseController.class)
 public class WarehouseControllerTest {
 
-    @Mock
+    @Autowired
+    private WebTestClient webTestClient;
+
+    @MockBean
     private WarehouseService warehouseService;
 
-    @InjectMocks
-    private WarehouseController warehouseController;
+    @Test
+    void testGetAllWarehouses() {
+        Warehouse warehouse1 = new Warehouse(1, "Warehouse1", "Location1", "Manager1", "Description1", null);
+        Warehouse warehouse2 = new Warehouse(2, "Warehouse2", "Location2", "Manager2", "Description2", null);
+        List<Warehouse> warehouses = Arrays.asList(warehouse1, warehouse2);
+
+        given(warehouseService.selectWarehouse("", 1L, 10L)).willReturn(Flux.fromIterable(warehouses));
+
+        webTestClient.get().uri("/warehouses")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Warehouse.class).isEqualTo(warehouses);
+    }
 
     @Test
-    void testCreateWarehouse() {
-        String name = "Main Warehouse";
-        String address = "Downtown";
-        String manager = "John Doe";
-        String description = "Central warehouse";
-        Warehouse warehouse = new Warehouse();
-        warehouse.setName(name);
-        warehouse.setAddress(address);
-        warehouse.setManager(manager);
-        warehouse.setDescription(description);
-        when(warehouseService.addWarehouse(name, address, manager, description)).thenReturn(warehouse);
+    void testAddWarehouse() {
+        given(warehouseService.addWarehouse("NewWarehouse", "NewLocation", "NewManager", "NewDescription"))
+                .willReturn(Mono.just(new Warehouse(1, "NewWarehouse", "NewLocation", "NewManager", "NewDescription", null)));
 
-        ResponseResult<?> result = warehouseController.createWarehouse(name, address, manager, description);
-
-        assertEquals(200, result.getCode());
-        assertEquals(warehouse, result.getData());
+        webTestClient.post().uri("/warehouses")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromValue(new Warehouse(null, "NewWarehouse", "NewLocation", "NewManager", "NewDescription", null)))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getData().equals(new Warehouse(1, "NewWarehouse", "NewLocation", "NewManager", "NewDescription", null));
+                });
     }
 
     @Test
     void testUpdateWarehouse() {
-        Integer id = 1;
-        String name = "Updated Warehouse";
-        String location = "Uptown";
-        String manager = "Jane Doe";
-        String description = "Updated description";
-        Warehouse updatedWarehouse = new Warehouse();
-        updatedWarehouse.setId(id);
-        updatedWarehouse.setName(name);
-        updatedWarehouse.setAddress(location);
-        updatedWarehouse.setManager(manager);
-        updatedWarehouse.setDescription(description);
-        when(warehouseService.updateWarehouse(id, name, location, manager, description)).thenReturn(updatedWarehouse);
+        given(warehouseService.updateWarehouse(1, "UpdatedWarehouse", "UpdatedLocation", "UpdatedManager", "UpdatedDescription"))
+                .willReturn(Mono.just(new Warehouse(1, "UpdatedWarehouse", "UpdatedLocation", "UpdatedManager", "UpdatedDescription", null)));
 
-        ResponseResult<?> result = warehouseController.updateWarehouse(id, name, location, manager, description);
-
-        assertEquals(200, result.getCode());
-        assertEquals(updatedWarehouse, result.getData());
+        webTestClient.put().uri("/warehouses")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromValue(new Warehouse(1, "UpdatedWarehouse", "UpdatedLocation", "UpdatedManager", "UpdatedDescription", null)))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getData().equals(new Warehouse(1, "UpdatedWarehouse", "UpdatedLocation", "UpdatedManager", "UpdatedDescription", null));
+                });
     }
 
     @Test
-    void testFindWarehouseById() {
-        Integer id = 1;
-        Warehouse warehouse = new Warehouse();
-        warehouse.setId(id);
-        when(warehouseService.selectWarehouse(id)).thenReturn(warehouse);
+    void testGetWarehouseById() {
+        Warehouse warehouse = new Warehouse(1, "Warehouse1", "Location1", "Manager1", "Description1", null);
 
-        ResponseResult<Warehouse> result = warehouseController.findWarehouseById(id);
+        given(warehouseService.selectWarehouseById(1)).willReturn(Mono.just(warehouse));
 
-        assertEquals(200, result.getCode());
-        assertEquals(warehouse, result.getData());
-    }
-
-    @Test
-    void testFindWarehouseByIdNotFound() {
-        Integer id = 99;
-        when(warehouseService.selectWarehouse(id)).thenReturn(null);
-
-        ResponseResult<Warehouse> result = warehouseController.findWarehouseById(id);
-
-        assertEquals(404, result.getCode());
-        assertNull(result.getData());
-    }
-
-    @Test
-    void testGetWarehouseList() {
-        Page<Warehouse> page = new Page<>();
-        when(warehouseService.selectWarehouse("", 1L, 10L)).thenReturn(page);
-
-        ResponseResult<Page<Warehouse>> result = warehouseController.getWarehouseList("", 1L, 10L);
-
-        assertEquals(200, result.getCode());
-        assertEquals(page, result.getData());
+        webTestClient.get().uri("/warehouses/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getData().equals(warehouse);
+                });
     }
 
     @Test
     void testDeleteWarehouse() {
-        Integer id = 1;
-        when(warehouseService.deleteWarehouse(id)).thenReturn(true);
+        given(warehouseService.deleteWarehouse(1)).willReturn(Mono.empty());
 
-        ResponseResult<?> result = warehouseController.deleteWarehouse(id);
-
-        assertEquals(200, result.getCode());
-        assertEquals("操作成功", result.getMsg());
-    }
-
-    @Test
-    void testDeleteWarehouseNotFound() {
-        Integer id = 99;
-        when(warehouseService.deleteWarehouse(id)).thenReturn(false);
-
-        ResponseResult<?> result = warehouseController.deleteWarehouse(id);
-
-        assertEquals(404, result.getCode());
-        assertEquals("未找到仓库", result.getMsg());
+        webTestClient.delete().uri("/warehouses/1")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getMsg().equals("成功删除仓库");
+                });
     }
 }

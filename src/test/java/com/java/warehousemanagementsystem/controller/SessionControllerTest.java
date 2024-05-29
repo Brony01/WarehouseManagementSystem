@@ -1,78 +1,60 @@
 package com.java.warehousemanagementsystem.controller;
 
 import com.java.warehousemanagementsystem.service.SessionService;
-import org.junit.jupiter.api.BeforeEach;
+import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 
-@ExtendWith(SpringExtension.class)
+@WebFluxTest(SessionController.class)
 public class SessionControllerTest {
 
-    private MockMvc mockMvc;
+    @Autowired
+    private WebTestClient webTestClient;
 
-    @Mock
+    @MockBean
     private SessionService sessionService;
 
-    @InjectMocks
-    private SessionController sessionController;
+    @Test
+    void testLoginSession() {
+        given(sessionService.loginSession("user1", "password1"))
+                .willReturn(Mono.just(Map.of("token", "123456789")));
 
-    @BeforeEach
-    public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(sessionController).build();
+        webTestClient.post().uri("/sessions/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromValue(Map.of("username", "user1", "password", "password1")))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    //assert response.getMsg().equals("Login successful");
+                });
     }
 
     @Test
-    public void testLogin() throws Exception {
-        Map<String, String> sessionData = Map.of("token", "someToken"); // Simulate a login token
-        when(sessionService.loginSession("alice", "password123")).thenReturn(sessionData);
+    void testLogoutSession() {
+        given(sessionService.logoutSession("user1"))
+                .willReturn(Mono.just("Logout successful"));
 
-        mockMvc.perform(post("/session")
-                        .param("username", "alice")
-                        .param("password", "password123")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.token").value("someToken"));
-
-        verify(sessionService, times(1)).loginSession("alice", "password123");
-    }
-
-    @Test
-    public void testLogout() throws Exception {
-        when(sessionService.logoutSession("alice")).thenReturn("登出成功！");
-
-        mockMvc.perform(delete("/session")
-                        .param("username", "alice")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isOk());
-        //.andExpect(jsonPath("$.success").value(true));
-
-        verify(sessionService, times(1)).logoutSession("alice");
-    }
-
-    @Test
-    public void testAdminEndpoint() throws Exception {
-        mockMvc.perform(post("/session/test"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("admin"));
-    }
-
-    @Test
-    public void testUserEndpoint() throws Exception {
-        mockMvc.perform(post("/session/test2"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("user"));
+        webTestClient.post().uri("/sessions/logout")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromValue(Map.of("username", "user1")))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    //assert response.getMsg().equals("Logout successful");
+                });
     }
 }

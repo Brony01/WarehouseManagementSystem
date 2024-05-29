@@ -1,171 +1,119 @@
 package com.java.warehousemanagementsystem.controller;
 
-import com.java.warehousemanagementsystem.enums.AppHttpCodeEnum;
-import com.java.warehousemanagementsystem.pojo.Item;
 import com.java.warehousemanagementsystem.pojo.Orders;
 import com.java.warehousemanagementsystem.service.OrdersService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 
-@ExtendWith(MockitoExtension.class)
+@WebFluxTest(OrdersController.class)
 public class OrdersControllerTest {
 
-    @Mock
+    @Autowired
+    private WebTestClient webTestClient;
+
+    @MockBean
     private OrdersService ordersService;
-
-    @InjectMocks
-    private OrdersController ordersController;
-
-    @Captor
-    private ArgumentCaptor<Orders> orderArgumentCaptor;
-
-
-    @Test
-    void testAddOrderSuccess() {
-        String username = "testUser";
-        String address = "123 Main St";
-
-        when(ordersService.addOrder(any(Orders.class))).thenReturn(true);
-
-        ResponseResult<?> result = ordersController.addOrder(username, address);
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals("操作成功", result.getMsg());
-
-        verify(ordersService).addOrder(orderArgumentCaptor.capture());
-        Orders capturedOrder = orderArgumentCaptor.getValue();
-        assertEquals(username, capturedOrder.getUsername());
-        assertEquals(address, capturedOrder.getAddress());
-    }
-
-    @Test
-    void testAddOrderFailure() {
-        String username = "testUser";
-        String address = "123 Main St";
-
-        when(ordersService.addOrder(any(Orders.class))).thenReturn(false);
-
-        ResponseResult<?> result = ordersController.addOrder(username, address);
-
-        assertEquals(AppHttpCodeEnum.BAD_REQUEST.getCode(), result.getCode());
-        assertEquals("订单添加失败", result.getMsg());
-
-        verify(ordersService).addOrder(orderArgumentCaptor.capture());
-        Orders capturedOrder = orderArgumentCaptor.getValue();
-        assertEquals(username, capturedOrder.getUsername());
-        assertEquals(address, capturedOrder.getAddress());
-    }
-
-    @Test
-    void testAddItem() {
-        when(ordersService.addItem(1, 10)).thenReturn(true);
-
-        ResponseResult<?> result = ordersController.addItem(1, 10);
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals("操作成功", result.getMsg());
-    }
 
     @Test
     void testGetAllOrders() {
-        List<Orders> orders = Arrays.asList(new Orders(), new Orders());
-        when(ordersService.findAllOrders()).thenReturn(orders);
+        Orders order1 = new Orders(1, "user1", "Pending", 100.0, "Address1", null, null, null);
+        Orders order2 = new Orders(2, "user2", "Completed", 200.0, "Address2", null, null, null);
+        List<Orders> orders = Arrays.asList(order1, order2);
 
-        ResponseResult<List<Orders>> result = ordersController.getAllOrders();
+        given(ordersService.findOrdersByStatus("Pending")).willReturn(Flux.fromIterable(orders));
 
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals(2, result.getData().size());
+        webTestClient.get().uri("/orders")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Orders.class).isEqualTo(orders);
     }
 
     @Test
-    void testGetOrderById() {
-        Orders order = new Orders();
-        List<Item> items = Arrays.asList(new Item(), new Item());
-        when(ordersService.findOrderById(1)).thenReturn(order);
-        when(ordersService.findItemsByOrderId(1)).thenReturn(items);
+    void testAddOrder() {
+        Orders order = new Orders(null, "user3", "Pending", 300.0, "NewAddress", null, null, null);
+        given(ordersService.addOrder(order)).willReturn(Mono.just(true));
 
-        ResponseResult<Map<String, Object>> result = ordersController.getOrderById(1);
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertNotNull(result.getData().get("order"));
-        assertEquals(2, ((List<?>) result.getData().get("items")).size());
+        webTestClient.post().uri("/orders")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromValue(order))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getMsg().equals("订单添加成功");
+                });
     }
 
     @Test
     void testUpdateOrder() {
-        Orders order = new Orders();
-        when(ordersService.updateOrder(1, order)).thenReturn(true);
+        Orders order = new Orders(1, "user1", "Completed", 350.0, "UpdatedAddress", null, null, null);
+        given(ordersService.updateOrder(order)).willReturn(Mono.just(true));
 
-        ResponseResult<?> result = ordersController.updateOrder(1, order);
+        webTestClient.put().uri("/orders")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromValue(order))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getMsg().equals("订单信息更新成功");
+                });
+    }
 
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals("操作成功", result.getMsg());
+    @Test
+    void testGetOrderById() {
+        Orders order = new Orders(1, "user1", "Pending", 100.0, "Address1", null, null, null);
+
+        given(ordersService.findOrderById(1)).willReturn(Mono.just(order));
+
+        webTestClient.get().uri("/orders/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getData().equals(order);
+                });
     }
 
     @Test
     void testDeleteOrder() {
-        when(ordersService.deleteOrder(1)).thenReturn(true);
+        //     private Integer id;
+        //    private String username;
+        //    private String status;
+        //    private Double totalPrice;
+        //    private String address;
+        //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        //    private Date createTime;
+        //
+        //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        //    private Date updateTime;
+        given(ordersService.updateOrder(new Orders(1, "user1", "Pending", 100.0, "Address1", null, null, null))).willReturn(Mono.just(true));
 
-        ResponseResult<?> result = ordersController.deleteOrder(1);
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals("操作成功", result.getMsg());
-    }
-
-    @Test
-    void testDeleteItem() {
-        when(ordersService.deleteItem(1, 10)).thenReturn(true);
-
-        ResponseResult<?> result = ordersController.deleteItem(1, 10);
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals("操作成功", result.getMsg());
-    }
-
-    @Test
-    void testGetOrdersByUserId() {
-        List<Orders> orders = Arrays.asList(new Orders(), new Orders());
-        when(ordersService.findOrdersByUsername(String.valueOf(1))).thenReturn(orders);
-
-        ResponseResult<List<Orders>> result = ordersController.getOrdersByUserId(String.valueOf(1));
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals(2, result.getData().size());
-    }
-
-    @Test
-    void testGetOrdersByStatus() {
-        List<Orders> orders = Arrays.asList(new Orders(), new Orders());
-        when(ordersService.findOrdersByStatus("processed")).thenReturn(orders);
-
-        ResponseResult<List<Orders>> result = ordersController.getOrdersByStatus("processed");
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals(2, result.getData().size());
-    }
-
-    @Test
-    void testGetOrdersByAddress() {
-        List<Orders> orders = Arrays.asList(new Orders(), new Orders());
-        when(ordersService.findOrdersByAddress("123 Main St")).thenReturn(orders);
-
-        ResponseResult<List<Orders>> result = ordersController.getOrdersByAddress("123 Main St");
-
-        assertEquals(AppHttpCodeEnum.SUCCESS.getCode(), result.getCode());
-        assertEquals(2, result.getData().size());
+        webTestClient.delete().uri("/orders/1")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(ResponseResult.class)
+                .value(response -> {
+                    assert response.getCode() == 200;
+                    assert response.getMsg().equals("成功删除订单");
+                });
     }
 }

@@ -14111,3 +14111,113 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 	at java.base/java.lang.Thread.run(Thread.java:1623)
 16:09:52.269 [lettuce-nioEventLoop-4-1] INFO  c.j.w.aspect.CacheLoggingAspect - Attempting to access cache for method: getAllItems, key: No Key
 16:09:52.269 [lettuce-nioEventLoop-4-1] INFO  c.j.w.aspect.CacheLoggingAspect - Cache hit for method: getAllItems, key: No Key
+18:03:08.382 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:03:08.600 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+18:03:09.146 [main] INFO  c.j.w.controller.ItemControllerTest - Starting ItemControllerTest using Java 17.0.9 with PID 6748 (started by 26368 in C:\Users\26368\Desktop\WMS\WarehouseManagementSystem)
+18:03:09.147 [main] INFO  c.j.w.controller.ItemControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:03:16.621 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 6e4ccd90-a6d0-40fd-92f3-7c211af8247a
+
+18:03:16.959 [main] INFO  c.j.w.controller.ItemControllerTest - Started ItemControllerTest in 8.222 seconds (process running for 10.359)
+18:03:17.204 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> GET /item/1
+> WebTestClient-Request-Id: [1]
+> Accept: [application/json]
+
+No content
+
+< 401 UNAUTHORIZED Unauthorized
+< WWW-Authenticate: [Basic realm="Realm"]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+0 bytes of content (unknown content-type).
+
+18:03:17.299 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> POST /item
+> WebTestClient-Request-Id: [2]
+> Content-Type: [application/json]
+> Content-Length: [139]
+
+{"id":null,"name":"NewItem","description":"NewDescription","quantity":100,"price":30.0,"warehouseId":1,"createTime":null,"updateTime":null}
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [text/plain]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+An expected CSRF token cannot be found
+
+18:03:17.314 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> GET /item
+> WebTestClient-Request-Id: [3]
+> Accept: [application/json]
+
+No content
+
+< 401 UNAUTHORIZED Unauthorized
+< WWW-Authenticate: [Basic realm="Realm"]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+0 bytes of content (unknown content-type).
+
+18:03:17.325 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> PUT /item
+> WebTestClient-Request-Id: [4]
+> Content-Type: [application/json]
+> Content-Length: [144]
+
+{"id":1,"name":"UpdatedItem","description":"UpdatedDescription","quantity":150,"price":35.0,"warehouseId":1,"createTime":null,"updateTime":null}
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [text/plain]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+An expected CSRF token cannot be found
+
+18:03:17.335 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> DELETE /item/1
+> WebTestClient-Request-Id: [5]
+
+No content
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [text/plain]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+An expected CSRF token cannot be found
+
