@@ -1,13 +1,17 @@
 package com.java.warehousemanagementsystem.controller;
 
+import com.java.warehousemanagementsystem.config.SecurityConfig;
 import com.java.warehousemanagementsystem.pojo.User;
 import com.java.warehousemanagementsystem.service.UserService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,6 +24,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 
 @WebFluxTest(UserController.class)
+@Import(SecurityConfig.class)
 public class UserControllerTest {
 
     @Autowired
@@ -27,6 +32,11 @@ public class UserControllerTest {
 
     @MockBean
     private UserService userService;
+
+    @BeforeEach
+    public void setUp() {
+        this.webTestClient = this.webTestClient.mutateWith(SecurityMockServerConfigurers.mockUser());
+    }
 
     @Test
     void testGetAllUsers() {

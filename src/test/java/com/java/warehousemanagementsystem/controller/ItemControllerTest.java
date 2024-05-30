@@ -1,14 +1,18 @@
 package com.java.warehousemanagementsystem.controller;
 
+import com.java.warehousemanagementsystem.config.SecurityConfig;
 import com.java.warehousemanagementsystem.pojo.Item;
 import com.java.warehousemanagementsystem.service.ItemService;
 import com.java.warehousemanagementsystem.vo.ResponseResult;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,6 +24,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 
 @WebFluxTest(ItemController.class)
+@Import(SecurityConfig.class)
 public class ItemControllerTest {
 
     @Autowired
@@ -27,6 +32,11 @@ public class ItemControllerTest {
 
     @MockBean
     private ItemService itemService;
+
+    @BeforeEach
+    public void setUp() {
+        this.webTestClient = this.webTestClient.mutateWith(SecurityMockServerConfigurers.mockUser());
+    }
 
     @Test
     void testGetAllItems() {
@@ -89,8 +99,10 @@ public class ItemControllerTest {
                 .expectStatus().isOk()
                 .expectBody(ResponseResult.class)
                 .value(response -> {
-                    assert response.getCode() == 200;
-                    assert response.getData().equals(item);
+                    System.out.println("Response Code: " + response.getCode());
+                    System.out.println("Response Data: " + response.getData());
+                    assert response.getCode() == 200 : "Expected code 200 but got " + response.getCode();
+                    assert response.getData().equals(item) : "Expected item " + item + " but got " + response.getData();
                 });
     }
 

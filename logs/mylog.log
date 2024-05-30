@@ -14221,3 +14221,846 @@ No content
 
 An expected CSRF token cannot be found
 
+17:44:24.402 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:44:24.503 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.WarehouseControllerTest
+17:44:24.675 [main] INFO  c.j.w.c.WarehouseControllerTest - Starting WarehouseControllerTest using Java 20.0.1 with PID 28377 (started by silva in /Users/silva/WarehouseManagementSystem)
+17:44:24.675 [main] INFO  c.j.w.c.WarehouseControllerTest - No active profile set, falling back to 1 default profile: "default"
+17:44:25.886 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 9894a0a0-59aa-4d53-927f-bc587c678c8c
+
+17:44:25.978 [main] INFO  c.j.w.c.WarehouseControllerTest - Started WarehouseControllerTest in 1.438 seconds (process running for 2.001)
+17:44:26.047 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> DELETE /warehouses/1
+> WebTestClient-Request-Id: [1]
+
+No content
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [text/plain]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+An expected CSRF token cannot be found
+
+17:57:02.709 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:57:02.795 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.UserControllerTest
+17:57:02.966 [main] INFO  c.j.w.controller.UserControllerTest - Starting UserControllerTest using Java 20.0.1 with PID 30037 (started by silva in /Users/silva/WarehouseManagementSystem)
+17:57:02.966 [main] INFO  c.j.w.controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+17:57:04.179 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 2c79cc63-68d5-4312-9fcf-1fca5f5d67e6
+
+17:57:04.293 [main] INFO  c.j.w.controller.UserControllerTest - Started UserControllerTest in 1.462 seconds (process running for 2.098)
+17:57:04.368 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> GET /users
+> WebTestClient-Request-Id: [1]
+> Accept: [application/json]
+
+No content
+
+< 401 UNAUTHORIZED Unauthorized
+< WWW-Authenticate: [Basic realm="Realm"]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+0 bytes of content (unknown content-type).
+
+17:58:13.049 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:58:13.139 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.UserControllerTest
+17:58:13.310 [main] INFO  c.j.w.controller.UserControllerTest - Starting UserControllerTest using Java 20.0.1 with PID 30236 (started by silva in /Users/silva/WarehouseManagementSystem)
+17:58:13.311 [main] INFO  c.j.w.controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+17:58:14.790 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 99eeacd3-2e6d-481a-9a2e-4ee223e65612
+
+17:58:14.900 [main] INFO  c.j.w.controller.UserControllerTest - Started UserControllerTest in 1.722 seconds (process running for 2.365)
+17:58:14.981 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> DELETE /users/1
+> WebTestClient-Request-Id: [1]
+
+No content
+
+< 403 FORBIDDEN Forbidden
+< Content-Type: [text/plain]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+An expected CSRF token cannot be found
+
+18:06:39.884 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:06:39.978 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.WarehouseControllerTest
+18:06:40.144 [main] INFO  c.j.w.c.WarehouseControllerTest - Starting WarehouseControllerTest using Java 20.0.1 with PID 31346 (started by silva in /Users/silva/WarehouseManagementSystem)
+18:06:40.145 [main] INFO  c.j.w.c.WarehouseControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:06:40.976 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f55604c7-7e39-4b21-b2b9-0abaf82d65b9
+
+18:06:41.428 [main] INFO  c.j.w.c.WarehouseControllerTest - Started WarehouseControllerTest in 1.414 seconds (process running for 1.995)
+18:06:41.527 [parallel-2] ERROR c.j.w.handler.GlobalExceptionHandler - 出现了异常! {}
+org.springframework.web.reactive.resource.NoResourceFoundException: 404 NOT_FOUND "No static resource warehouses."
+	at org.springframework.web.reactive.resource.ResourceWebHandler.lambda$handle$1(ResourceWebHandler.java:431)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:45)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators.complete(Operators.java:137)
+	at reactor.core.publisher.MonoEmpty.subscribe(MonoEmpty.java:46)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onComplete(FluxConcatMapNoPrefetch.java:241)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:155)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onNext(FluxFilter.java:113)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:158)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.onNext(FluxFilterFuseable.java:118)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.request(FluxFilterFuseable.java:191)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.request(FluxDefaultIfEmpty.java:98)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.request(FluxFilter.java:186)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onSubscribe(FluxFilter.java:85)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.onSubscribe(Operators.java:2051)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onComplete(FluxPeekFuseable.java:940)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2573)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onSubscribe(ReactorContextTestExecutionListener.java:115)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.checkTerminated(FluxFlatMap.java:850)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drainLoop(FluxFlatMap.java:612)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drain(FluxFlatMap.java:592)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onComplete(FluxFlatMap.java:469)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.request(FluxPeekFuseable.java:144)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onSubscribe(FluxFlatMap.java:373)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onSubscribe(FluxPeekFuseable.java:178)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onComplete(FluxMap.java:275)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1866)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.signalCached(MonoCacheTime.java:337)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.onNext(MonoCacheTime.java:354)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onNext(FluxPeek.java:200)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180)
+	at reactor.core.publisher.MonoPublishOn$PublishOnSubscriber.run(MonoPublishOn.java:181)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+18:06:41.568 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> PUT /warehouses
+> WebTestClient-Request-Id: [1]
+> Content-Type: [application/json]
+> Content-Length: [142]
+
+{"id":1,"name":"UpdatedWarehouse","address":"UpdatedLocation","manager":"UpdatedManager","description":"UpdatedDescription","createTime":null}
+
+< 200 OK OK
+< Content-Type: [application/json]
+< Content-Length: [69]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+{"code":502,"msg":"404 NOT_FOUND \"No static resource warehouses.\""}
+
+18:07:11.294 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:07:11.393 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.WarehouseControllerTest
+18:07:11.577 [main] INFO  c.j.w.c.WarehouseControllerTest - Starting WarehouseControllerTest using Java 20.0.1 with PID 31415 (started by silva in /Users/silva/WarehouseManagementSystem)
+18:07:11.577 [main] INFO  c.j.w.c.WarehouseControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:07:12.433 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 20bf0d92-986f-4580-95bc-a0e86ecb5442
+
+18:07:12.901 [main] INFO  c.j.w.c.WarehouseControllerTest - Started WarehouseControllerTest in 1.466 seconds (process running for 2.099)
+18:07:12.973 [parallel-2] ERROR c.j.w.handler.GlobalExceptionHandler - 出现了异常! {}
+org.springframework.web.reactive.resource.NoResourceFoundException: 404 NOT_FOUND "No static resource warehouses."
+	at org.springframework.web.reactive.resource.ResourceWebHandler.lambda$handle$1(ResourceWebHandler.java:431)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:45)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators.complete(Operators.java:137)
+	at reactor.core.publisher.MonoEmpty.subscribe(MonoEmpty.java:46)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onComplete(FluxConcatMapNoPrefetch.java:241)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:155)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onNext(FluxFilter.java:113)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:158)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.onNext(FluxFilterFuseable.java:118)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.request(FluxFilterFuseable.java:191)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.request(FluxDefaultIfEmpty.java:98)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.request(FluxFilter.java:186)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onSubscribe(FluxFilter.java:85)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.onSubscribe(Operators.java:2051)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onComplete(FluxPeekFuseable.java:940)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2573)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onSubscribe(ReactorContextTestExecutionListener.java:115)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.checkTerminated(FluxFlatMap.java:850)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drainLoop(FluxFlatMap.java:612)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drain(FluxFlatMap.java:592)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onComplete(FluxFlatMap.java:469)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.request(FluxPeekFuseable.java:144)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onSubscribe(FluxFlatMap.java:373)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onSubscribe(FluxPeekFuseable.java:178)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onComplete(FluxMap.java:275)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1866)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.signalCached(MonoCacheTime.java:337)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.onNext(MonoCacheTime.java:354)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onNext(FluxPeek.java:200)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180)
+	at reactor.core.publisher.MonoPublishOn$PublishOnSubscriber.run(MonoPublishOn.java:181)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+18:07:13.043 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> GET /warehouses
+> WebTestClient-Request-Id: [1]
+> Accept: [application/json]
+
+No content
+
+< 200 OK OK
+< Content-Type: [application/json]
+< Content-Length: [69]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+{"code":502,"msg":"404 NOT_FOUND \"No static resource warehouses.\""}
+
+18:08:00.300 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.WarehouseControllerTest]: WarehouseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:08:00.387 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.WarehouseControllerTest
+18:08:00.557 [main] INFO  c.j.w.c.WarehouseControllerTest - Starting WarehouseControllerTest using Java 20.0.1 with PID 31533 (started by silva in /Users/silva/WarehouseManagementSystem)
+18:08:00.558 [main] INFO  c.j.w.c.WarehouseControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:08:01.471 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 020820bc-9227-48ba-83ad-fb70b8b2c7e2
+
+18:08:01.975 [main] INFO  c.j.w.c.WarehouseControllerTest - Started WarehouseControllerTest in 1.55 seconds (process running for 2.163)
+18:08:02.093 [parallel-2] ERROR c.j.w.handler.GlobalExceptionHandler - 出现了异常! {}
+org.springframework.web.reactive.resource.NoResourceFoundException: 404 NOT_FOUND "No static resource warehouses."
+	at org.springframework.web.reactive.resource.ResourceWebHandler.lambda$handle$1(ResourceWebHandler.java:431)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:45)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators.complete(Operators.java:137)
+	at reactor.core.publisher.MonoEmpty.subscribe(MonoEmpty.java:46)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onComplete(FluxConcatMapNoPrefetch.java:241)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:155)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onNext(FluxFilter.java:113)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:158)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.onNext(FluxFilterFuseable.java:118)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.request(FluxFilterFuseable.java:191)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.request(FluxDefaultIfEmpty.java:98)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.request(FluxFilter.java:186)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onSubscribe(FluxFilter.java:85)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.onSubscribe(Operators.java:2051)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onComplete(FluxPeekFuseable.java:940)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2573)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onSubscribe(ReactorContextTestExecutionListener.java:115)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.checkTerminated(FluxFlatMap.java:850)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drainLoop(FluxFlatMap.java:612)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drain(FluxFlatMap.java:592)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onComplete(FluxFlatMap.java:469)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.request(FluxPeekFuseable.java:144)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onSubscribe(FluxFlatMap.java:373)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onSubscribe(FluxPeekFuseable.java:178)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onComplete(FluxMap.java:275)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1866)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.signalCached(MonoCacheTime.java:337)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.onNext(MonoCacheTime.java:354)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onNext(FluxPeek.java:200)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180)
+	at reactor.core.publisher.MonoPublishOn$PublishOnSubscriber.run(MonoPublishOn.java:181)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+18:08:02.137 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> POST /warehouses
+> WebTestClient-Request-Id: [1]
+> Content-Type: [application/json]
+> Content-Length: [129]
+
+{"id":null,"name":"NewWarehouse","address":"NewLocation","manager":"NewManager","description":"NewDescription","createTime":null}
+
+< 200 OK OK
+< Content-Type: [application/json]
+< Content-Length: [69]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+{"code":502,"msg":"404 NOT_FOUND \"No static resource warehouses.\""}
+
+18:09:10.397 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:09:10.481 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+18:09:10.649 [main] INFO  c.j.w.controller.ItemControllerTest - Starting ItemControllerTest using Java 20.0.1 with PID 31703 (started by silva in /Users/silva/WarehouseManagementSystem)
+18:09:10.649 [main] INFO  c.j.w.controller.ItemControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:09:11.476 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 2f9c1adf-dd38-45a6-af6c-91f8fddcc8d3
+
+18:09:11.927 [main] INFO  c.j.w.controller.ItemControllerTest - Started ItemControllerTest in 1.411 seconds (process running for 1.961)
+18:09:12.026 [parallel-2] ERROR c.j.w.handler.GlobalExceptionHandler - 出现了异常! {}
+org.springframework.web.server.MissingRequestValueException: 400 BAD_REQUEST "Required query parameter 'name' is not present."
+	at org.springframework.web.reactive.result.method.annotation.RequestParamMethodArgumentResolver.handleMissingValue(RequestParamMethodArgumentResolver.java:113)
+	at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:233)
+	at reactor.core.publisher.MonoSupplier$MonoSupplierSubscription.request(MonoSupplier.java:126)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onSubscribe(ReactorContextTestExecutionListener.java:115)
+	at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:48)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.Operators.complete(Operators.java:137)
+	at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:146)
+	at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:63)
+	at reactor.core.publisher.MonoZip$ZipCoordinator.request(MonoZip.java:220)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onSubscribe(MonoIgnoreThen.java:135)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onSubscribe(MonoFlatMap.java:117)
+	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:129)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:241)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.onComplete(MonoIgnoreThen.java:204)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onComplete(MonoFlatMap.java:189)
+	at reactor.core.publisher.Operators.complete(Operators.java:137)
+	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:121)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:79)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:139)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onComplete(MonoPeekTerminal.java:299)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:155)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onNext(FluxFilter.java:113)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:122)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.innerNext(FluxConcatMapNoPrefetch.java:259)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:865)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:158)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:129)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.onNext(FluxFilterFuseable.java:118)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2571)
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableSubscriber.request(FluxFilterFuseable.java:191)
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.request(MonoFlatMap.java:194)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.request(Operators.java:2331)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:339)
+	at reactor.core.publisher.MonoNext$NextSubscriber.request(MonoNext.java:108)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.request(FluxDefaultIfEmpty.java:98)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.request(FluxFilter.java:186)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onSubscribe(FluxFilter.java:85)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.onSubscribe(Operators.java:2051)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onSubscribe(MonoNext.java:70)
+	at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onSubscribe(FluxConcatMapNoPrefetch.java:164)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.subscribeNext(MonoIgnoreThen.java:265)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:51)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onComplete(FluxPeekFuseable.java:940)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:85)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onComplete(ReactorContextTestExecutionListener.java:130)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2573)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2367)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:2241)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onSubscribe(ReactorContextTestExecutionListener.java:115)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:4568)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:82)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onComplete(MonoNext.java:102)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.checkTerminated(FluxFlatMap.java:850)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drainLoop(FluxFlatMap.java:612)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drain(FluxFlatMap.java:592)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onComplete(FluxFlatMap.java:469)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onComplete(FluxPeekFuseable.java:277)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.slowPath(FluxIterable.java:357)
+	at reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:294)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.request(FluxPeekFuseable.java:144)
+	at reactor.core.publisher.FluxFlatMap$FlatMapMain.onSubscribe(FluxFlatMap.java:373)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onSubscribe(FluxPeekFuseable.java:178)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:201)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:83)
+	at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:165)
+	at reactor.core.publisher.Operators$BaseFluxToMonoOperator.completePossiblyEmpty(Operators.java:2097)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onComplete(FluxDefaultIfEmpty.java:134)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+	at reactor.core.publisher.FluxFilter$FilterSubscriber.onComplete(FluxFilter.java:166)
+	at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onComplete(FluxMap.java:275)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1866)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.signalCached(MonoCacheTime.java:337)
+	at reactor.core.publisher.MonoCacheTime$CoordinatorSubscriber.onNext(MonoCacheTime.java:354)
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onNext(FluxPeek.java:200)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:74)
+	at org.springframework.security.test.context.support.ReactorContextTestExecutionListener$DelegateTestExecutionListener$SecuritySubContext.onNext(ReactorContextTestExecutionListener.java:120)
+	at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180)
+	at reactor.core.publisher.MonoPublishOn$PublishOnSubscriber.run(MonoPublishOn.java:181)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+18:09:12.064 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> POST /item
+> WebTestClient-Request-Id: [1]
+> Content-Type: [application/json]
+> Content-Length: [139]
+
+{"id":null,"name":"NewItem","description":"NewDescription","quantity":100,"price":30.0,"warehouseId":1,"createTime":null,"updateTime":null}
+
+< 200 OK OK
+< Content-Type: [application/json]
+< Content-Length: [88]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+{"code":502,"msg":"400 BAD_REQUEST \"Required query parameter 'name' is not present.\""}
+
+18:09:47.242 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:09:47.321 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+18:09:47.495 [main] INFO  c.j.w.controller.ItemControllerTest - Starting ItemControllerTest using Java 20.0.1 with PID 31784 (started by silva in /Users/silva/WarehouseManagementSystem)
+18:09:47.496 [main] INFO  c.j.w.controller.ItemControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:09:48.358 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 0f6a55dd-f1d6-4eb2-97df-8103924df4e8
+
+18:09:48.812 [main] INFO  c.j.w.controller.ItemControllerTest - Started ItemControllerTest in 1.453 seconds (process running for 2.073)
+18:09:48.961 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> GET /item/1
+> WebTestClient-Request-Id: [1]
+> Accept: [application/json]
+
+No content
+
+< 200 OK OK
+< Content-Type: [application/json]
+< Content-Length: [173]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+{"code":200,"msg":"操作成功","data":{"id":1,"name":"Item1","description":"Description1","quantity":100,"price":10.0,"warehouseId":1,"createTime":null,"updateTime":null}}
+
+18:10:45.885 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.java.warehousemanagementsystem.controller.ItemControllerTest]: ItemControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:10:45.972 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.java.warehousemanagementsystem.WarehouseManagementSystemApplication for test class com.java.warehousemanagementsystem.controller.ItemControllerTest
+18:10:46.144 [main] INFO  c.j.w.controller.ItemControllerTest - Starting ItemControllerTest using Java 20.0.1 with PID 31913 (started by silva in /Users/silva/WarehouseManagementSystem)
+18:10:46.144 [main] INFO  c.j.w.controller.ItemControllerTest - No active profile set, falling back to 1 default profile: "default"
+18:10:46.996 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 92bfee3c-a7ac-4336-8d1e-786bf3763c2c
+
+18:10:48.199 [main] INFO  c.j.w.controller.ItemControllerTest - Started ItemControllerTest in 2.191 seconds (process running for 2.799)
+18:10:48.351 [main] ERROR o.s.t.w.r.server.ExchangeResult - Request details for assertion failure:
+
+> GET /item/1
+> WebTestClient-Request-Id: [1]
+> Accept: [application/json]
+
+No content
+
+< 200 OK OK
+< Content-Type: [application/json]
+< Content-Length: [173]
+< Cache-Control: [no-cache, no-store, max-age=0, must-revalidate]
+< Pragma: [no-cache]
+< Expires: [0]
+< X-Content-Type-Options: [nosniff]
+< X-Frame-Options: [DENY]
+< X-XSS-Protection: [0]
+< Referrer-Policy: [no-referrer]
+
+{"code":200,"msg":"操作成功","data":{"id":1,"name":"Item1","description":"Description1","quantity":100,"price":10.0,"warehouseId":1,"createTime":null,"updateTime":null}}
+
