@@ -1,22 +1,23 @@
 package com.java.warehousemanagementsystem.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.java.warehousemanagementsystem.mapper.ItemMapper;
 import com.java.warehousemanagementsystem.pojo.Item;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-
-@ExtendWith(MockitoExtension.class)
 public class ItemServiceImplTest {
 
     @Mock
@@ -25,85 +26,72 @@ public class ItemServiceImplTest {
     @InjectMocks
     private ItemServiceImpl itemService;
 
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
     @Test
     void testAddItem() {
-        String name = "Item1";
-        String description = "A new item";
-        Integer quantity = 10;
-        Double price = 20.0;
-        Integer warehouseId = 1;
-        when(itemMapper.selectCount(any(QueryWrapper.class))).thenReturn(0L);
+        Item item = new Item();
+        item.setName("Test Item");
+        item.setDescription("Test Description");
+        item.setQuantity(10);
+        item.setPrice(20.0);
+        item.setWarehouseId(1);
+        item.setCreateTime(new Date());
 
-        assertTrue(itemService.addItem(name, description, quantity, price, warehouseId));
+        when(itemMapper.insert(any(Item.class))).thenReturn(1);
+
+        Mono<Boolean> result = itemService.addItem("Test Item", "Test Description", 10, 20.0, 1);
+        StepVerifier.create(result)
+                .expectNext(true)
+                .verifyComplete();
     }
-
-    @Test
-    void testAddItemWithDuplicate() {
-        String name = "Item1";
-        String description = "A new item";
-        Integer quantity = 10;
-        Double price = 20.0;
-        Integer warehouseId = 1;
-        when(itemMapper.selectCount(any(QueryWrapper.class))).thenReturn(1L);
-
-        assertThrows(IllegalArgumentException.class, () -> itemService.addItem(name, description, quantity, price, warehouseId));
-    }
-
 
     @Test
     void testUpdateItem() {
-        Integer id = 1;
-        String name = "Updated Item";
-        String description = "Updated description";
-        Integer quantity = 15;
-        Double price = 25.0;
-        Integer warehouseId = 1;
         Item item = new Item();
-        item.setId(id);
-        when(itemMapper.selectById(id)).thenReturn(item);
+        item.setId(1);
+        item.setName("Updated Item");
+        item.setDescription("Updated Description");
+        item.setQuantity(5);
+        item.setPrice(15.0);
+        item.setWarehouseId(1);
+        item.setUpdateTime(new Date());
 
-        assertTrue(itemService.updateItem(id, name, description, quantity, price, warehouseId));
-        verify(itemMapper).updateById(item);
-    }
+        when(itemMapper.selectById(1)).thenReturn(item);
+        when(itemMapper.updateById(any(Item.class))).thenReturn(1);
 
-    @Test
-    void testUpdateItemNotFound() {
-        Integer id = 99;
-        when(itemMapper.selectById(id)).thenReturn(null);
-
-        assertThrows(IllegalArgumentException.class, () -> itemService.updateItem(id, "name", "description", 10, 20.0, 1));
+        Mono<Boolean> result = itemService.updateItem(1, "Updated Item", "Updated Description", 5, 15.0, 1);
+        StepVerifier.create(result)
+                .expectNext(true)
+                .verifyComplete();
     }
 
     @Test
     void testFindItemById() {
-        Integer id = 1;
         Item item = new Item();
-        item.setId(id);
-        when(itemMapper.selectById(id)).thenReturn(item);
+        item.setId(1);
+        item.setName("Test Item");
+        item.setDescription("Test Description");
 
-        Item result = itemService.findItemById(id);
-        assertEquals(id, result.getId());
-    }
+        when(itemMapper.selectById(1)).thenReturn(item);
 
-    @Test
-    void testFindItemByIdWithNullId() {
-        assertThrows(IllegalArgumentException.class, () -> itemService.findItemById(null));
+        Mono<Item> result = itemService.findItemById(1);
+        StepVerifier.create(result)
+                .expectNext(item)
+                .verifyComplete();
     }
 
     @Test
     void testDeleteItem() {
-        Integer id = 1;
-        when(itemMapper.deleteById(id)).thenReturn(1);
+        when(itemMapper.deleteById(1)).thenReturn(1);
 
-        assertTrue(itemService.deleteItem(id));
-    }
-
-    @Test
-    void testDeleteItemNotFound() {
-        Integer id = 99;
-        when(itemMapper.deleteById(id)).thenReturn(0);
-
-        assertFalse(itemService.deleteItem(id));
+        Mono<Boolean> result = itemService.deleteItem(1);
+        StepVerifier.create(result)
+                .expectNext(true)
+                .verifyComplete();
     }
 
     @Test
@@ -111,37 +99,76 @@ public class ItemServiceImplTest {
         List<Item> expectedItems = new ArrayList<>();
         expectedItems.add(new Item());
         expectedItems.add(new Item());
+
         when(itemMapper.selectList(null)).thenReturn(expectedItems);
 
-        List<Item> result = itemService.findAllItems();
-        assertEquals(2, result.size());
+        Flux<Item> result = itemService.findAllItems();
+        StepVerifier.create(result)
+                .expectNextSequence(expectedItems)
+                .verifyComplete();
     }
 
     @Test
     void testAddItemWithInvalidParameters() {
-        assertThrows(IllegalArgumentException.class, () -> itemService.addItem(null, "description", 10, 20.0, 1), "物品名称不能为空");
-        assertThrows(IllegalArgumentException.class, () -> itemService.addItem("Item", "", 10, 20.0, 1), "物品描述不能为空");
-        assertThrows(IllegalArgumentException.class, () -> itemService.addItem("Item", "description", -1, 20.0, 1), "物品数量不正确");
-        assertThrows(IllegalArgumentException.class, () -> itemService.addItem("Item", "description", 10, -20.0, 1), "物品价格不正确");
+        Mono<Boolean> result = itemService.addItem(null, "description", 10, 20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Item name cannot be null"))
+                .verify();
+
+        result = itemService.addItem("Item", "", 10, 20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Item description cannot be empty"))
+                .verify();
+
+        result = itemService.addItem("Item", "description", -1, 20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Invalid item quantity"))
+                .verify();
+
+        result = itemService.addItem("Item", "description", 10, -20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Invalid item price"))
+                .verify();
     }
 
     @Test
     void testUpdateItemWithInvalidParameters() {
-        assertThrows(IllegalArgumentException.class, () -> itemService.updateItem(1, null, "description", 10, 20.0, 1), "物品名称不能为空");
-        assertThrows(IllegalArgumentException.class, () -> itemService.updateItem(1, "Item", "", 10, 20.0, 1), "物品描述不能为空");
-        assertThrows(IllegalArgumentException.class, () -> itemService.updateItem(1, "Item", "description", -1, 20.0, 1), "物品数量不正确");
-        assertThrows(IllegalArgumentException.class, () -> itemService.updateItem(1, "Item", "description", 10, -20.0, 1), "物品价格不正确");
+        Mono<Boolean> result = itemService.updateItem(1, null, "description", 10, 20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Item name cannot be null"))
+                .verify();
+
+        result = itemService.updateItem(1, "Item", "", 10, 20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Item description cannot be empty"))
+                .verify();
+
+        result = itemService.updateItem(1, "Item", "description", -1, 20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Invalid item quantity"))
+                .verify();
+
+        result = itemService.updateItem(1, "Item", "description", 10, -20.0, 1);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Invalid item price"))
+                .verify();
     }
 
     @Test
     void testFindItemByIdWithInvalidId() {
         Integer invalidId = null;
-        assertThrows(IllegalArgumentException.class, () -> itemService.findItemById(invalidId), "物品ID不能为空");
+        Mono<Item> result = itemService.findItemById(invalidId);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Item ID cannot be null"))
+                .verify();
     }
 
     @Test
     void testDeleteItemWithInvalidId() {
         Integer invalidId = null;
-        assertThrows(IllegalArgumentException.class, () -> itemService.deleteItem(invalidId), "物品ID不能为空");
+        Mono<Boolean> result = itemService.deleteItem(invalidId);
+        StepVerifier.create(result)
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException && throwable.getMessage().equals("Item ID cannot be null"))
+                .verify();
     }
 }

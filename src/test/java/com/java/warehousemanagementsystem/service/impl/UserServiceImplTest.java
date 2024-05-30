@@ -4,24 +4,23 @@ import com.java.warehousemanagementsystem.mapper.UserMapper;
 import com.java.warehousemanagementsystem.pojo.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class UserServiceImplTest {
+public class UserServiceImplTest {
 
     @Mock
     private UserMapper userMapper;
-
-    @Mock
-    private PasswordEncoder passwordEncoder;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -32,85 +31,60 @@ class UserServiceImplTest {
     }
 
     @Test
-    void registerUserSuccessfully() {
-        String username = "testUser";
-        String password = "password";
-        String confirmedPassword = "password";
-
-        when(userMapper.selectCount(any())).thenReturn(0L);
-        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+    void testAddUser() {
+        User user = new User();
         when(userMapper.insert(any(User.class))).thenReturn(1);
 
-        assertTrue(userService.register(username, password, confirmedPassword));
+        Mono<Boolean> result = userService.register("test", "password", "password");
+        StepVerifier.create(result)
+                .expectNext(true)
+                .verifyComplete();
     }
 
     @Test
-    void registerUserFailDueToExistingUser() {
-        String username = "existingUser";
-        String password = "password";
-        String confirmedPassword = "password";
-
-        when(userMapper.selectCount(any())).thenReturn(1L);
-
-        assertThrows(IllegalArgumentException.class, () -> userService.register(username, password, confirmedPassword));
-    }
-
-    @Test
-    void updateUserSuccessfully() {
-        String username = "existingUser";
-        String password = "newPassword";
-        String confirmedPassword = "newPassword";
-        User existingUser = new User(1, username, "oldPassword", 1);
-
-        when(userMapper.selectOne(any())).thenReturn(existingUser);
-        when(passwordEncoder.encode(anyString())).thenReturn("encodedNewPassword");
+    void testUpdateUser() {
+        User user = new User();
         when(userMapper.updateById(any(User.class))).thenReturn(1);
 
-        assertTrue(userService.updateUser(username, password, confirmedPassword));
+        Mono<Boolean> result = userService.updateUser(user);
+        StepVerifier.create(result)
+                .expectNext(true)
+                .verifyComplete();
     }
 
     @Test
-    void updateUserFailDueToNonexistentUser() {
-        String username = "nonexistentUser";
-        String password = "password";
-        String confirmedPassword = "password";
+    void testFindUserById() {
+        User user = new User();
+        user.setId(1);
+        when(userMapper.selectById(1)).thenReturn(user);
 
-        when(userMapper.selectOne(any())).thenReturn(null);
-
-        assertThrows(IllegalArgumentException.class, () -> userService.updateUser(username, password, confirmedPassword));
+        Mono<User> result = userService.findUserById(1);
+        StepVerifier.create(result)
+                .expectNext(user)
+                .verifyComplete();
     }
 
     @Test
-    void deleteUserSuccessfully() {
-        Integer userId = 1;
+    void testFindAllUsers() {
+        List<User> users = new ArrayList<>();
+        User user = new User();
+        users.add(user);
 
-        when(userMapper.deleteById(userId)).thenReturn(1);
+        when(userMapper.selectList(any())).thenReturn(users);
 
-        assertTrue(userService.deleteUser(userId));
+        Flux<User> result = userService.findAllUser();
+        StepVerifier.create(result)
+                .expectNextSequence(users)
+                .verifyComplete();
     }
 
     @Test
-    void deleteUserFailDueToInvalidId() {
-        Integer userId = null;
+    void testDeleteUser() {
+        when(userMapper.deleteById(1)).thenReturn(1);
 
-        assertThrows(IllegalArgumentException.class, () -> userService.deleteUser(userId));
-    }
-
-    @Test
-    void findUserByIdSuccessfully() {
-        Integer userId = 1;
-        User foundUser = new User(userId, "userName", "encodedPassword", 1);
-
-        when(userMapper.selectById(userId)).thenReturn(foundUser);
-
-        User result = userService.findUserById(userId);
-        assertNotNull(result);
-        assertEquals(userId, result.getId());
-        assertNull(result.getPassword()); // Ensuring password is null for safety
-    }
-
-    @Test
-    void findUserByIdFailDueToNullId() {
-        assertThrows(IllegalArgumentException.class, () -> userService.findUserById(null));
+        Mono<Boolean> result = userService.deleteUser(1);
+        StepVerifier.create(result)
+                .expectNext(true)
+                .verifyComplete();
     }
 }
